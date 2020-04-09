@@ -14,7 +14,7 @@ using namespace PacmanCS;
 
 int main()
 {
-	const int ROWS = 11, COLUMNS = 11;
+	const int ROWS = 11, COLUMNS = 11,BLOCK=50;
 	RenderWindow window;
 	window.create(VideoMode(1000, 1000), "Simple Maze");
 
@@ -36,9 +36,9 @@ ifstream inputFile;
 					inputFile >> arr[i][j];
 	}
 	inputFile.close();
-	Player player(1, 1, "images/Pacman.png");
+	Player player(1, 1,50.0 ,"images/Pacman.png");
 
-	Board myBoard(ROWS,COLUMNS, "images/Block.png", "images/grass_tiled.png");
+	Board myBoard(ROWS,COLUMNS, 50.0,"images/Block.png", "images/grass_tiled.png");
 	myBoard.setTextures(arr);
 
 	

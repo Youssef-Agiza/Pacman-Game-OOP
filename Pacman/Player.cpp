@@ -1,10 +1,10 @@
 #include "Player.h"
-Player::Player(int initialRow, int initialColumn, std::string imageName)
+Player::Player(int initialRow, int initialColumn, float size=50,std::string imageName=""):mSize(size)
 {
 	currentRow = initialRow;
 	currentColumn = initialColumn;
-	shape.setRadius(35);
-	shape.setPosition(50 + 70.0f * initialColumn, 50 + 70.0f * initialRow);
+	shape.setRadius(mSize/2);
+	shape.setPosition(50 + mSize * initialColumn, 50 + mSize * initialRow);
 	texture.loadFromFile(imageName);
 	shape.setTexture(&texture);
 }
@@ -15,7 +15,7 @@ void Player::move(char direction, int** arr)
 		if (arr[currentRow - 1][currentColumn] != -1)
 		{
 			currentRow--;
-			shape.move(0, -70);
+			shape.move(0, -mSize);
 		}
 	}
 	else if (direction == 'D' || direction == 'd')
@@ -23,7 +23,7 @@ void Player::move(char direction, int** arr)
 		if (arr[currentRow + 1][currentColumn] != -1)
 		{
 			currentRow++;
-			shape.move(0, 70);
+			shape.move(0, mSize);
 		}
 	}
 	else if (direction == 'R' || direction == 'r')
@@ -31,7 +31,7 @@ void Player::move(char direction, int** arr)
 		if (arr[currentRow][currentColumn + 1] != -1)
 		{
 			currentColumn++;
-			shape.move(70, 0);
+			shape.move(mSize, 0);
 		}
 	}
 	else if (direction == 'L' || direction == 'l')
@@ -39,7 +39,7 @@ void Player::move(char direction, int** arr)
 		if (arr[currentRow][currentColumn - 1] != -1)
 		{
 			currentColumn--;
-			shape.move(-70, 0);
+			shape.move(-mSize, 0);
 		}
 	}
 }

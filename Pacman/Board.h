@@ -12,9 +12,9 @@ namespace PacmanCS {
 		sf::RectangleShape** mShape;
 		const int mRows;
 		const int mCols;
+		const float mBlockSize;
 	public:
-		Board(int rows, int cols, std::string wall, std::string road = "");
-		//~Board(); //implement later
+		Board(int rows, int cols, float block,std::string wall, std::string road = "");
 		void drawOnWindow(sf::RenderWindow& w);
 		void setTextures( int** arr);
 
