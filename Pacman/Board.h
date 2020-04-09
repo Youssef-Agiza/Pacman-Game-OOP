@@ -1,10 +1,23 @@
 #pragma once
 #include"SFML/Graphics.hpp"
-class Board
-{
-private:
+#include <string>
+#include <iostream>
+namespace PacmanCS {
 
-public:
+	class Board
+	{
+	private:
+		sf::Texture mWallTexture;
+		sf::Texture mRoadTexture; //change this name later
+		sf::RectangleShape** mShape;
+		const int mRows;
+		const int mCols;
+	public:
+		Board(int rows, int cols, std::string wall, std::string road = "");
+		//~Board(); //implement later
+		void drawOnWindow(sf::RenderWindow& w);
+		void setTextures( int** arr);
 
-};
+	};
 
+}
