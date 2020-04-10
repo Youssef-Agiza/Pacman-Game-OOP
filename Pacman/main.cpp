@@ -36,9 +36,9 @@ ifstream inputFile;
 					inputFile >> arr[i][j];
 	}
 	inputFile.close();
-	Player player(1, 1,50.0 ,"images/Pacman.png");
+	Player player(1, 1,50.0,1.0 ,"images/Pacman.png");
 
-	Board myBoard(ROWS,COLUMNS, 50.0,"images/Block.png", "images/grass_tiled.png");
+	Board myBoard(ROWS,COLUMNS,50.0, 1.0,"images/Block.png", "images/grass_tiled.png");
 	myBoard.setTextures(arr);
 
 	

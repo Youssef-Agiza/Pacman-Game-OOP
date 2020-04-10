@@ -8,10 +8,11 @@ private:
 	int currentRow;
 	int currentColumn;
 	const float mSize;
+	const int mPosition;
 	sf::CircleShape shape;
 	sf::Texture texture;
 public:
-	Player(int initialRow, int initialColumn, float size,std::string imageName);
+	Player(int initialRow, int initialColumn, float size,float pos,std::string imageName);
 	void move(char direction, int** arr);
 	void drawOnWindow(sf::RenderWindow& window);
 	int getRow();

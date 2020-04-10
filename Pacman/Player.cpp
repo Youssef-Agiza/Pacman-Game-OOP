@@ -1,10 +1,12 @@
 #include "Player.h"
-Player::Player(int initialRow, int initialColumn, float size=50,std::string imageName=""):mSize(size)
+const int DEFAULT_POSTION = 50;
+Player::Player(int initialRow, int initialColumn, float size=50,float pos=DEFAULT_POSTION,std::string imageName=""):
+	mSize(size),mPosition(pos)
 {
 	currentRow = initialRow;
 	currentColumn = initialColumn;
 	shape.setRadius(mSize/2);
-	shape.setPosition(50 + mSize * initialColumn, 50 + mSize * initialRow);
+	shape.setPosition(mPosition + mSize * initialColumn, mPosition + mSize * initialRow);
 	texture.loadFromFile(imageName);
 	shape.setTexture(&texture);
 }

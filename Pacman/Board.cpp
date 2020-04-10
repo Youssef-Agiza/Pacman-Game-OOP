@@ -4,9 +4,9 @@ namespace PacmanCS {
 	const int DEFAULT_COL = 10;
 	const int DEFAULT_WALL = -1;
 	const int DEFAULT_BLOCK = 50;
-
-	Board::Board(int rows=DEFAULT_ROW, int cols=DEFAULT_COL, float block=DEFAULT_BLOCK, std::string wall="", std::string road )
-		:mRows(rows), mCols(cols),mBlockSize(block)
+	const float DEFAULT_POSITION = 50;
+	Board::Board(int rows=DEFAULT_ROW, int cols=DEFAULT_COL, float block=DEFAULT_BLOCK,float poistion=DEFAULT_POSITION, std::string wall="", std::string road )
+		:mRows(rows), mCols(cols),mBlockSize(block), mPositionOnWindow(poistion)
 	{
 		//validate later
 		mWallTexture.loadFromFile(wall);
@@ -30,7 +30,7 @@ namespace PacmanCS {
 		for (int i = 0; i < mRows; i++)
 			for (int j = 0; j < mCols; j++)
 			{
-				mShape[i][j].setPosition(50.0f + mBlockSize * j, 50.0f + mBlockSize * i);
+				mShape[i][j].setPosition(mPositionOnWindow + mBlockSize * j, mPositionOnWindow + mBlockSize * i);
 				mShape[i][j].setSize(sf::Vector2f(mBlockSize, mBlockSize));
 				if (arr[i][j] == DEFAULT_WALL)
 				{

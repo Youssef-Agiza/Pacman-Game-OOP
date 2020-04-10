@@ -13,8 +13,9 @@ namespace PacmanCS {
 		const int mRows;
 		const int mCols;
 		const float mBlockSize;
+		const float mPositionOnWindow;
 	public:
-		Board(int rows, int cols, float block,std::string wall, std::string road = "");
+		Board(int rows, int cols, float block,float position,std::string wall, std::string road = "");
 		void drawOnWindow(sf::RenderWindow& w);
 		void setTextures( int** arr);
 
