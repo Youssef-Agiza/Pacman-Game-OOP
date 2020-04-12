@@ -1,0 +1,278 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C1E9F162443B40E00330884 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E9F152443B40E00330884 /* main.cpp */; };
+		9C1E9F282443B4AD00330884 /* pacman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E9F222443B4A900330884 /* pacman.cpp */; };
+		9C1E9F292443B4AD00330884 /* character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E9F252443B4AB00330884 /* character.cpp */; };
+		9C1E9F2A2443B4AD00330884 /* ghost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E9F262443B4AC00330884 /* ghost.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9C1E9F122443B40E00330884 /* pacman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pacman; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C1E9F152443B40E00330884 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9C1E9F182443B40E00330884 /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cute_image.jpg; path = ../cute_image.jpg; sourceTree = "<group>"; };
+		9C1E9F192443B40E00330884 /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = nice_music.ogg; path = ../nice_music.ogg; sourceTree = "<group>"; };
+		9C1E9F1A2443B40E00330884 /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sansation.ttf; path = ../sansation.ttf; sourceTree = "<group>"; };
+		9C1E9F1B2443B40E00330884 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		9C1E9F222443B4A900330884 /* pacman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pacman.cpp; sourceTree = "<group>"; };
+		9C1E9F232443B4A900330884 /* pacman.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pacman.hpp; sourceTree = "<group>"; };
+		9C1E9F242443B4AA00330884 /* character.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = character.hpp; sourceTree = "<group>"; };
+		9C1E9F252443B4AB00330884 /* character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = character.cpp; sourceTree = "<group>"; };
+		9C1E9F262443B4AC00330884 /* ghost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ghost.cpp; sourceTree = "<group>"; };
+		9C1E9F272443B4AD00330884 /* ghost.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ghost.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C1E9F102443B40E00330884 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C1E9F0A2443B40D00330884 = {
+			isa = PBXGroup;
+			children = (
+				9C1E9F142443B40E00330884 /* pacman */,
+				9C1E9F132443B40E00330884 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C1E9F132443B40E00330884 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C1E9F122443B40E00330884 /* pacman */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C1E9F142443B40E00330884 /* pacman */ = {
+			isa = PBXGroup;
+			children = (
+				9C1E9F152443B40E00330884 /* main.cpp */,
+				9C1E9F252443B4AB00330884 /* character.cpp */,
+				9C1E9F242443B4AA00330884 /* character.hpp */,
+				9C1E9F262443B4AC00330884 /* ghost.cpp */,
+				9C1E9F272443B4AD00330884 /* ghost.hpp */,
+				9C1E9F222443B4A900330884 /* pacman.cpp */,
+				9C1E9F232443B4A900330884 /* pacman.hpp */,
+				9C1E9F172443B40E00330884 /* Resources */,
+			);
+			path = pacman;
+			sourceTree = "<group>";
+		};
+		9C1E9F172443B40E00330884 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9C1E9F182443B40E00330884 /* cute_image.jpg */,
+				9C1E9F192443B40E00330884 /* nice_music.ogg */,
+				9C1E9F1A2443B40E00330884 /* sansation.ttf */,
+				9C1E9F1B2443B40E00330884 /* icon.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C1E9F112443B40E00330884 /* pacman */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C1E9F1E2443B40E00330884 /* Build configuration list for PBXNativeTarget "pacman" */;
+			buildPhases = (
+				9C1E9F0F2443B40E00330884 /* Sources */,
+				9C1E9F102443B40E00330884 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pacman;
+			productName = pacman;
+			productReference = 9C1E9F122443B40E00330884 /* pacman */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C1E9F0B2443B40D00330884 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Nada Mohamed ";
+				TargetAttributes = {
+					9C1E9F112443B40E00330884 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 9C1E9F0E2443B40D00330884 /* Build configuration list for PBXProject "pacman" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C1E9F0A2443B40D00330884;
+			productRefGroup = 9C1E9F132443B40E00330884 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C1E9F112443B40E00330884 /* pacman */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C1E9F0F2443B40E00330884 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C1E9F162443B40E00330884 /* main.cpp in Sources */,
+				9C1E9F282443B4AD00330884 /* pacman.cpp in Sources */,
+				9C1E9F292443B4AD00330884 /* character.cpp in Sources */,
+				9C1E9F2A2443B4AD00330884 /* ghost.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9C1E9F1C2443B40E00330884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "$(SFML_LINK_PREFIX) sfml-network$(SFML_LINK_SUFFIX)";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		9C1E9F1D2443B40E00330884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "$(SFML_LINK_PREFIX) sfml-network$(SFML_LINK_SUFFIX)";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+		9C1E9F1F2443B40E00330884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9C1E9F202443B40E00330884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C1E9F0E2443B40D00330884 /* Build configuration list for PBXProject "pacman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C1E9F1C2443B40E00330884 /* Debug */,
+				9C1E9F1D2443B40E00330884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C1E9F1E2443B40E00330884 /* Build configuration list for PBXNativeTarget "pacman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C1E9F1F2443B40E00330884 /* Debug */,
+				9C1E9F202443B40E00330884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C1E9F0B2443B40D00330884 /* Project object */;
+}
