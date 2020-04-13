@@ -34,9 +34,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\board texts\BoardText.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="..\images\Block.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -70,5 +67,8 @@
     <Image Include="..\images\maps\hqdefault.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\boardTexts\BoardText.txt" />
   </ItemGroup>
 </Project>

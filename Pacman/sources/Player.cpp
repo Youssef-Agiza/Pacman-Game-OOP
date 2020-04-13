@@ -1,6 +1,6 @@
 #include "Player.h"
 const int DEFAULT_POSTION = 50;
-Player::Player(int initialRow, int initialColumn, float size=50,float pos=DEFAULT_POSTION,std::string imageName=""):
+Player::Player(int initialRow, int initialColumn, float size=50.0f,float pos=DEFAULT_POSTION,std::string imageName=""):
 	mSize(size),mPosition(pos)
 {
 	currentRow = initialRow;

@@ -8,7 +8,7 @@ private:
 	int currentRow;
 	int currentColumn;
 	const float mSize;
-	const int mPosition;
+	const float mPosition;
 	sf::CircleShape shape;
 	sf::Texture texture;
 public:

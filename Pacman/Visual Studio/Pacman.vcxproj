@@ -28,9 +28,6 @@
     <ClCompile Include="..\sources\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\board texts\BoardText.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="..\images\Block.png" />
     <Image Include="..\images\Block2.png" />
     <Image Include="..\images\Block3.png" />
@@ -42,6 +39,9 @@
     <Image Include="..\images\maps\chompermazetiles.png" />
     <Image Include="..\images\maps\hqdefault.jpg" />
     <Image Include="..\images\Pacman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\boardTexts\BoardText.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\include;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\headers;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\include;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\headers;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\soundtracks;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\boardTexts;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\images</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,7 +149,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\AUC\CS\CSCE-110\Pacman Game\Pacman\boardTexts;C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
