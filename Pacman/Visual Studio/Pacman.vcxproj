@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\boardTexts\BoardText.txt" />
+    <Text Include="..\boardTexts\BoardText2.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

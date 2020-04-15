@@ -15,20 +15,20 @@ using namespace PacmanCS;
 
 int main()
 {
-	const int ROWS = 11, COLUMNS = 11,BLOCK=50;
+	const int ROWS = 31, COLUMNS = 28,BLOCK=30, POSITION=25;
 	RenderWindow window;
 	window.create(VideoMode(1000, 1000), "Simple Maze");
 
 	int** arr;
 	arr = new int* [ROWS];
 	
-	for (int i=0; i< COLUMNS;i++)
+	for (int i=0; i< ROWS;i++)
 	{
 		arr[i] = new int[COLUMNS];
 	}
 
 ifstream inputFile;
-	inputFile.open("../BoardTexts/BoardText.txt");
+	inputFile.open("../BoardTexts/BoardText2.txt");
 	if (inputFile.is_open())
 	{
 		for (int i = 0; i < ROWS; i++)
@@ -37,9 +37,9 @@ ifstream inputFile;
 					inputFile >> arr[i][j];
 	}
 	inputFile.close();
-	Player player(1, 1,50.0,1.0 ,"../images/Pacman.png");
+	Player player(1, 1,BLOCK,POSITION ,"../images/Pacman.png");
 
-	Board myBoard(ROWS,COLUMNS,50.0, 1.0,"../images/Block.png", "../images/grass_tiled.png");
+	Board myBoard(ROWS,COLUMNS,BLOCK, POSITION,"../images/Block.png", "../images/grass_tiled.png");
 	myBoard.setTextures(arr);
 
 	
@@ -75,6 +75,7 @@ ifstream inputFile;
 		player.drawOnWindow(window);
 		window.display();
 	}
+
 	return 0;
 
 }

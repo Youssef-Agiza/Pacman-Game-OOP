@@ -35,8 +35,11 @@ namespace PacmanCS {
 				if (arr[i][j] == DEFAULT_WALL)
 				{
 					mShape[i][j].setTexture(&(this->mWallTexture));
-					mShape[i][j].setFillColor(sf::Color::Blue);
+					//mShape[i][j].setFillColor(sf::Color::Black);
+					
+					
 				}
+				
 				else
 				{
 					mShape[i][j].setTexture(&(this->mRoadTexture));
