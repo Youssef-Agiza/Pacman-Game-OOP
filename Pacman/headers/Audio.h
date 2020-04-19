@@ -15,6 +15,7 @@ namespace PacmanCS {
 		bool playBeginning( bool loop = false,std::string track = "pacman_beginning.wav");
 		bool playEatGhost(bool loop=false, std::string track = "pacman_eatghost.wav");
 		bool playChomp(bool loop = false, std::string track = "pacman_chomp.wav");
+		void stop();
 
 	};
 }
