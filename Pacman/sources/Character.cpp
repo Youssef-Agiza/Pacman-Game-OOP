@@ -68,12 +68,13 @@ Character& Character::setSpeed(float s)
 
 
 void Character::resetPosition() {/*nothing*/ }
+bool Character::isValidDirection(Direction d)const {/*not*/ }
 void Character::move()
 {
 	switch (mDirection)
 	{
 	case UP: 
-	{mCurrentRow--;
+	{	mCurrentRow--;
 		mShape.move(0, -mSize * mSpeed);
 		break; }
 	case DOWN:
@@ -99,6 +100,6 @@ void Character::drawOnWindow(RenderWindow& window)
 }
 void Character::updateShape()
 {
-	//note column and row are reverse
+	mShape.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize); //updates position of shape
 }
 

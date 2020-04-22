@@ -2,6 +2,7 @@
 #include"SFML/Graphics.hpp"
 #include <string>
 #include <iostream>
+#include <vector>
 namespace PacmanCS {
 
 	class Board
@@ -10,14 +11,15 @@ namespace PacmanCS {
 		sf::Texture mWallTexture;
 		sf::Texture mRoadTexture; //change this name later
 		sf::RectangleShape** mShape;
-		const int mNumOfRows;
-		const int mNumOfCols;
+
+		std::vector < std::vector<int>> mBoard;
+
 		const float mTileSize;
 		const float mPositionOnWindow;
 
 		void intializeShape();
 	public:
-		Board(int numNumOfRows, int numNumOfCols, float tileSize,float posOnWindow);
+		Board(std::vector < std::vector<int>> , float tileSize,float posOnWindow);
 		
 		//setters
 		Board& setRoadTexture(std::string fileName);
@@ -27,12 +29,13 @@ namespace PacmanCS {
 		//getters
 		float getPositionOneWindow()const;
 		float getTileSize()const;
-		int getNumOfRows()const;
-		int getNumOfCols()const;
+		const std::vector < std::vector<int>>& getBoard()const;
+		/*int getNumOfRows()const;
+		int getNumOfCols()const;*/
 
 
 		void drawOnWindow(sf::RenderWindow& w);
-		void setTextures( int** arr);
+		void updateTextures();
 
 	};
 

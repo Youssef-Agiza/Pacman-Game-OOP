@@ -8,7 +8,7 @@ using namespace std;
 using namespace sf;
 
 //enum { SCATTER, CHASE, FRIGHTEN, LEAVE, DEATH, PEN } movement; //state pattern 
-enum Direction { UP, RIGHT, DOWN, LEFT };
+enum Direction { UP, RIGHT, DOWN, LEFT,STOP };//case stop used to intialize the enum
 
 class Character {
 
@@ -68,5 +68,6 @@ class Character {
        virtual void move();
        virtual void drawOnWindow(RenderWindow& window);
        virtual void updateShape(); //updates new shape data
+       virtual bool isValidDirection(Direction d)const; //called inside setDirection-> concrete classes will implement it
     };
 
