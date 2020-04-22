@@ -43,4 +43,8 @@ namespace PacmanCS
 		mMusic.play();
 		return true;
 	}
+	void Audio::stop()
+	{
+		mMusic.stop();
+	}
 }
