@@ -16,7 +16,7 @@ int main()
 	int x;
 	Event e;
 	music.playChomp(1, "PacmanWakaWaka04.wav");
-	
+	music.playBeginning(1);
 	while (window.isOpen())
 	{
 		while (window.pollEvent(e))

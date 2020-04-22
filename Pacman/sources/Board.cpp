@@ -1,53 +1,84 @@
 #include "Board.h"
+
+//default values
+const int ROWS = 10;
+const int COLS = 10;
+const int WALL = -1;
+const int TILE = 50;
+const float POSITION = 50;
+
 namespace PacmanCS {
-	const int DEFAULT_ROW = 10;
-	const int DEFAULT_COL = 10;
-	const int DEFAULT_WALL = -1;
-	const int DEFAULT_BLOCK = 50;
-	const float DEFAULT_POSITION = 50;
-	Board::Board(int rows=DEFAULT_ROW, int cols=DEFAULT_COL, float block=DEFAULT_BLOCK,float poistion=DEFAULT_POSITION, std::string wall="", std::string road )
-		:mRows(rows), mCols(cols),mBlockSize(block), mPositionOnWindow(poistion)
+
+	Board::Board(int rows=ROWS, int cols=COLS,float tileSize=TILE,float posOnWindow=POSITION):
+		mNumOfRows(rows),mNumOfCols(cols),mTileSize(tileSize),mPositionOnWindow(posOnWindow)
 	{
-		//validate later
-		mWallTexture.loadFromFile(wall);
-		mRoadTexture.loadFromFile(road);
-		mShape = new sf::RectangleShape*[mRows];
-		for (int i = 0; i < mRows; i++)
+		intializeShape();
+	}
+
+	void Board::intializeShape()
+	{
+		if (mNumOfCols<=0||mNumOfRows <= 0)
+			return;
+		mShape = new sf::RectangleShape * [mNumOfRows];
+		for (int i = 0; i < mNumOfRows; i++)
 		{
-			mShape[i] = new sf::RectangleShape[mCols];
+			mShape[i] = new sf::RectangleShape[mNumOfCols];
+			for (int j = 0; j < mNumOfCols; j++)
+			{
+				mShape[i][j].setPosition(mPositionOnWindow + mTileSize * j, mPositionOnWindow + mTileSize * i);
+				mShape[i][j].setSize(sf::Vector2f(mTileSize, mTileSize));
+			}
 		}
 	}
-	void Board::drawOnWindow(sf::RenderWindow& w)
-	{//needs validation: check that shape is not a nullpointer
-		for (int i = 0; i < mRows; i++)
-			for(int j=0;j<mCols;j++)
-			w.draw((this->mShape[i][j]));
 
-	}
-	void Board::setTextures( int** arr)
-	{//needs validation to check if the size of arr == the size of mRows,mCols
-	// and check the pointers are not null
-		for (int i = 0; i < mRows; i++)
-			for (int j = 0; j < mCols; j++)
+	void Board::setTextures(int** arr)
+	{
+		if (arr == nullptr)
+			return;
+		for (int i = 0; i < mNumOfRows; i++)
+			for (int j = 0; j < mNumOfCols; j++)
 			{
-				mShape[i][j].setPosition(mPositionOnWindow + mBlockSize * j, mPositionOnWindow + mBlockSize * i);
-				mShape[i][j].setSize(sf::Vector2f(mBlockSize, mBlockSize));
-				if (arr[i][j] == DEFAULT_WALL)
-				{
+				if (arr[i][j] == WALL)
+
 					mShape[i][j].setTexture(&(this->mWallTexture));
-					//mShape[i][j].setFillColor(sf::Color::Black);
-					
-					
-				}
-				
 				else
 				{
 					mShape[i][j].setTexture(&(this->mRoadTexture));
 					mShape[i][j].setFillColor(sf::Color::Black);
 				}
 			}
-	
-	
 	}
+
+	void Board::drawOnWindow(sf::RenderWindow& w)
+	{//needs validation: check that shape is not a nullpointer
+		for (int i = 0; i < mNumOfRows; i++)
+			for(int j=0;j<mNumOfCols;j++)
+			w.draw((this->mShape[i][j]));
+
+	}
+
+	//setters
+	//setters
+	Board& Board::setRoadTexture(std::string fileName)
+	{
+		if (!fileName.empty())
+			mRoadTexture.loadFromFile(fileName);
+		return *this;
+	}
+	Board& Board::setWallTexture(std::string fileName)
+	{
+		if (!fileName.empty())
+			mWallTexture.loadFromFile(fileName);
+		return *this;
+
+	}
+
+
+	//getters
+	float Board::getPositionOneWindow()const { return mPositionOnWindow; }
+	float Board::getTileSize()const { return mTileSize; }
+	int Board::getNumOfRows()const { return mNumOfCols; }
+	int Board::getNumOfRows()const { return mNumOfRows; }
+	
 
 }
