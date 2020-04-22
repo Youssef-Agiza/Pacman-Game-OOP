@@ -21,9 +21,12 @@ class Character {
 
          unsigned int mCurrentRow;
          unsigned int mCurrentColumn;
-         unsigned int mSize;
+         float mSize;
+         float mPositionOnWindow;
+         float mSpeed;
          bool mAlive;
          RectangleShape mShape;
+         Texture mTexture;
         Direction mDirection;
 
     public:
@@ -36,7 +39,7 @@ class Character {
         void cornerHandler();*/
 
 
-        Character(int intialRow, int intialColumn, int size);
+        Character(int intialRow, int intialColumn, float size,float posWindow);
 
 
         //getters
@@ -44,19 +47,25 @@ class Character {
         int getDirection()const;
         unsigned int getRow()const;
         unsigned int getCol()const;
-        unsigned int getSize()const;
-
+        float getSize()const;
+        float getPosition()const;
+        const Texture& getTexture()const;
+        float getSpeed()const;
 
         //setters
-        Character& setAlive(bool);
-        Character& setRow(unsigned int);
-        Character& setCol(unsigned int);
-        Character& setDirection(Direction);
+        Character& setSize(float size);
+        Character& setAlive(bool status);
+        Character& setRow(unsigned int row);
+        Character& setCol(unsigned int col);
+        Character& setDirection(Direction dir);
+        Character& setTexture(std::string fileName);
+        Character& setPosition(float position);
+        Character& setSpeed(float s);
         
 
 
        virtual void resetPosition();
-       virtual void move(Direction);
+       virtual void move();
        virtual void drawOnWindow(RenderWindow& window);
        virtual void updateShape(); //updates new shape data
     };

@@ -21,29 +21,35 @@
   <ItemGroup>
     <ClInclude Include="..\headers\Audio.h" />
     <ClInclude Include="..\headers\Board.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="..\headers\Character.h" />
+    <ClInclude Include="..\headers\Pacman.h" />
     <ClInclude Include="..\headers\Player.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Character.h" />
+    <ClInclude Include="Ghost.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\Audio.cpp" />
-    <ClCompile Include="..\sources\AudioTest.cpp" />
-    <ClCompile Include="..\sources\Board.cpp">
+    <ClCompile Include="..\sources\AudioTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\sources\Board.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\sources\Character.cpp" />
     <ClCompile Include="..\sources\main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\sources\main2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\sources\Pacman.cpp" />
     <ClCompile Include="..\sources\Player.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Ghost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\images\Block.png" />

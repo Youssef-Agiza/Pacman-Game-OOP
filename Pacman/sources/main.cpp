@@ -2,7 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Player.h"
+
+//#include "Player.h"
+#include "Pacman.h"
 #include "Board.h"
 
 using namespace std;
@@ -37,12 +39,15 @@ ifstream inputFile;
 					inputFile >> arr[i][j];
 	}
 	inputFile.close();
-	Player player(1, 1,BLOCK,POSITION ,"../images/Pacman.png");
 
-	Board myBoard(ROWS,COLUMNS,BLOCK, POSITION,"../images/Block.png", "../images/grass_tiled.png");
+	Board myBoard(ROWS, COLUMNS, BLOCK, POSITION);
+	myBoard.setWallTexture("../images/wall.png");
 	myBoard.setTextures(arr);
+Pacman pacman(1, 1, BLOCK, POSITION);
+pacman.resetPosition();
+pacman.setTexture("../images/pacman.png");
 
-	
+window.setFramerateLimit(60);
 	Event e;
 	while (window.isOpen())
 	{
@@ -55,24 +60,27 @@ ifstream inputFile;
 				switch (e.key.code)
 				{
 				case Keyboard::Up:
-					player.move('U', arr);
+					pacman.setDirection(UP);
 					break;
 				case Keyboard::Down:
-					player.move('D', arr);
+					pacman.setDirection(DOWN);
 					break;
 				case Keyboard::Right:
-					player.move('R', arr);
+					pacman.setDirection(RIGHT);
 					break;
 				case Keyboard::Left:
-					player.move('L', arr);
+					pacman.setDirection(LEFT);
 					break;
+				 default:break;
 				}
 			}
 		}
+		pacman.move();
+
 		window.clear();
 
 		myBoard.drawOnWindow(window);
-		player.drawOnWindow(window);
+		pacman.drawOnWindow(window);
 		window.display();
 	}
 

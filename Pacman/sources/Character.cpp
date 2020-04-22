@@ -1,9 +1,10 @@
 #include "Character.h"
 
-Character::Character(int intialRow, int intialColumn, int size, std::string imageFile):
-	mCurrentRow(intialRow),mCurrentColumn(intialColumn),mSize(size)			
+Character::Character(int intialRow, int intialColumn, float size,float posWindow):
+	mCurrentRow(intialRow),mCurrentColumn(intialColumn),mSize(size),mPositionOnWindow(posWindow), mAlive(true),mSpeed(1),mDirection(UP)
 {
-
+	mShape.setSize(Vector2f(mSize, mSize));
+	mShape.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow+ mCurrentRow * mSize);
 }
 
 
@@ -12,10 +13,23 @@ bool Character::isAlive()const { return mAlive; }
 int Character::getDirection()const { return mDirection; }
 unsigned int Character::getRow()const { return mCurrentRow; }
 unsigned int Character::getCol()const { return mCurrentColumn; }
-unsigned int Character::getSize()const { return mSize; }
+float Character::getSize()const { return mSize; }
+float Character::getPosition()const { return mPositionOnWindow; }
+const Texture& Character::getTexture()const { return mTexture; }
+float Character::getSpeed()const { return mSpeed; }
 
 
 //setters
+Character& Character::setSize(float s)
+{
+	mSize = s;
+	return *this;
+}
+Character& Character::setPosition(float position)
+{
+	mPositionOnWindow = position;
+	return *this;
+}
 Character& Character::setAlive(bool status)
 {
 	mAlive = status;
@@ -38,28 +52,53 @@ Character& Character::setDirection(Direction dir)
 	mDirection = dir;
 	return*this;
 }
-
+Character& Character::setTexture(std::string file)
+{
+	if (mTexture.loadFromFile(file))
+		mShape.setTexture(&(this->mTexture));
+	else
+		mShape.setFillColor(Color::Yellow);
+	return *this;
+}
+Character& Character::setSpeed(float s)
+{
+	mSpeed = s;
+	return *this;
+}
 
 
 void Character::resetPosition() {/*nothing*/ }
-void Character::move(Direction dir)
+void Character::move()
 {
-	switch (dir)
+	switch (mDirection)
 	{
-	case UP: mCurrentRow--; break;
-	case DOWN: mCurrentRow++; break;
-	case LEFT:mCurrentColumn--; break;
-	case RIGHT: mCurrentColumn++; break;
+	case UP: 
+	{mCurrentRow--;
+		mShape.move(0, -mSize * mSpeed);
+		break; }
+	case DOWN:
+	{ mCurrentRow++; 
+	mShape.move(0, mSize * mSpeed);
+		break; }
+	case LEFT: 
+	{
+		mCurrentColumn--;
+		mShape.move(-mSize * mSpeed, 0);
+		break;
+	}
+	case RIGHT: {mCurrentColumn++; mShape.move(mSize * mSpeed, 0);
+		break; }
 	default:break;
 	}
-	updatePosition();
+
 }
 void Character::drawOnWindow(RenderWindow& window)
 {
+	updateShape();
 	window.draw(mShape);
 }
-void Character::updatePosition()
+void Character::updateShape()
 {
-	mShape.setPosition(mCurrentColumn, mCurrentRow); //note column and row are reversed
+	//note column and row are reverse
 }
 

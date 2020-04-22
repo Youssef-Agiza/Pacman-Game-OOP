@@ -28,7 +28,7 @@ namespace PacmanCS {
 		float getPositionOneWindow()const;
 		float getTileSize()const;
 		int getNumOfRows()const;
-		int getNumOfRows()const;
+		int getNumOfCols()const;
 
 
 		void drawOnWindow(sf::RenderWindow& w);

@@ -77,7 +77,7 @@ namespace PacmanCS {
 	//getters
 	float Board::getPositionOneWindow()const { return mPositionOnWindow; }
 	float Board::getTileSize()const { return mTileSize; }
-	int Board::getNumOfRows()const { return mNumOfCols; }
+	int Board::getNumOfCols()const { return mNumOfCols; }
 	int Board::getNumOfRows()const { return mNumOfRows; }
 	
 
