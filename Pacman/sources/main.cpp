@@ -20,15 +20,9 @@ int main()
 	const int ROWS = 31, COLUMNS = 28,BLOCK=30, POSITION=25;
 	RenderWindow window;
 	window.create(VideoMode(1000, 1000), "Simple Maze");
-
-	int** arr;
-	arr = new int* [ROWS];
 	
-	for (int i=0; i< ROWS;i++)
-	{
-		arr[i] = new int[COLUMNS];
-	}
-
+	vector<vector<int>> arr(31,vector<int>(28));
+	
 ifstream inputFile;
 	inputFile.open("../BoardTexts/BoardText2.txt");
 	if (inputFile.is_open())
@@ -40,14 +34,16 @@ ifstream inputFile;
 	}
 	inputFile.close();
 
-	Board myBoard(ROWS, COLUMNS, BLOCK, POSITION);
-	myBoard.setWallTexture("../images/wall.png");
-	myBoard.setTextures(arr);
+	Board myBoard( arr,BLOCK, POSITION);
+	
+
 Pacman pacman(1, 1, BLOCK, POSITION);
+pacman.setBoard(&myBoard);
+pacman.setSpeed(0.5);
 pacman.resetPosition();
 pacman.setTexture("../images/pacman.png");
 
-window.setFramerateLimit(60);
+window.setFramerateLimit(10);
 	Event e;
 	while (window.isOpen())
 	{

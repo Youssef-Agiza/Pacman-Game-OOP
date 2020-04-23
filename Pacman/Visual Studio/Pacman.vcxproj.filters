@@ -50,9 +50,6 @@
     <ClCompile Include="..\sources\AudioTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\main2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\sources\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

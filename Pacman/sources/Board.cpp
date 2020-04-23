@@ -1,29 +1,30 @@
 #include "Board.h"
 
 //default values
-const int ROWS = 10;
-const int COLS = 10;
+//const int ROWS = 10;
+//const int COLS = 10;
 const int WALL = -1;
 const int TILE = 50;
 const float POSITION = 50;
 
 namespace PacmanCS {
 
-	Board::Board(int rows=ROWS, int cols=COLS,float tileSize=TILE,float posOnWindow=POSITION):
-		mNumOfRows(rows),mNumOfCols(cols),mTileSize(tileSize),mPositionOnWindow(posOnWindow)
+	Board::Board(std::vector < std::vector<int>> board,float tileSize=TILE,float posOnWindow=POSITION):
+		mBoard(board),mTileSize(tileSize),mPositionOnWindow(posOnWindow)
 	{
+		mWallTexture.loadFromFile("../images/wall.png");
 		intializeShape();
+		updateTextures();
 	}
 
 	void Board::intializeShape()
 	{
-		if (mNumOfCols<=0||mNumOfRows <= 0)
-			return;
-		mShape = new sf::RectangleShape * [mNumOfRows];
-		for (int i = 0; i < mNumOfRows; i++)
+		
+		mShape = new sf::RectangleShape * [mBoard.size()];
+		for (int i = 0; i < mBoard.size(); i++)
 		{
-			mShape[i] = new sf::RectangleShape[mNumOfCols];
-			for (int j = 0; j < mNumOfCols; j++)
+			mShape[i] = new sf::RectangleShape[mBoard[i].size()];
+			for (int j = 0; j < mBoard[i].size(); j++)
 			{
 				mShape[i][j].setPosition(mPositionOnWindow + mTileSize * j, mPositionOnWindow + mTileSize * i);
 				mShape[i][j].setSize(sf::Vector2f(mTileSize, mTileSize));
@@ -31,14 +32,13 @@ namespace PacmanCS {
 		}
 	}
 
-	void Board::setTextures(int** arr)
+	void Board::updateTextures()
 	{
-		if (arr == nullptr)
-			return;
-		for (int i = 0; i < mNumOfRows; i++)
-			for (int j = 0; j < mNumOfCols; j++)
+		
+		for (int i = 0; i < mBoard.size(); i++)
+			for (int j = 0; j < mBoard[i].size(); j++)
 			{
-				if (arr[i][j] == WALL)
+				if (mBoard[i][j] == WALL)
 
 					mShape[i][j].setTexture(&(this->mWallTexture));
 				else
@@ -51,8 +51,8 @@ namespace PacmanCS {
 
 	void Board::drawOnWindow(sf::RenderWindow& w)
 	{//needs validation: check that shape is not a nullpointer
-		for (int i = 0; i < mNumOfRows; i++)
-			for(int j=0;j<mNumOfCols;j++)
+		for (int i = 0; i < mBoard.size(); i++)
+			for(int j=0;j< mBoard[i].size();j++)
 			w.draw((this->mShape[i][j]));
 
 	}
@@ -77,8 +77,9 @@ namespace PacmanCS {
 	//getters
 	float Board::getPositionOneWindow()const { return mPositionOnWindow; }
 	float Board::getTileSize()const { return mTileSize; }
-	int Board::getNumOfCols()const { return mNumOfCols; }
-	int Board::getNumOfRows()const { return mNumOfRows; }
+	//int Board::getNumOfCols()const { return mNumOfCols; }
+	//int Board::getNumOfRows()const { return mNumOfRows; }
+	const std::vector < std::vector<int>>& Board::getBoard()const { return mBoard; }
 	
 
 }
