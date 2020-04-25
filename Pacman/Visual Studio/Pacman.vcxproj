@@ -24,11 +24,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\headers\Character.h" />
+    <ClInclude Include="..\headers\Ghost.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\headers\GhostFactory.h" />
+    <ClInclude Include="..\headers\GhostManager.h" />
     <ClInclude Include="..\headers\Pacman.h" />
     <ClInclude Include="..\headers\Player.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Ghost.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\Audio.cpp" />
@@ -39,6 +43,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\sources\Character.cpp" />
+    <ClCompile Include="..\sources\Ghost.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\sources\GhostManager.cpp" />
     <ClCompile Include="..\sources\main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -46,7 +54,6 @@
     <ClCompile Include="..\sources\Player.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Ghost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\images\Block.png" />

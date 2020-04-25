@@ -2,22 +2,21 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-
+#include "Board.h"
 
 using namespace std;
 using namespace sf;
+using namespace PacmanCS;
 
 //enum { SCATTER, CHASE, FRIGHTEN, LEAVE, DEATH, PEN } movement; //state pattern 
+
 enum Direction { UP, RIGHT, DOWN, LEFT,STOP };//case stop used to intialize the enum
 
 class Character {
 
     protected:
       
-  // const unsigned int mIntialRow;
-//const unsigned int mIntialColumn;
-   //  unsigned int mPosition;
-//  Texture mTextures;
+
 
          unsigned int mCurrentRow;
          unsigned int mCurrentColumn;
@@ -28,19 +27,13 @@ class Character {
          RectangleShape mShape;
          Texture mTexture;
         Direction mDirection;
+        Board* mBoard;
 
     public:
-        // when they die
-         //and add the number of lives
-         //unsigned int
-
-       /* bool isEaten();
-        bool dead();
-        void cornerHandler();*/
 
 
         Character(int intialRow, int intialColumn, float size,float posWindow);
-
+        ~Character();
 
         //getters
         bool isAlive()const;
@@ -60,14 +53,15 @@ class Character {
         Character& setDirection(Direction dir);
         Character& setTexture(std::string fileName);
         Character& setPosition(float position);
-        Character& setSpeed(float s);
+        Character& setSpeed(float s);  
+        Character& setBoard(Board* board);
         
 
-
-       virtual void resetPosition();
+        
+       virtual void resetPosition()=0;
        virtual void move();
        virtual void drawOnWindow(RenderWindow& window);
        virtual void updateShape(); //updates new shape data
-       virtual bool isValidDirection(Direction d)const; //called inside setDirection-> concrete classes will implement it
+       virtual int checkDestination(Direction d)const; //returns 0 if block, 1 if valid direction, 2 if portal
     };
 

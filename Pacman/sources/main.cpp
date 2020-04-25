@@ -2,10 +2,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <cstdlib>
 //#include "Player.h"
 #include "Pacman.h"
+#include "Ghost.h"
 #include "Board.h"
+#include "GhostManager.h"
 
 using namespace std;
 using namespace sf;
@@ -43,6 +45,9 @@ pacman.setSpeed(0.5);
 pacman.resetPosition();
 pacman.setTexture("../images/pacman.png");
 
+GhostManager manager;
+manager.createGhost(&myBoard);
+
 window.setFramerateLimit(10);
 	Event e;
 	while (window.isOpen())
@@ -71,15 +76,27 @@ window.setFramerateLimit(10);
 				}
 			}
 		}
+	/*	switch (rand() % 4)
+		{
+		case 0:pinky.setDirection(UP); break;
+		case 1:pinky.setDirection(RIGHT); break;
+		case 2: pinky.setDirection(DOWN); break;
+		case 3:pinky.setDirection(LEFT); break;
+		default: break;
+		}
+		pinky.move();*/
 		pacman.move();
-
+		manager.checkGhost2Pacman(&pacman);
 		window.clear();
 
 		myBoard.drawOnWindow(window);
 		pacman.drawOnWindow(window);
+		manager.draw(window);
+		//pinky.drawOnWindow(window);
 		window.display();
 	}
 
 	return 0;
 
 }
+
