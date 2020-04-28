@@ -88,7 +88,7 @@ int Character::checkDestination(Direction d)const
 		return (board[mCurrentRow + 1][mCurrentColumn] == -1) ? 0 : 1;
 	if (d == LEFT)
 	{
-		if (mCurrentColumn - 1 == 0) //left portal
+		if (mCurrentColumn - 1 == -1) //left portal
 			return 2;
 		return (board[mCurrentRow][mCurrentColumn - 1] == -1) ? 0 : 1;
 	}
