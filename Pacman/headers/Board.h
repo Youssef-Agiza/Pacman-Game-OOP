@@ -11,7 +11,8 @@ namespace PacmanCS {
 		sf::Texture mWallTexture;
 		sf::Texture mRoadTexture; //change this name later
 		sf::RectangleShape** mShape;
-
+		int** score;
+		sf::Texture mPT;
 		std::vector < std::vector<int>> mBoard;
 
 		const float mTileSize;

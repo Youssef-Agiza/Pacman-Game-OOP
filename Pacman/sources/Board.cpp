@@ -13,21 +13,25 @@ namespace PacmanCS {
 		mBoard(board),mTileSize(tileSize),mPositionOnWindow(posOnWindow)
 	{
 		mWallTexture.loadFromFile("../images/wall.png");
+		mPT.loadFromFile("../images/pellet.png");
 		intializeShape();
 		updateTextures();
 	}
 
 	void Board::intializeShape()
 	{
-		
+		score = new int*[mBoard.size()];
+
 		mShape = new sf::RectangleShape * [mBoard.size()];
 		for (int i = 0; i < mBoard.size(); i++)
 		{
+			score[i] = new int[mBoard[i].size()];
 			mShape[i] = new sf::RectangleShape[mBoard[i].size()];
 			for (int j = 0; j < mBoard[i].size(); j++)
 			{
 				mShape[i][j].setPosition(mPositionOnWindow + mTileSize * j, mPositionOnWindow + mTileSize * i);
 				mShape[i][j].setSize(sf::Vector2f(mTileSize, mTileSize));
+				score[i][j] = 100;
 			}
 		}
 	}
@@ -41,11 +45,14 @@ namespace PacmanCS {
 				if (mBoard[i][j] == WALL)
 
 					mShape[i][j].setTexture(&(this->mWallTexture));
-				else
+				else if (score[i][j]!=0)
 				{
-					mShape[i][j].setTexture(&(this->mRoadTexture));
-					mShape[i][j].setFillColor(sf::Color::Black);
+					mShape[i][j].setTexture(&this->mPT);
+					
+					
 				}
+				else
+				mShape[i][j].setFillColor(sf::Color::Black);
 			}
 	}
 
