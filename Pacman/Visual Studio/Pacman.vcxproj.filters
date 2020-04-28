@@ -65,9 +65,6 @@
     <ClCompile Include="..\sources\GhostManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\headers\main2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\images\Block.png">
