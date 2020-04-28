@@ -138,6 +138,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\headers\Audio.h" />
+    <ClInclude Include="..\headers\Board.h" />
+    <ClInclude Include="..\headers\Character.h" />
+    <ClInclude Include="..\headers\Ghost.h" />
+    <ClInclude Include="..\headers\GhostManager.h" />
+    <ClInclude Include="..\headers\Pacman.h" />
+    <ClInclude Include="..\headers\Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\sources\Audio.cpp" />
+    <ClCompile Include="..\sources\AudioTest.cpp" />
+    <ClCompile Include="..\sources\Board.cpp" />
+    <ClCompile Include="..\sources\Character.cpp" />
+    <ClCompile Include="..\sources\Ghost.cpp" />
+    <ClCompile Include="..\sources\GhostManager.cpp" />
+    <ClCompile Include="..\sources\main.cpp" />
+    <ClCompile Include="..\sources\Pacman.cpp" />
+    <ClCompile Include="..\sources\Player.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
