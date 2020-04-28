@@ -18,64 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\headers\Audio.h" />
-    <ClInclude Include="..\headers\Board.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\headers\Character.h" />
-    <ClInclude Include="..\headers\Ghost.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\headers\GhostManager.h" />
-    <ClInclude Include="..\headers\Pacman.h" />
-    <ClInclude Include="..\headers\Player.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\sources\Audio.cpp" />
-    <ClCompile Include="..\sources\AudioTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\sources\Board.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\sources\Character.cpp" />
-    <ClCompile Include="..\sources\Ghost.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\sources\GhostManager.cpp" />
-    <ClCompile Include="..\sources\main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\sources\Pacman.cpp" />
-    <ClCompile Include="..\sources\Player.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\images\Block.png" />
-    <Image Include="..\images\Block2.png" />
-    <Image Include="..\images\Block3.png" />
-    <Image Include="..\images\bluestone.png" />
-    <Image Include="..\images\chompersprites.png" />
-    <Image Include="..\images\CuteFace.png" />
-    <Image Include="..\images\grass_tiled.png" />
-    <Image Include="..\images\maps\abcdefg.png" />
-    <Image Include="..\images\maps\chompermazetiles.png" />
-    <Image Include="..\images\maps\hqdefault.jpg" />
-    <Image Include="..\images\Pacman.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\boardTexts\BoardText.txt" />
-    <Text Include="..\boardTexts\BoardText2.txt" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{A83933E8-5FCA-4ECE-980F-03D9A0EABE7C}</ProjectGuid>
+    <ProjectGuid>{451E3ADF-F466-4C0B-8C53-A9AF43009341}</ProjectGuid>
     <RootNamespace>Pacman</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -142,13 +87,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\Pacman\headers;D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\include;C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\include;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\headers;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\lib;C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -157,13 +99,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\Pacman\headers;D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\include;D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\Pacman\headers;D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\lib;D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -174,15 +113,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\include;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\headers;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\soundtracks;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\boardTexts;C:\AUC\CS\CSCE-110\Pacman Game\Pacman\images</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\AUC\CS\CSCE-110\Pacman Game\Pacman\boardTexts;C:\AUC\CS\CSCE-110\Pacman Game\SFML-2.5.1\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -193,17 +129,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\Pacman\headers;D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\AUC\20SPRING\CSCE1101\project\28 april\Pacman-Game-OOP\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
