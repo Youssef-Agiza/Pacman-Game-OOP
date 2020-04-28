@@ -38,10 +38,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sources\Audio.cpp">
+    <ClCompile Include="..\sources\Pacman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\AudioTest.cpp">
+    <ClCompile Include="..\sources\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\Audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\Board.cpp">
@@ -59,10 +62,7 @@
     <ClCompile Include="..\sources\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\Pacman.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sources\Player.cpp">
+    <ClCompile Include="..\sources\AudioTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
