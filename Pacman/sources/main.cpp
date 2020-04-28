@@ -41,7 +41,7 @@ ifstream inputFile;
 
 Pacman pacman(1, 1, BLOCK, POSITION);
 pacman.setBoard(&myBoard);
-pacman.setSpeed(0.5);
+pacman.setSpeed(10);
 pacman.resetPosition();
 pacman.setTexture("../images/pacman.png");
 

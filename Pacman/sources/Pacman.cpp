@@ -18,8 +18,19 @@ unsigned int Pacman::getLives()const { return mLives; }
 
 void Pacman::resetPosition()
 {
+	mDirection = STOP;
+	mAlive = true;
 	mCurrentColumn = INTIAL_COL;
 	mCurrentRow = INTIAL_ROW;
 	mShape.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
 }
 
+void Pacman::die()
+{
+	mAlive = false;
+	if (--mLives > 0)
+		resetPosition();
+	else
+		mShape.setFillColor(sf::Color::Black);
+	
+}

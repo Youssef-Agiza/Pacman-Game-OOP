@@ -24,8 +24,7 @@ void GhostManager::checkGhost2Pacman(Pacman* pacman)
 	for (auto ghost : mGhostList)
 		if (ghost->getRow() == pacman->getRow() && ghost->getCol() == pacman->getCol())
 		{
-			pacman->setAlive(false);
-			pacman->resetPosition();
+			pacman->die();
 			return;
 		}
 	

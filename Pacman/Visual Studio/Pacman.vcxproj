@@ -27,7 +27,6 @@
     <ClInclude Include="..\headers\Ghost.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\headers\GhostFactory.h" />
     <ClInclude Include="..\headers\GhostManager.h" />
     <ClInclude Include="..\headers\Pacman.h" />
     <ClInclude Include="..\headers\Player.h">
@@ -35,6 +34,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\headers\main2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\sources\Audio.cpp" />
     <ClCompile Include="..\sources\AudioTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

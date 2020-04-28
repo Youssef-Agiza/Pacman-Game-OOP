@@ -150,11 +150,12 @@ void Character::move()
 }
 void Character::drawOnWindow(RenderWindow& window)
 {
-	updateShape();
+	//updateShape();
 	window.draw(mShape);
 }
 void Character::updateShape()
 {
+	
 	mShape.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
 }
 

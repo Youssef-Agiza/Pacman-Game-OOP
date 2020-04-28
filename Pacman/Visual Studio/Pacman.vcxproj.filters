@@ -36,9 +36,6 @@
     <ClInclude Include="..\headers\GhostManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\GhostFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\Board.cpp">
@@ -66,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\GhostManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\headers\main2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

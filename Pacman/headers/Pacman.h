@@ -20,5 +20,5 @@ public:
     unsigned int getLives()const;
         
     void resetPosition()override;
-     
+    void die();
 };
