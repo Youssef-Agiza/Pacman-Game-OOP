@@ -1,8 +1,8 @@
 #pragma once
 #include "Character.h"
 #include "Board.h"
-
-class Ghost :public Character  {
+#include "../design patterns/IObserver.h"
+class Ghost :public Character, public IObserver {
 
 private:
     unsigned int mIntialRow;
@@ -22,5 +22,7 @@ public:
 
     void resetPosition()override;
     void die()override;
+    void update()override; //Iobserver method
+    void toggleFreight();
 };
 

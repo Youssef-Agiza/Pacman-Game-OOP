@@ -40,3 +40,23 @@ void Pacman::die()
 		mShape.setFillColor(sf::Color::Black);
 	
 }
+
+void Pacman::addObserver(IObserver* observer)
+{
+	if (observer == nullptr)
+		return;
+	mObserverList.push_back(observer);
+
+}
+void Pacman::removeObserver(IObserver* observer)
+{
+	if (observer == nullptr)
+		return;
+	mObserverList.remove(observer);
+}
+void Pacman::notify()
+{
+	std::list<IObserver*>::iterator itr= mObserverList.begin();
+	for (itr; itr != mObserverList.end(); itr++)
+		(*itr)->update();
+}

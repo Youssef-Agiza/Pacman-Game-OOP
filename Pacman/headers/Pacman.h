@@ -1,8 +1,9 @@
 #pragma once
 #include "Character.h"
+#include "../design patterns/ISubject.h"
 using namespace PacmanCS;
 class Pacman :
-    public Character {
+    public Character, public ISubject {
 
 private:
 
@@ -22,4 +23,9 @@ public:
         
     void resetPosition()override;
     void die();
+
+    //observer functions
+    void addObserver(IObserver* observer)override;
+    void removeObserver(IObserver* observer)override;
+    void notify()override;
 };

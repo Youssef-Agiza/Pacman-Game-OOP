@@ -1,4 +1,5 @@
 #include "Ghost.h"
+#include "../design patterns/ISubject.h"
 Ghost::Ghost(int intialRow, int intialColumn, float size, float position) :
 		Character( intialRow,  intialColumn,  size,  position),mVulenrable(false),
 	mIntialRow(intialRow),mIntialCol(intialColumn)
@@ -37,4 +38,13 @@ void Ghost::die()
 	resetPosition();
 	setVulenrable(false);
 
+}
+void Ghost::toggleFreight()
+{
+	mVulenrable = (mVulenrable) ? false : true;
+	//should change image here
+}
+void Ghost::update()
+{
+	toggleFreight();
 }

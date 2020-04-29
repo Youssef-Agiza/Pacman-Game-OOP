@@ -61,8 +61,6 @@ Character& Character::setTexture(std::string file)
 {
 	if (mTexture.loadFromFile(file))
 		mShape.setTexture(&(this->mTexture));
-	else
-		mShape.setFillColor(Color::White);
 	return *this;
 }
 Character& Character::setSpeed(float s)
