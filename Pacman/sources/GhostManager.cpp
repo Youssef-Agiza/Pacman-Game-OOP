@@ -1,6 +1,6 @@
 #pragma once
 #include "GhostManager.h"
-const int SPEED = 0.4;
+const float SPEED = 0.4f;
 GhostManager::GhostManager()
 {}
 
@@ -16,7 +16,7 @@ const std::vector<Ghost*>& GhostManager::getGhostList()const
 }
 void GhostManager::draw(sf::RenderWindow& window)
 {
-	for (int i = 0; i < mGhostList.size(); i++)
+	for (unsigned int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i]->drawOnWindow(window);
 }
 void GhostManager::checkGhost2Pacman(Pacman* pacman)

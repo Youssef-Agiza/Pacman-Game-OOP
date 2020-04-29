@@ -57,7 +57,7 @@ class Character {
         Character& setBoard(Board* board);
         
 
-        
+        virtual void die()= 0;
        virtual void resetPosition()=0;
        virtual void move();
        virtual void drawOnWindow(RenderWindow& window);

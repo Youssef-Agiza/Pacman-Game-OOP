@@ -3,11 +3,17 @@
 #define INTIAL_ROW  23
 #define INTIAL_COL  14
 Pacman::Pacman(int intialRow, int intialColumn, float size, float posWindow) :
-	Character( intialRow,  intialColumn,  size,  posWindow),mLives(3)
+	Character( intialRow,  intialColumn,  size,  posWindow),mLives(3),mPowerUp(false)
 {
 	
 }
 
+Pacman& Pacman::setPowerUp(bool p)
+{
+	mPowerUp = p;
+	return *this;
+}
+bool Pacman::getPowerUp()const { return mPowerUp; }
 
 Pacman& Pacman::setLives(unsigned int l) 
 {

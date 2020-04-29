@@ -1,5 +1,5 @@
 #include "Ghost.h"
-Ghost::Ghost(int intialRow, int intialColumn, int size, int position) :
+Ghost::Ghost(int intialRow, int intialColumn, float size, float position) :
 		Character( intialRow,  intialColumn,  size,  position),mVulenrable(false),
 	mIntialRow(intialRow),mIntialCol(intialColumn)
 {}
@@ -31,4 +31,10 @@ void Ghost::resetPosition()
 	mCurrentRow = mIntialRow;
 	updateShape();
 	
+}
+void Ghost::die()
+{
+	resetPosition();
+	setVulenrable(false);
+
 }
