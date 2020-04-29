@@ -4,6 +4,6 @@ class IObserver
 {
 public:
 	virtual ~IObserver() = default;
-	virtual void update( ) = 0;
+	virtual void update(bool powerUp ) = 0;
 
 };

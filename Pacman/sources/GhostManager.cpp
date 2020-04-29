@@ -24,7 +24,10 @@ void GhostManager::checkGhost2Pacman(Pacman* pacman)
 	for (auto ghost : mGhostList)
 		if (ghost->getRow() == pacman->getRow() && ghost->getCol() == pacman->getCol())
 		{
-			pacman->die();
+			if (ghost->getFreight())
+				ghost->die();
+			else
+				pacman->die();
 			return;
 		}
 	
@@ -46,23 +49,25 @@ void GhostManager::createGhost(Board* board) //create four ghosts and adds them 
 	Inky->setSpeed(SPEED);
 	Inky->setTexture("../images/inky.png");
 
+	//Pinky
+	Ghost* Pinky = new Ghost(14, 13, board->getTileSize(), board->getPositionOneWindow());
+	Pinky->resetPosition();
+	Pinky->setBoard(board);
+	Pinky->setSpeed(SPEED);
+	Pinky->setTexture("../images/pinky.png");
+
+	
 	//Clyde
-	Ghost* Clyde = new Ghost(14, 13, board->getTileSize(), board->getPositionOneWindow());
+	Ghost* Clyde = new Ghost(14, 14, board->getTileSize(), board->getPositionOneWindow());
 	Clyde->resetPosition();
 	Clyde->setBoard(board);
 	Clyde->setSpeed(SPEED);
 	Clyde->setTexture("../images/clyde.png");
 	
 
-	//Pinky
-	Ghost* Pinky = new Ghost(14, 14, board->getTileSize(), board->getPositionOneWindow());
-	Pinky->resetPosition();
-	Pinky->setBoard(board);
-	Pinky->setSpeed(SPEED);
-	Pinky->setTexture("../images/pinky.png");
-
 	addGhost(Blinky);
 	addGhost(Inky);
-	addGhost(Clyde);
 	addGhost(Pinky);
+	addGhost(Clyde);
+
 }

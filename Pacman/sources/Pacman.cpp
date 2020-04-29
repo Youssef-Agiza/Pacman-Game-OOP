@@ -11,6 +11,7 @@ Pacman::Pacman(int intialRow, int intialColumn, float size, float posWindow) :
 Pacman& Pacman::setPowerUp(bool p)
 {
 	mPowerUp = p;
+	notify(); 
 	return *this;
 }
 bool Pacman::getPowerUp()const { return mPowerUp; }
@@ -34,11 +35,9 @@ void Pacman::resetPosition()
 void Pacman::die()
 {
 	mAlive = false;
-	if (--mLives > 0)
-		resetPosition();
-	else
+	if (--mLives <=0)	
 		mShape.setFillColor(sf::Color::Black);
-	
+	resetPosition();
 }
 
 void Pacman::addObserver(IObserver* observer)
@@ -58,5 +57,5 @@ void Pacman::notify()
 {
 	std::list<IObserver*>::iterator itr= mObserverList.begin();
 	for (itr; itr != mObserverList.end(); itr++)
-		(*itr)->update();
+		(*itr)->update(this->mPowerUp);
 }
