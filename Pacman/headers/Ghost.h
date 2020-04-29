@@ -7,7 +7,7 @@ class Ghost :public Character, public IObserver {
 private:
     unsigned int mIntialRow;
     unsigned int mIntialCol;
-    bool mVulenrable; //freight mood
+    bool mFreight; //freight mood
 
 public:
     Ghost(int intialRow, int intialColumn, float size, float position);
@@ -17,12 +17,11 @@ public:
     unsigned int getIntialRow()const;
     unsigned int getIntialCol()const;
 
-    Ghost& setVulenrable(bool v);
-    bool getVulenrable()const;
+    Ghost& setFreight(bool f);
+    bool getFreight()const;
 
     void resetPosition()override;
     void die()override;
-    void update()override; //Iobserver method
-    void toggleFreight();
+    void update(bool powerUp)override; //Iobserver method
 };
 

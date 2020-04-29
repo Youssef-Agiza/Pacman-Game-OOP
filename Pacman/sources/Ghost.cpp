@@ -1,7 +1,7 @@
 #include "Ghost.h"
 #include "../design patterns/ISubject.h"
 Ghost::Ghost(int intialRow, int intialColumn, float size, float position) :
-		Character( intialRow,  intialColumn,  size,  position),mVulenrable(false),
+		Character( intialRow,  intialColumn,  size,  position),mFreight(false),
 	mIntialRow(intialRow),mIntialCol(intialColumn)
 {}
 
@@ -19,12 +19,12 @@ unsigned int Ghost::getIntialRow()const { return mIntialRow; }
 unsigned int Ghost::getIntialCol()const { return mIntialCol; }
 
 
-Ghost& Ghost::setVulenrable(bool v)
+Ghost& Ghost::setFreight(bool v)
 {
-	mVulenrable = v;
+	mFreight = v;
 	return *this;
 }
-bool Ghost::getVulenrable()const { return mVulenrable; }
+bool Ghost::getFreight()const { return mFreight; }
 
 void Ghost::resetPosition()
 {
@@ -36,15 +36,21 @@ void Ghost::resetPosition()
 void Ghost::die()
 {
 	resetPosition();
-	setVulenrable(false);
+	setFreight(false);
+	mDirection = STOP;
+}
 
-}
-void Ghost::toggleFreight()
+void Ghost::update(bool powerUp)
 {
-	mVulenrable = (mVulenrable) ? false : true;
-	//should change image here
-}
-void Ghost::update()
-{
-	toggleFreight();
+	if (powerUp && !mFreight)
+		this->setFreight(1);
+	
+	if (!powerUp && mFreight)
+		this->setFreight(0);
+
+	//do other freight mode logic here
+	/*
+	. change ghost color
+	. change ghost behavior
+	*/
 }
