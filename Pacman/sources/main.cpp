@@ -1,4 +1,4 @@
-#include "../Visual Studio/Common.h"
+#include "Common.h"
 #include "Pacman.h"
 #include "Ghost.h"
 #include "Board.h"
