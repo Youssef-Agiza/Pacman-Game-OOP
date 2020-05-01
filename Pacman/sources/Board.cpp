@@ -1,5 +1,4 @@
-#include "Board.h"
-
+#include "../headers/Board.h"
 //default values
 //const int ROWS = 10;
 //const int COLS = 10;
@@ -39,13 +38,7 @@ namespace PacmanCS {
 			for (unsigned int j = 0; j < mBoard[i].size(); j++)
 			{
 				if (mBoard[i][j] == WALL)
-
 					mShape[i][j].setTexture(&(this->mWallTexture));
-				else
-				{
-					mShape[i][j].setTexture(&(this->mRoadTexture));
-					mShape[i][j].setFillColor(sf::Color::Black);
-				}
 			}
 	}
 
@@ -81,5 +74,4 @@ namespace PacmanCS {
 	//int Board::getNumOfRows()const { return mNumOfRows; }
 	const std::vector < std::vector<int>>& Board::getBoard()const { return mBoard; }
 	
-
 }

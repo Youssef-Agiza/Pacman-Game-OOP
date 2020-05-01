@@ -3,7 +3,7 @@
 #include "Ghost.h"
 #include "Board.h"
 #include "GhostManager.h"
-
+#include "../Visual Studio/Pellets.h"
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
@@ -37,8 +37,7 @@ ifstream inputFile;
 Pacman* pacman=new Pacman(1, 1, BLOCK, POSITION);
 pacman->setBoard(&myBoard);
 pacman->resetPosition();
-
-
+Pellets P(arr);
 
 pacman->setTexture("../images/pacman.png",2,4);
 
@@ -107,8 +106,11 @@ window.setFramerateLimit(20);
 		window.clear();
 
 		myBoard.drawOnWindow(window);
+		P.intersectPellets(pacman->getRow(), pacman->getCol());
+		P.drawPellets(window, myBoard.mShape);
 		pacman->drawOnWindow(window);
 		manager.draw(window);
+		
 		pinky->drawOnWindow(window);
 		window.display();
 	}
