@@ -107,10 +107,10 @@ window.setFramerateLimit(20);
 
 		myBoard.drawOnWindow(window);
 		P.intersectPellets(pacman->getRow(), pacman->getCol());
+		P.drawText(window, pacman->getLives());
 		P.drawPellets(window, myBoard.mShape);
 		pacman->drawOnWindow(window);
 		manager.draw(window);
-		
 		pinky->drawOnWindow(window);
 		window.display();
 	}
