@@ -29,14 +29,14 @@ void Pacman::resetPosition()
 	mAlive = true;
 	mCurrentColumn = INTIAL_COL;
 	mCurrentRow = INTIAL_ROW;
-	mShape.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
+	mSprite.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
 }
 
 void Pacman::die()
 {
 	mAlive = false;
 	if (--mLives <=0)	
-		mShape.setFillColor(sf::Color::Black);
+		mSprite.setColor(sf::Color::Black);
 	resetPosition();
 }
 
@@ -58,4 +58,78 @@ void Pacman::notify()
 	std::list<IObserver*>::iterator itr= mObserverList.begin();
 	for (itr; itr != mObserverList.end(); itr++)
 		(*itr)->update(this->mPowerUp);
+}
+
+
+
+void Pacman::animateMove()
+{
+	{
+		if (mTexture == nullptr)
+			return;
+		float left = mSprite.getTextureRect().left, top = mSprite.getTextureRect().top;
+		switch (mDirection)
+		{
+		case UP: top = 2; break;
+		case RIGHT:top = 0; break;
+		case LEFT:top = 1; break;
+		case DOWN:top = 3; break;
+		default:break;
+
+		}
+
+		int i = (int) left / 16;
+		++i %= 2;
+		mSprite.setTextureRect(sf::IntRect(16 * i, top * 15.5, 16, 15.5));
+
+	}
+}
+void Pacman::move()
+{
+
+	if (checkDestination(mDirection) == 0)
+		return;
+
+	switch (mDirection)
+	{
+	case UP:
+	{
+		mCurrentRow--;
+		mSprite.move(0, -mSize);
+		break;
+	}
+	case DOWN:
+	{
+		mCurrentRow++;
+		mSprite.move(0, mSize);
+		break; }
+	case LEFT:
+	{
+		if (checkDestination(mDirection) == 2) //portal
+		{
+			mCurrentColumn = mBoard->getBoard()[mCurrentRow].size() - 1;
+			updateShape();
+
+		}
+		else {
+			mCurrentColumn--;
+			mSprite.move(-mSize, 0);
+		}
+		break;
+	}
+	case RIGHT: {
+		if (checkDestination(mDirection) == 2)//portal
+		{
+			mCurrentColumn = 1;
+			updateShape();
+		}
+		else {
+			mCurrentColumn++;
+			mSprite.move(mSize, 0);
+		}
+		break;
+	}
+	default:break;
+	}
+	animateMove();
 }

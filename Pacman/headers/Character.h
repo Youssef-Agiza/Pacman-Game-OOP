@@ -20,14 +20,15 @@ class Character {
 
          unsigned int mCurrentRow;
          unsigned int mCurrentColumn;
-         float mSize;
+         float mSize; //=tileSize in the board
          float mPositionOnWindow;
-         float mSpeed;
          bool mAlive;
-         RectangleShape mShape;
-         Texture mTexture;
-        Direction mDirection;
-        Board* mBoard;
+         Texture* mTexture;
+         Direction mDirection;
+         Board* mBoard;
+         Sprite mSprite;
+
+         void adjustScale(float imagesPerRow,float imagesPerCol) ; //adjusts sprite scale and IntRect. Called in setTexture
 
     public:
 
@@ -43,7 +44,7 @@ class Character {
         float getSize()const;
         float getPosition()const;
         const Texture& getTexture()const;
-        float getSpeed()const;
+
 
         //setters
         Character& setSize(float size);
@@ -51,17 +52,20 @@ class Character {
         Character& setRow(unsigned int row);
         Character& setCol(unsigned int col);
         Character& setDirection(Direction dir);
-        Character& setTexture(std::string fileName);
+        Character& setTexture(std::string fileName,float imagesPerRow=1.0f,float imagesPerCol=1.0f); //calls adjustScale
         Character& setPosition(float position);
-        Character& setSpeed(float s);  
         Character& setBoard(Board* board);
         
+       
 
-        virtual void die()= 0;
-       virtual void resetPosition()=0;
-       virtual void move();
+     
        virtual void drawOnWindow(RenderWindow& window);
        virtual void updateShape(); //updates new shape data
        virtual int checkDestination(Direction d)const; //returns 0 if block, 1 if valid direction, 2 if portal
+       virtual void move() = 0;
+       virtual void die() = 0;
+       virtual void resetPosition() = 0;
+       virtual void animateMove() = 0;
+       virtual void animateDie() = 0;
     };
 

@@ -1,11 +1,12 @@
 #include "Character.h"
 
+
+
 Character::Character(int intialRow, int intialColumn, float size, float posWindow) :
 	mCurrentRow(intialRow), mCurrentColumn(intialColumn), mSize(size), mPositionOnWindow(posWindow),
-	mAlive(true), mSpeed(1), mDirection(STOP), mBoard(nullptr)
+	mAlive(true) ,mDirection(STOP), mBoard(nullptr),mTexture(nullptr)
 {
-	mShape.setSize(Vector2f(mSize, mSize));
-	mShape.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
+	mSprite.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
 }
 
 Character::~Character()
@@ -20,61 +21,53 @@ unsigned int Character::getRow()const { return mCurrentRow; }
 unsigned int Character::getCol()const { return mCurrentColumn; }
 float Character::getSize()const { return mSize; }
 float Character::getPosition()const { return mPositionOnWindow; }
-const Texture& Character::getTexture()const { return mTexture; }
-float Character::getSpeed()const { return mSpeed; }
-
+const Texture& Character::getTexture()const { return *mTexture; }
 
 //setters
-Character& Character::setSize(float s)
-{
-	mSize = s;
-	return *this;
-}
-Character& Character::setPosition(float position)
-{
-	mPositionOnWindow = position;
-	return *this;
-}
-Character& Character::setAlive(bool status)
-{
-	mAlive = status;
-	return *this;
-}
-Character& Character::setRow(unsigned int row)
-{
-	mCurrentRow = row;
+Character& Character::setSize(float s){mSize = s;	return *this;}
 
-	return *this;
-}
-Character& Character::setCol(unsigned int col)
-{
-	mCurrentColumn = col;
-	return *this;
-
-}
+Character& Character::setPosition(float position){	mPositionOnWindow = position; return *this; }
+Character& Character::setAlive(bool status) {mAlive = status; return *this;}
+Character& Character::setRow(unsigned int row) {	mCurrentRow = row; return *this;}
+Character& Character::setCol(unsigned int col) {	mCurrentColumn = col;	return *this;}
 Character& Character::setDirection(Direction dir)
 {if(checkDestination(dir))
 	mDirection = dir;
 	return*this;
 }
-Character& Character::setTexture(std::string file)
+
+Character& Character::setBoard(Board* board){ mBoard = board;	return *this;}
+
+
+Character& Character::setTexture(std::string file, float imagesPerRow, float imagesPerCol)
 {
-	if (mTexture.loadFromFile(file))
-		mShape.setTexture(&(this->mTexture));
-	return *this;
-}
-Character& Character::setSpeed(float s)
-{
-	mSpeed = s;
-	return *this;
-}
-Character& Character::setBoard(Board* board)
-{
-	mBoard = board;
+	if (mTexture != nullptr)
+		delete mTexture;
+
+	mTexture = new Texture;
+
+	if (mTexture->loadFromFile(file))
+	{
+		mSprite.setTexture(*mTexture);
+		adjustScale(imagesPerRow, imagesPerCol);
+
+	}
 	return *this;
 }
 
-void Character::resetPosition() {/*nothing*/ }
+void Character::adjustScale(float imagesPerRow,float imagesPerCol)
+{
+	if (mTexture == nullptr)
+		return;
+
+	sf::Vector2u v = mTexture->getSize();
+	mSprite.setTextureRect(sf::IntRect(0, 0, v.x / imagesPerRow, v.y / imagesPerCol));
+	mSprite.setScale((mSize * imagesPerRow) / v.x, (mSize * imagesPerCol) / v.y);
+}
+/*End of setters*/
+
+
+
 int Character::checkDestination(Direction d)const
 {
 	vector<vector<int>> board = mBoard->getBoard();
@@ -99,61 +92,14 @@ int Character::checkDestination(Direction d)const
 	}
 	return 0;
 }
-void Character::move()
-{
-	if (checkDestination(mDirection) == 0)
-		return;
 
-	switch (mDirection)
-	{
-	case UP:
-	{
-		mCurrentRow--;
-		mShape.move(0, -mSize * mSpeed);
-		break; 
-	}
-	case DOWN:
-	{	
-	mCurrentRow++;
-	mShape.move(0, mSize * mSpeed);
-	break; }
-	case LEFT:
-	{
-		if (checkDestination(mDirection)==2) //portal
-		{
-			mCurrentColumn = mBoard->getBoard()[mCurrentRow].size()-1;
-			updateShape();
-			return;
-		}
-		
-		mCurrentColumn--;
-		mShape.move(-mSize * mSpeed, 0);
-		return;
-	}
-	case RIGHT: {
-		if(checkDestination(mDirection)==2)//portal
-		{
-			mCurrentColumn = 1;
-			updateShape();
-			return;
-		}
-		
-		mCurrentColumn++;
-		mShape.move(mSize * mSpeed, 0);
-		return;
-	}
-	default:break;
-	}
-
-}
 void Character::drawOnWindow(RenderWindow& window)
 {
-	updateShape();
-	window.draw(mShape);
+	window.draw(mSprite);
 }
 void Character::updateShape()
 {
 	
-	mShape.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
+	mSprite.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
 }
 

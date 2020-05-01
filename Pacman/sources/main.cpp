@@ -33,20 +33,26 @@ ifstream inputFile;
 
 	Board myBoard( arr,BLOCK, POSITION);
 	
-
+	
 Pacman* pacman=new Pacman(1, 1, BLOCK, POSITION);
 pacman->setBoard(&myBoard);
-pacman->setSpeed(10);
 pacman->resetPosition();
-pacman->setTexture("../images/pacman.png");
+
+
+
+pacman->setTexture("../images/pacman.png",2,4);
 
 GhostManager manager;
 manager.createGhost(&myBoard);
-Ghost* pinky = manager.getGhostList()[2];
-int x = 0;
-//thread t[2];
-pacman->addObserver(pinky);
-pacman->setPowerUp(1);
+for (int i=0;i<4;i++)
+	pacman->addObserver(manager.getGhostList()[i]);
+
+Ghost* pinky = manager.getGhostList()[0];
+
+
+sf::Clock pactimer, gtimer;
+pactimer.restart();
+gtimer.restart();
 window.setFramerateLimit(20);
 	Event e;
 	while (window.isOpen())
@@ -72,7 +78,7 @@ window.setFramerateLimit(20);
 					pacman->setDirection(LEFT);
 					break;
 				case Keyboard::W:
-					pinky->setDirection(UP); break;
+				{pinky->setDirection(UP);break; }
 				case Keyboard::D:
 					pinky->setDirection(RIGHT); break;
 				case Keyboard::A:
@@ -86,13 +92,15 @@ window.setFramerateLimit(20);
 			}
 		}
 		
-
-		switch (x)
+		if (gtimer.getElapsedTime().asMilliseconds() >= 500)
 		{
-		case 0: {pinky->move(); pacman->move() ; x = 1; break; }
-		case 1: x = 2; break;
-		case 2:x = 0; break;
-		default:break;
+			pinky->move();
+			gtimer.restart();
+		}
+		if (pactimer.getElapsedTime().asMilliseconds() >= 250)
+		{
+			pactimer.restart();
+			pacman->move();
 		}
 		
 		manager.checkGhost2Pacman(pacman);
@@ -101,7 +109,7 @@ window.setFramerateLimit(20);
 		myBoard.drawOnWindow(window);
 		pacman->drawOnWindow(window);
 		manager.draw(window);
-		//pinky.drawOnWindow(window);
+		pinky->drawOnWindow(window);
 		window.display();
 	}
 

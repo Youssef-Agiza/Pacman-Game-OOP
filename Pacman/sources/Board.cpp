@@ -21,10 +21,10 @@ namespace PacmanCS {
 	{
 		
 		mShape = new sf::RectangleShape * [mBoard.size()];
-		for (int i = 0; i < mBoard.size(); i++)
+		for (unsigned int i = 0; i < mBoard.size(); i++)
 		{
 			mShape[i] = new sf::RectangleShape[mBoard[i].size()];
-			for (int j = 0; j < mBoard[i].size(); j++)
+			for (unsigned int j = 0; j < mBoard[i].size(); j++)
 			{
 				mShape[i][j].setPosition(mPositionOnWindow + mTileSize * j, mPositionOnWindow + mTileSize * i);
 				mShape[i][j].setSize(sf::Vector2f(mTileSize, mTileSize));
@@ -35,8 +35,8 @@ namespace PacmanCS {
 	void Board::updateTextures()
 	{
 		
-		for (int i = 0; i < mBoard.size(); i++)
-			for (int j = 0; j < mBoard[i].size(); j++)
+		for (unsigned int i = 0; i < mBoard.size(); i++)
+			for (unsigned int j = 0; j < mBoard[i].size(); j++)
 			{
 				if (mBoard[i][j] == WALL)
 
@@ -51,8 +51,8 @@ namespace PacmanCS {
 
 	void Board::drawOnWindow(sf::RenderWindow& w)
 	{//needs validation: check that shape is not a nullpointer
-		for (int i = 0; i < mBoard.size(); i++)
-			for(int j=0;j< mBoard[i].size();j++)
+		for (unsigned int i = 0; i < mBoard.size(); i++)
+			for(unsigned int j=0;j< mBoard[i].size();j++)
 			w.draw((this->mShape[i][j]));
 
 	}
