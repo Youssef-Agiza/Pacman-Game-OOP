@@ -39,7 +39,11 @@ void Ghost::resetPosition()
 void Ghost::die()
 {
 	resetPosition();
-	setFreight(false);
+	if (mFreight)
+	{
+		setTexture(this->getResource(), 8, 1);
+		setFreight(false);
+	}
 	mDirection = STOP;
 }
 
