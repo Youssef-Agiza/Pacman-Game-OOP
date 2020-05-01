@@ -3,6 +3,7 @@
 #include "Ghost.h"
 #include "Board.h"
 #include "Pacman.h"
+#include "../Visual Studio/Pellets.h"
 class GhostManager
 {
 private:
@@ -16,5 +17,5 @@ public:
 	void draw(sf::RenderWindow& w);
 
 	void createGhost(Board* board);
-	void checkGhost2Pacman(Pacman* pacman);
+	void checkGhost2Pacman(Pacman* pacman, Pellets &P);
 };

@@ -47,13 +47,7 @@ Pellets::Pellets(vector <vector<int>> v)
 }
 Pellets::~Pellets()
 {
-	delete[] arrScore;
-	while (arrScore)
-	{
-		int i = 0;
-		delete arrScore[i];
-		i++;
-	}
+	
 }
 void Pellets::intersectPellets(int r, int c)
 {
@@ -95,6 +89,21 @@ void Pellets::drawText(RenderWindow& w, int x)
 	w.draw(L);
 	life.setString(to_string(x));
 	w.draw(life);
+	
+
+	
+}
+int Pellets::getScore() const
+{
+	return score;
+}
+void Pellets::incrementLife(Pacman* P)
+{
+		P->setLives(P->getLives() + 1);
+}
+void Pellets::incrementScore(int x)
+{
+	score += x;
 }
 
 

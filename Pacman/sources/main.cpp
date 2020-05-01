@@ -14,6 +14,7 @@ using namespace PacmanCS;
 
 int main()
 {
+	bool checker=true;
 	const int ROWS = 31, COLUMNS = 28,BLOCK=30, POSITION=25;
 	RenderWindow window;
 	window.create(VideoMode(1000, 1000), "Simple Maze");
@@ -90,7 +91,11 @@ window.setFramerateLimit(20);
 				}
 			}
 		}
-		
+		if (P.getScore() == 10000 && checker)
+		{
+			P.incrementLife(pacman);
+			checker = false;
+		}
 		if (gtimer.getElapsedTime().asMilliseconds() >= 500)
 		{
 			pinky->move();
@@ -102,7 +107,7 @@ window.setFramerateLimit(20);
 			pacman->move();
 		}
 		
-		manager.checkGhost2Pacman(pacman);
+		manager.checkGhost2Pacman(pacman, P);
 		window.clear();
 
 		myBoard.drawOnWindow(window);
