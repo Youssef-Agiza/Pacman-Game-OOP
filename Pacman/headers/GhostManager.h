@@ -3,7 +3,7 @@
 #include "Ghost.h"
 #include "Board.h"
 #include "Pacman.h"
-#include "../Visual Studio/Pellets.h"
+#include "Pellets.h"
 class GhostManager
 {
 private:

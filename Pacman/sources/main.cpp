@@ -3,7 +3,7 @@
 #include "Ghost.h"
 #include "Board.h"
 #include "GhostManager.h"
-#include "../Visual Studio/Pellets.h"
+#include "Pellets.h"
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
@@ -91,7 +91,7 @@ window.setFramerateLimit(20);
 				}
 			}
 		}
-		if (P.getScore() == 10000 && checker)
+		if (P.getScore() >= 10000 && checker)
 		{
 			P.incrementLife(pacman);
 			checker = false;

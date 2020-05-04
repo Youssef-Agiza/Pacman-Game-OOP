@@ -27,7 +27,7 @@ Pellets::Pellets(vector <vector<int>> v)
 	mBlack.loadFromFile("../images/black.png");
 	mTransparent.loadFromFile("../images/transparent.png");
 	score = 0;
-	font.loadFromFile("font.ttf");
+	font.loadFromFile("../boardTexts/font.ttf");
 	T.setFont(font);
 	T.setString("SCORE");
 	T.setCharacterSize(50);

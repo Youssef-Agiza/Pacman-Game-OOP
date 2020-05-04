@@ -155,9 +155,9 @@
     <ClInclude Include="..\headers\Ghost.h" />
     <ClInclude Include="..\headers\GhostManager.h" />
     <ClInclude Include="..\headers\Pacman.h" />
+    <ClInclude Include="..\headers\Pellets.h" />
     <ClInclude Include="..\headers\Player.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="Pellets.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -174,8 +174,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\sources\Pacman.cpp" />
+    <ClCompile Include="..\sources\Pellets.cpp" />
     <ClCompile Include="..\sources\Player.cpp" />
-    <ClCompile Include="Pellets.cpp" />
     <ClCompile Include="Temp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
