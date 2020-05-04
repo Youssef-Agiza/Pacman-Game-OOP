@@ -6,10 +6,10 @@ using namespace std;
 Pellets::Pellets(vector <vector<int>> v)
 {
 	arrScore = new int* [v.size()];
-	for (int i = 0; i < v.size(); i++)
+	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		arrScore[i] = new int[v[i].size()];
-		for (int j = 0; j < v[i].size(); j++)
+		for (unsigned int j = 0; j < v[i].size(); j++)
 		{
 			arrScore[i][j] = 00;
 			if (v[i][j] == -5)
@@ -59,8 +59,8 @@ void Pellets::intersectPellets(int r, int c)
 
 void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 {
-	for (int i = 0; i<31; i++)
-		for (int j = 0; j<28; j++)
+	for (unsigned int i = 0; i<31; i++)
+		for (unsigned int j = 0; j<28; j++)
 		{
 			if (arrScore[i][j] == 100)
 			{

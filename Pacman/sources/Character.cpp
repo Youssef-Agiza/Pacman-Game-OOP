@@ -2,11 +2,11 @@
 
 
 
-Character::Character(int intialRow, int intialColumn, float size, float posWindow) :
+Character::Character(int intialRow, int intialColumn, float size, sf::Vector2f posWindow) :
 	mCurrentRow(intialRow), mCurrentColumn(intialColumn), mSize(size), mPositionOnWindow(posWindow),
 	mAlive(true) ,mDirection(STOP), mBoard(nullptr),mTexture(nullptr)
 {
-	mSprite.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
+	mSprite.setPosition(mPositionOnWindow.x + mCurrentColumn * mSize, mPositionOnWindow.y + mCurrentRow * mSize);
 }
 
 Character::~Character()
@@ -20,13 +20,13 @@ int Character::getDirection()const { return mDirection; }
 unsigned int Character::getRow()const { return mCurrentRow; }
 unsigned int Character::getCol()const { return mCurrentColumn; }
 float Character::getSize()const { return mSize; }
-float Character::getPosition()const { return mPositionOnWindow; }
+const sf::Vector2f& Character::getPosition()const { return mPositionOnWindow; }
 const Texture& Character::getTexture()const { return *mTexture; }
 
 //setters
 Character& Character::setSize(float s){mSize = s;	return *this;}
-
-Character& Character::setPosition(float position){	mPositionOnWindow = position; return *this; }
+Character& Character::setPosition(float x, float y) { return this->setPosition(sf::Vector2f(x, y)); }
+Character& Character::setPosition(sf::Vector2f position) { mPositionOnWindow = position; return *this; }
 Character& Character::setAlive(bool status) {mAlive = status; return *this;}
 Character& Character::setRow(unsigned int row) {	mCurrentRow = row; return *this;}
 Character& Character::setCol(unsigned int col) {	mCurrentColumn = col;	return *this;}
@@ -54,6 +54,8 @@ Character& Character::setTexture(std::string file, float imagesPerRow, float ima
 	}
 	return *this;
 }
+
+
 
 void Character::adjustScale(float imagesPerRow,float imagesPerCol)
 {
@@ -100,6 +102,6 @@ void Character::drawOnWindow(RenderWindow& window)
 void Character::updateShape()
 {
 	
-	mSprite.setPosition(mPositionOnWindow + mCurrentColumn * mSize, mPositionOnWindow + mCurrentRow * mSize);
+	mSprite.setPosition(mPositionOnWindow.x + mCurrentColumn * mSize, mPositionOnWindow.y + mCurrentRow * mSize);
 }
 

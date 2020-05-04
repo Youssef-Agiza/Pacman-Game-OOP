@@ -1,6 +1,6 @@
 #include "Ghost.h"
 #include "../design patterns/ISubject.h"
-Ghost::Ghost(int intialRow, int intialColumn, float size, float position) :
+Ghost::Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position) :
 		Character( intialRow,  intialColumn,  size,  position),mFreight(false),
 	mIntialRow(intialRow),mIntialCol(intialColumn)
 {}
