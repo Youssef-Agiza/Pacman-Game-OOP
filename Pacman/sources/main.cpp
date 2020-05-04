@@ -52,7 +52,7 @@ for (int i=0;i<4;i++)
 Ghost* pinky = manager.getGhostList()[0];
 
 
-sf::Clock pactimer, gtimer;
+sf::Clock par, gtimer;
 pactimer.restart();
 gtimer.restart();
 window.setFramerateLimit(20);
