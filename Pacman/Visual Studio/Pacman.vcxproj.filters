@@ -60,7 +60,7 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pellets.h">
+    <ClInclude Include="..\headers\Pellets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -98,7 +98,7 @@
     <ClCompile Include="Temp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pellets.cpp">
+    <ClCompile Include="..\sources\Pellets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\Audio.cpp">

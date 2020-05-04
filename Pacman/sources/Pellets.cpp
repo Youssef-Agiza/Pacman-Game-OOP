@@ -27,22 +27,34 @@ Pellets::Pellets(vector <vector<int>> v)
 	mBlack.loadFromFile("../images/black.png");
 	mTransparent.loadFromFile("../images/transparent.png");
 	score = 0;
+	font.loadFromFile("../boardTexts/font.ttf");
+	T.setFont(font);
+	T.setString("SCORE");
+	T.setCharacterSize(50);
+	T.setOutlineColor(Color::Yellow);
+	T.setOutlineThickness(0.5);
+	T.setOrigin(Vector2f(-880,0));
+	Num.setFont(font);
+	Num.setCharacterSize(50);
+	Num.setOrigin(Vector2f(-880, -50));
+	L.setFont(font);
+	L.setCharacterSize(50);
+	L.setOrigin(Vector2f(-880, -100)); 
+	L.setString("Lifes");
+	life.setFont(font);
+	life.setCharacterSize(50);
+	life.setOrigin(Vector2f(-880, -150));
 }
 Pellets::~Pellets()
 {
-	delete[] arrScore;
-	while (arrScore)
-	{
-		int i = 0;
-		delete arrScore[i];
-		i++;
-	}
+	
 }
 void Pellets::intersectPellets(int r, int c)
 {
+	if (arrScore[r][c]>0)
 	score += arrScore[r][c];
 	arrScore[r][c] = -6;
-	//cout << r<<" "<<c << endl;
+//	cout<<score<<endl;
 }
 
 void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
@@ -68,6 +80,30 @@ void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 			w.draw(mShape[i][j]);
 		}
 	
+}
+void Pellets::drawText(RenderWindow& w, int x)
+{
+	Num.setString(to_string(score));
+	w.draw(T);
+	w.draw(Num);
+	w.draw(L);
+	life.setString(to_string(x));
+	w.draw(life);
+	
+
+	
+}
+int Pellets::getScore() const
+{
+	return score;
+}
+void Pellets::incrementLife(Pacman* P)
+{
+		P->setLives(P->getLives() + 1);
+}
+void Pellets::incrementScore(int x)
+{
+	score += x;
 }
 
 
