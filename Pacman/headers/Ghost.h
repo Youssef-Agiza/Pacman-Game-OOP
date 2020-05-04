@@ -2,7 +2,8 @@
 #include "Character.h"
 #include "Board.h"
 #include "../design patterns/IObserver.h"
-class Ghost :public Character, public IObserver {
+class Ghost :
+    public Character, public IObserver {
 
 private:
     unsigned int mIntialRow;
@@ -11,7 +12,7 @@ private:
     std::string mResource; //keeps resource for the texture
 
 public:
-    Ghost(int intialRow, int intialColumn, float size, float position);
+    Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position);
   
   
     unsigned int getIntialRow()const;

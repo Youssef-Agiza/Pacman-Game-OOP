@@ -15,11 +15,11 @@ namespace PacmanCS {
 		std::vector < std::vector<int>> mBoard;
 
 		const float mTileSize;
-		const float mPositionOnWindow;
+		sf::Vector2f mPositionOnWindow;
 
 		void intializeShape();
 	public:
-		Board(std::vector < std::vector<int>> , float tileSize,float posOnWindow);
+		Board(std::vector < std::vector<int>> , float tileSize,sf::Vector2f posOnWindow);
 		sf::RectangleShape** mShape;
 		//setters
 		Board& setRoadTexture(std::string fileName);
@@ -27,7 +27,7 @@ namespace PacmanCS {
 		
 
 		//getters
-		float getPositionOneWindow()const;
+		const sf::Vector2f& getPositionOneWindow()const;
 		float getTileSize()const;
 		
 		const std::vector < std::vector<int>>& getBoard()const;

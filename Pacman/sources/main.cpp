@@ -14,14 +14,15 @@ using namespace PacmanCS;
 
 int main()
 {
-	const int ROWS = 31, COLUMNS = 28,BLOCK=30, POSITION=25;
+	const int ROWS = 31, COLUMNS = 28,BLOCK=10;
+	sf::Vector2f POSITION(0, 100);
 	RenderWindow window;
-	window.create(VideoMode(1000, 1000), "Simple Maze");
+	window.create(VideoMode(1920, 1080), "Simple Maze");
 	
 	vector<vector<int>> arr(31,vector<int>(28));
 	
 ifstream inputFile;
-	inputFile.open("../BoardTexts/BoardText2.txt");
+	inputFile.open("../BoardTexts/BoardText3.txt");
 	if (inputFile.is_open())
 	{
 		for (int i = 0; i < ROWS; i++)

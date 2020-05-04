@@ -8,7 +8,8 @@ const float POSITION = 50;
 
 namespace PacmanCS {
 
-	Board::Board(std::vector < std::vector<int>> board,float tileSize=TILE,float posOnWindow=POSITION):
+	Board::Board(std::vector < std::vector<int>> board,float tileSize=TILE,sf::Vector2f 
+		posOnWindow=sf::Vector2f(POSITION,POSITION)):
 		mBoard(board),mTileSize(tileSize),mPositionOnWindow(posOnWindow)
 	{
 		mWallTexture.loadFromFile("../images/wall.png");
@@ -25,7 +26,7 @@ namespace PacmanCS {
 			mShape[i] = new sf::RectangleShape[mBoard[i].size()];
 			for (unsigned int j = 0; j < mBoard[i].size(); j++)
 			{
-				mShape[i][j].setPosition(mPositionOnWindow + mTileSize * j, mPositionOnWindow + mTileSize * i);
+				mShape[i][j].setPosition(mPositionOnWindow.x + mTileSize * j, mPositionOnWindow.y + mTileSize * i);
 				mShape[i][j].setSize(sf::Vector2f(mTileSize, mTileSize));
 			}
 		}
@@ -68,7 +69,7 @@ namespace PacmanCS {
 
 
 	//getters
-	float Board::getPositionOneWindow()const { return mPositionOnWindow; }
+	const sf::Vector2f& Board::getPositionOneWindow()const { return mPositionOnWindow; }
 	float Board::getTileSize()const { return mTileSize; }
 	//int Board::getNumOfCols()const { return mNumOfCols; }
 	//int Board::getNumOfRows()const { return mNumOfRows; }

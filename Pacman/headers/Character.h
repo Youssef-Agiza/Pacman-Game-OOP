@@ -21,7 +21,7 @@ class Character {
          unsigned int mCurrentRow;
          unsigned int mCurrentColumn;
          float mSize; //=tileSize in the board
-         float mPositionOnWindow;
+         sf::Vector2f mPositionOnWindow;
          bool mAlive;
          Texture* mTexture;
          Direction mDirection;
@@ -33,7 +33,7 @@ class Character {
     public:
 
 
-        Character(int intialRow, int intialColumn, float size,float posWindow);
+        Character(int intialRow, int intialColumn, float size,sf::Vector2f posWindow);
         ~Character();
 
         //getters
@@ -42,7 +42,7 @@ class Character {
         unsigned int getRow()const;
         unsigned int getCol()const;
         float getSize()const;
-        float getPosition()const;
+        const sf::Vector2f& getPosition()const;
         const Texture& getTexture()const;
 
 
@@ -53,12 +53,13 @@ class Character {
         Character& setCol(unsigned int col);
         Character& setDirection(Direction dir);
         Character& setTexture(std::string fileName,float imagesPerRow=1.0f,float imagesPerCol=1.0f); //calls adjustScale
-        Character& setPosition(float position);
+        Character& setPosition(float x,float y);
+        Character& setPosition(sf::Vector2f position);
         Character& setBoard(Board* board);
         
        
-
-     
+  
+       //virtuals   
        virtual void drawOnWindow(RenderWindow& window);
        virtual void updateShape(); //updates new shape data
        virtual int checkDestination(Direction d)const; //returns 0 if block, 1 if valid direction, 2 if portal

@@ -11,7 +11,7 @@ private:
     bool mPowerUp; //ate big pellet
    
 public:
-    Pacman(int intialRow, int intialColumn, float size, float posWindow);
+    Pacman(int intialRow, int intialColumn, float size, sf::Vector2f posWindow);
 
 
 
@@ -19,6 +19,7 @@ public:
     bool getPowerUp()const;
     Pacman& setLives(unsigned int l);
     unsigned int getLives()const;
+    void addLive(unsigned int l);
 
 
     //inherited from character
