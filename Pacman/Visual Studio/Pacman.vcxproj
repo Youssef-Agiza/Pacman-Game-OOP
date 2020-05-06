@@ -159,9 +159,6 @@
     <ClInclude Include="..\headers\MinHeap.h" />
     <ClInclude Include="..\headers\Pacman.h" />
     <ClInclude Include="..\headers\Pellets.h" />
-    <ClInclude Include="..\headers\Player.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="Common.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -186,9 +183,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\sources\Pellets.cpp" />
-    <ClCompile Include="..\sources\Player.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Temp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

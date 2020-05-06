@@ -22,7 +22,6 @@ private:
 	Text Num;
 	Text L;
 	Text life;
-	Audio chomp;
 public:
 	Pellets(vector <vector<int>> v);
 	void drawPellets(RenderWindow &w, RectangleShape** mShape);

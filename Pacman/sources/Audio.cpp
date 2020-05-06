@@ -1,7 +1,16 @@
 #include "Audio.h"
 namespace PacmanCS
 {
+	Audio* Audio::instance = nullptr;
+	Audio* Audio::getInstance()
+	{
+		if (Audio::instance == nullptr)
+			instance = new Audio();
+		return instance;
+	}
+
 	Audio::Audio() :mSoundtracksPath("../soundtracks/") {}
+
 
 
 	Audio& Audio::setPath(std::string path)

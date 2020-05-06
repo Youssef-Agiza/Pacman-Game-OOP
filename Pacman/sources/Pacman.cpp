@@ -39,8 +39,7 @@ void Pacman::resetPosition()
 
 void Pacman::die(sf::RenderWindow& w)
 {
-	Audio temp;
-	temp.playDeath();
+	Audio::getInstance()->playDeath();
 	mAlive = false;
 	if (--mLives <=0)	
 		mSprite.setColor(sf::Color::Black);

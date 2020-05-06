@@ -55,7 +55,7 @@ void Pellets::intersectPellets(int r, int c)
 	{
 		score += arrScore[r][c];
 		arrScore[r][c] = -6;
-		chomp.playChomp();
+		Audio::getInstance()->playChomp();
 	}
 //	cout<<score<<endl;
 }
