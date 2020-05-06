@@ -15,10 +15,10 @@ using namespace PacmanCS;
 int main()
 {
 	const int ROWS = 31, COLUMNS = 28, BLOCK = 30;
-	sf::Vector2f POSITION(70, 70);
+	sf::Vector2f POSITION(500, 0);
 	RenderWindow window;
-	window.create(VideoMode(1000, 1300), "Simple Maze");
-
+	window.create(VideoMode(1840, 930), "Simple Maze");
+	
 	vector<vector<int>> arr(31, vector<int>(28));
 
 	Graph graph(320);	//   int graph[302][302];
@@ -69,9 +69,8 @@ int main()
 	pacman->setTexture("../images/pacman.png", 2, 4);
 
 	GhostManager manager(&graph);
-	manager.createGhost(&myBoard,&graph);
-	for (int i = 0; i < 4; i++)
-		pacman->addObserver(manager.getGhostList()[i]);
+	manager.createGhost(&myBoard,&graph,pacman);
+
 
 	Ghost* blinky = manager.getGhostList()[0];
 	Ghost* Pinky = manager.getGhostList()[2];
@@ -80,12 +79,7 @@ int main()
 	gtimer.restart();
 	window.setFramerateLimit(20);
 	Event e;
-	Direction d;
-	std::cout << "\n";
-
-
 	
-	std::list<int>* path;
 
 
 
@@ -130,12 +124,10 @@ int main()
 		
 
 
-		if (gtimer.getElapsedTime().asMilliseconds() >= 500)
+		if (gtimer.getElapsedTime().asMilliseconds() >= 400)
 		{
-			for (int i = 0; i < 4; i++)
-				manager.getGhostList()[i]->blinky(pacman);
-
-			manager.moveAll();
+		
+			manager.moveAll(pacman);
 			gtimer.restart();
 		}
 		if (pactimer.getElapsedTime().asMilliseconds() >= 250)

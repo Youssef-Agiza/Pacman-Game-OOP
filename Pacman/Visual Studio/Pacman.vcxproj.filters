@@ -63,6 +63,12 @@
     <ClInclude Include="..\headers\Pellets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\headers\Graph.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\MinHeap.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\Player.cpp">
@@ -107,10 +113,10 @@
     <ClCompile Include="..\sources\MinHeap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\PathfindTest.cpp">
+    <ClCompile Include="..\sources\Graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\Graph.cpp">
+    <ClCompile Include="..\sources\PathfindTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -51,9 +51,12 @@ Pellets::~Pellets()
 }
 void Pellets::intersectPellets(int r, int c)
 {
-	if (arrScore[r][c]>0)
-	score += arrScore[r][c];
-	arrScore[r][c] = -6;
+	if (arrScore[r][c] > 0)
+	{
+		score += arrScore[r][c];
+		arrScore[r][c] = -6;
+		chomp.playChomp();
+	}
 //	cout<<score<<endl;
 }
 

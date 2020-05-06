@@ -2,6 +2,7 @@
 #include <cstddef>
 #include<vector>
 #include "Pacman.h"
+#include "Audio.h"
 #include"SFML/Graphics.hpp"
 using namespace std;
 using namespace sf;
@@ -21,6 +22,7 @@ private:
 	Text Num;
 	Text L;
 	Text life;
+	Audio chomp;
 public:
 	Pellets(vector <vector<int>> v);
 	void drawPellets(RenderWindow &w, RectangleShape** mShape);

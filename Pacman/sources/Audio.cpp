@@ -37,7 +37,7 @@ namespace PacmanCS
 	}
 	bool Audio::playChomp(bool loop, std::string track)
 	{
-		if (!mMusic.openFromFile(mSoundtracksPath + track))
+		if (mMusic.getStatus() == sf::SoundSource::Playing || !mMusic.openFromFile(mSoundtracksPath + track))
 			return false;
 		mMusic.setLoop(loop);
 		mMusic.play();
@@ -46,5 +46,9 @@ namespace PacmanCS
 	void Audio::stop()
 	{
 		mMusic.stop();
+	}
+	sf::SoundSource::Status Audio::getStatus() const
+	{
+		return mMusic.getStatus();
 	}
 }

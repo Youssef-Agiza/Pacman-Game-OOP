@@ -18,8 +18,8 @@ public:
 	void addGhost(Ghost* mGhost);
 	void draw(sf::RenderWindow& w);
 
-	void createGhost(Board* board,Graph* graph);
+	void createGhost(Board* board,Graph* graph,Pacman* pacman);
 	void checkGhost2Pacman(Pacman* pacman, Pellets &P);
 
-	void moveAll();
+	void moveAll(Pacman* pacman);
 };

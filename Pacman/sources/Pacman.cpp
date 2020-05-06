@@ -125,7 +125,7 @@ void Pacman::move()
 	case RIGHT: {
 		if (checkDestination(mDirection) == 2)//portal
 		{
-			mCurrentColumn = 1;
+			mCurrentColumn = 0;
 			updateShape();
 		}
 		else {

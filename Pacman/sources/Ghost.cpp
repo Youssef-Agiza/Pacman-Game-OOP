@@ -41,6 +41,7 @@ Ghost& Ghost::setFreight(bool v)
 }
 bool Ghost::getFreight()const { return mFreight; }
 
+
 void Ghost::resetPosition()
 {
 	mCurrentColumn = mIntialCol;
@@ -72,11 +73,7 @@ void Ghost::update(bool powerUp)
 		this->setFreight(0);
 		this->setTexture(this->getResource(), 8, 1);
 	}
-	//do other freight mode logic here
-	/*
-	. change ghost color
-	. change ghost behavior
-	*/
+
 }
 
 void Ghost::move()
@@ -115,7 +112,7 @@ void Ghost::move()
 	case RIGHT: {
 		if (checkDestination(mDirection) == 2)//portal
 		{
-			mCurrentColumn = 1;
+			mCurrentColumn = 0;
 			updateShape();
 		}
 		else {
@@ -127,34 +124,50 @@ void Ghost::move()
 	default:break;
 	}
 	animateMove();
+	
 }
 
 Ghost& Ghost::setDirection(Direction d)
 {
-	if (checkDestination(d))/* && !reverse(d)*/
+	if (checkDestination(d)/*&&!reverse(d)*/)
 		mDirection = d;
 	return *this;
 }
 
 void Ghost::clyde(Pacman* pacman)
-{
+{//random movement
+	if (!mFreight)
+	{
+		Direction d;
+		int randTarget;
+		do {
+			randTarget=(pacman->getVertex() + rand()) % 302;
+			d = Path2Movement(mGraph->dijkstra(getVertex(), randTarget));
+		} while (reverse(d));
+		
+		setDirection(d);
+	}
+	else //freight
+	{
+		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])));
+	}
 }
 
 void Ghost::blinky(Pacman* pacman)
 {
-	
+	//chase pacman
 	if (!mFreight)
 	{
 		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), pacman->getVertex())));
 	}
 	else //freight
 	{
-		setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])) );
+		setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[14][15])) );
 	}
 }
 
 void Ghost::pinky(Pacman* pacman)
-{
+{//moves ahead of pacman
 	if (!mFreight)
 	{
 		unsigned int pacRow = pacman->getRow();
@@ -198,26 +211,40 @@ void Ghost::pinky(Pacman* pacman)
 				}
 		}
 	}
+	else//!mFrieght
+	{
+		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])));
+	}
 }
 
 void Ghost::inky(Pacman* pacman)
-{
-
+{//chase pacman
+	if (!mFreight)
+	{
+		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), pacman->getVertex())));
+	}
+	else //freight
+	{
+		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])));
+	}
 }
 
+void Ghost::trace(Pacman* pacman)
+{
+	(this->*ai)(pacman);
+}
 Direction Ghost::Path2Movement(std::list<int>* path)
 {
-		if (path->empty())
-			return mDirection;
-		int vertex = path->front();
-		path->pop_front();
-		if (path == nullptr)
-			return mDirection;
-		
-		unsigned int row = this->getRow(), col = this->getCol();
-		std::cout << "ROw: " << row << " COL: " << col << std::endl;
-		if (row + 1 < mBoard->getBoard().size()&& col<mBoard->getBoard()[row].size() && mBoard->getBoard()[row + 1][col] == vertex)
-			return DOWN;
+	if (path->empty())
+		return mDirection;
+	int vertex = path->front();
+	path->pop_front();
+	if (path == nullptr)
+		return mDirection;
+
+	unsigned int row = this->getRow(), col = this->getCol();
+	if (row + 1 < mBoard->getBoard().size() && col < mBoard->getBoard()[row].size() && mBoard->getBoard()[row + 1][col] == vertex)
+		return DOWN;
 		if (col + 1 < mBoard->getBoard()[row].size() && row<mBoard->getBoard().size()&& mBoard->getBoard()[row][col + 1] == vertex)
 			return RIGHT;
 		if (col  > 0 && row < mBoard->getBoard().size() && mBoard->getBoard()[row][col - 1] == vertex)
@@ -231,13 +258,15 @@ Direction Ghost::Path2Movement(std::list<int>* path)
 
 bool Ghost::reverse(Direction d) const
 {
+	if (mFreight)
+		return true;
 	switch (d)
 	{
-	case UP: return   (mDirection == DOWN);
-	case RIGHT:return (mDirection == LEFT);
-	case DOWN:return  (mDirection == UP);
-	case LEFT:return  (mDirection == RIGHT);
-	default: return false;
+	case UP: return   (mDirection == DOWN) ? true:false;
+	case RIGHT:return (mDirection == LEFT) ? true : false;
+	case DOWN:return  (mDirection == UP) ? true : false;
+	case LEFT:return  (mDirection == RIGHT) ? true : false;
+	default: return true;
 	}
 }
 

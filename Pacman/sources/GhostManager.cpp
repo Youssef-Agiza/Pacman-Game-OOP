@@ -37,17 +37,18 @@ void GhostManager::checkGhost2Pacman(Pacman* pacman, Pellets &P)
 	
 }
 
-void GhostManager::moveAll()
+void GhostManager::moveAll(Pacman* pacman)
 {
 	for (auto itr : mGhostList)
 	{
+		itr->trace(pacman);
 		itr->move();
 	}
 }
 
 
 
-void GhostManager::createGhost(Board* board,Graph* graph) //create four ghosts and adds them to ghost manager
+void GhostManager::createGhost(Board* board,Graph* graph,Pacman* pacman) //create four ghosts and adds them to ghost manager
 {
 	//blinky
 	Ghost* Blinky = new Ghost(11, 14, board->getTileSize(), board->getPositionOneWindow());
@@ -56,7 +57,9 @@ void GhostManager::createGhost(Board* board,Graph* graph) //create four ghosts a
 	Blinky->setResource("../images/blinky.png");
 	Blinky->setTexture("../images/blinky.png",8,1);
 	Blinky->setGraph(graph);
-
+	(Blinky->ai)=&Ghost::blinky;
+	pacman->addObserver(Blinky);
+	
 	//Inky
 	Ghost* Inky = new Ghost(14, 12, board->getTileSize(), board->getPositionOneWindow());
 	Inky->resetPosition();
@@ -64,6 +67,10 @@ void GhostManager::createGhost(Board* board,Graph* graph) //create four ghosts a
 	Inky->setResource("../images/inky.png");
 	Inky->setTexture("../images/inky.png",8,1);
 	Inky->setGraph(graph);
+	(Inky->ai) = &Ghost::inky;
+	pacman->addObserver(Inky);
+
+
 	//Pinky
 	Ghost* Pinky = new Ghost(14, 13, board->getTileSize(), board->getPositionOneWindow());
 	Pinky->resetPosition();
@@ -71,6 +78,9 @@ void GhostManager::createGhost(Board* board,Graph* graph) //create four ghosts a
 	Pinky->setResource("../images/pinky.png");
 	Pinky->setTexture("../images/pinky.png",8,1);
 	Pinky->setGraph(graph);
+	Pinky->ai = &Ghost::pinky;
+	pacman->addObserver(Pinky);
+
 	//Clyde
 	Ghost* Clyde = new Ghost(14, 14, board->getTileSize(), board->getPositionOneWindow());
 	Clyde->resetPosition();
@@ -78,7 +88,9 @@ void GhostManager::createGhost(Board* board,Graph* graph) //create four ghosts a
 	Clyde->setResource("../images/clyde.png");
 	Clyde->setTexture("../images/clyde.png",8,1);
 	Clyde->setGraph(graph);
-
+	Clyde->ai = &Ghost::clyde;
+	pacman->addObserver(Clyde);
+	
 	addGhost(Blinky);
 	addGhost(Inky);
 	addGhost(Pinky);

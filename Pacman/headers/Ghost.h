@@ -51,7 +51,8 @@ public:
     /* rogue */
     void inky(Pacman*);
 
-    void (Ghost::* ai)(Pacman*);
+    void (Ghost::*ai)(Pacman*);
+    void trace(Pacman*);
     
     
     Ghost& setGraph(Graph* graph);

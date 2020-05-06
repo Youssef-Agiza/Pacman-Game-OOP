@@ -15,9 +15,17 @@ int main()
 	//music.playBeginning(1);
 	int x;
 	Event e;
-	music.playChomp(1, "PacmanWakaWaka04.wav");
-	music.playBeginning(1);
-	while (window.isOpen())
+	//music.playChomp(1, "PacmanWakaWaka04.wav");
+	//music.playBeginning(1);
+
+	sf::Clock atime;
+	atime.restart();
+	sf::Sound chomp;
+	sf::SoundBuffer chompBuffer; chompBuffer.loadFromFile("../soundtracks/PacmanWakaWaka04.wav");
+	chomp.setBuffer(chompBuffer);
+	Audio audio;
+	sf::SoundSource::Status status;
+while (window.isOpen())
 	{
 		while (window.pollEvent(e))
 		{
@@ -27,6 +35,8 @@ int main()
 				
 			
 		}
+		
+			audio.playChomp();
 		
 	}
 	return 0;
