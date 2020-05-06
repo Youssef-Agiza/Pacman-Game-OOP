@@ -38,12 +38,13 @@ class Character {
 
         //getters
         bool isAlive()const;
-        int getDirection()const;
+        Direction getDirection()const;
         unsigned int getRow()const;
         unsigned int getCol()const;
         float getSize()const;
         const sf::Vector2f& getPosition()const;
         const Texture& getTexture()const;
+        int getVertex()const;
 
 
         //setters
@@ -51,7 +52,6 @@ class Character {
         Character& setAlive(bool status);
         Character& setRow(unsigned int row);
         Character& setCol(unsigned int col);
-        Character& setDirection(Direction dir);
         Character& setTexture(std::string fileName,float imagesPerRow=1.0f,float imagesPerCol=1.0f); //calls adjustScale
         Character& setPosition(float x,float y);
         Character& setPosition(sf::Vector2f position);
@@ -60,6 +60,7 @@ class Character {
        
   
        //virtuals   
+        virtual Character& setDirection(Direction dir);
        virtual void drawOnWindow(RenderWindow& window);
        virtual void updateShape(); //updates new shape data
        virtual int checkDestination(Direction d)const; //returns 0 if block, 1 if valid direction, 2 if portal

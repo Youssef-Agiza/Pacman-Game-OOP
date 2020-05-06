@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+class Pacman;
 namespace PacmanCS {
 
 	class Board
@@ -24,19 +25,17 @@ namespace PacmanCS {
 		//setters
 		Board& setRoadTexture(std::string fileName);
 		Board& setWallTexture(std::string fileName);
-		
 
 		//getters
 		const sf::Vector2f& getPositionOneWindow()const;
 		float getTileSize()const;
 		
 		const std::vector < std::vector<int>>& getBoard()const;
-		/*int getNumOfRows()const;
-		int getNumOfCols()const;*/
-
+		
 
 		void drawOnWindow(sf::RenderWindow& w);
 		void updateTextures();
+		int checkVertex(unsigned int r, unsigned int c)const;
 
 	};
 

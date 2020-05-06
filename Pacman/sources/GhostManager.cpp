@@ -2,7 +2,7 @@
 #include "GhostManager.h"
 
 const float SPEED = 0.4f;
-GhostManager::GhostManager()
+GhostManager::GhostManager(Graph* graph):mGraph(graph)
 {}
 
 void GhostManager::addGhost(Ghost* ghost)
@@ -37,7 +37,17 @@ void GhostManager::checkGhost2Pacman(Pacman* pacman, Pellets &P)
 	
 }
 
-void GhostManager::createGhost(Board* board) //create four ghosts and adds them to ghost manager
+void GhostManager::moveAll()
+{
+	for (auto itr : mGhostList)
+	{
+		itr->move();
+	}
+}
+
+
+
+void GhostManager::createGhost(Board* board,Graph* graph) //create four ghosts and adds them to ghost manager
 {
 	//blinky
 	Ghost* Blinky = new Ghost(11, 14, board->getTileSize(), board->getPositionOneWindow());
@@ -45,6 +55,7 @@ void GhostManager::createGhost(Board* board) //create four ghosts and adds them 
 	Blinky->setBoard(board);
 	Blinky->setResource("../images/blinky.png");
 	Blinky->setTexture("../images/blinky.png",8,1);
+	Blinky->setGraph(graph);
 
 	//Inky
 	Ghost* Inky = new Ghost(14, 12, board->getTileSize(), board->getPositionOneWindow());
@@ -52,22 +63,21 @@ void GhostManager::createGhost(Board* board) //create four ghosts and adds them 
 	Inky->setBoard(board);
 	Inky->setResource("../images/inky.png");
 	Inky->setTexture("../images/inky.png",8,1);
-
+	Inky->setGraph(graph);
 	//Pinky
 	Ghost* Pinky = new Ghost(14, 13, board->getTileSize(), board->getPositionOneWindow());
 	Pinky->resetPosition();
 	Pinky->setBoard(board);
 	Pinky->setResource("../images/pinky.png");
 	Pinky->setTexture("../images/pinky.png",8,1);
-
-	
+	Pinky->setGraph(graph);
 	//Clyde
 	Ghost* Clyde = new Ghost(14, 14, board->getTileSize(), board->getPositionOneWindow());
 	Clyde->resetPosition();
 	Clyde->setBoard(board);
 	Clyde->setResource("../images/clyde.png");
 	Clyde->setTexture("../images/clyde.png",8,1);
-	
+	Clyde->setGraph(graph);
 
 	addGhost(Blinky);
 	addGhost(Inky);
@@ -75,3 +85,4 @@ void GhostManager::createGhost(Board* board) //create four ghosts and adds them 
 	addGhost(Clyde);
 
 }
+

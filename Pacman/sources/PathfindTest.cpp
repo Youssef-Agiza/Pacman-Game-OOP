@@ -10,40 +10,39 @@ using namespace sf;
 using namespace PacmanCS;
 /************************************************************************/
 
- Direction Path2Movement(std::list<int>*,Ghost*,Board*);
 /************************************************************************/
 
 int main()
 {
 	const int ROWS = 31, COLUMNS = 28, BLOCK = 30;
-	sf::Vector2f POSITION(0, 100);
+	sf::Vector2f POSITION(70, 70);
 	RenderWindow window;
-	window.create(VideoMode(1000, 1000), "Simple Maze");
+	window.create(VideoMode(1000, 1300), "Simple Maze");
 
 	vector<vector<int>> arr(31, vector<int>(28));
 
-	int a[ROWS][COLUMNS];
-	Graph graph(302);	//   int graph[302][302];
+	Graph graph(320);	//   int graph[302][302];
 	ifstream ins("../boardTexts/BoardText3.txt");
 	if (ins.is_open())
 	{
 		for (int i = 0; i < ROWS; i++)
 			for (int j = 0; j < COLUMNS; j++)
-				ins >> a[i][j];
+				ins >> arr[i][j];
 	}
 	
 
 	for (int i = 0; i < ROWS; i++)
 		for (int j = 0; j < COLUMNS; j++)
 		{
-			if (a[i][j] > -1)
+			if (arr[i][j] > -1)
 			{
-				if (j + 1 != COLUMNS && a[i][j + 1] > -1)
-					graph.addEdge( a[i][j], a[i][j + 1]);
-				if (i + 1 != ROWS && a[i + 1][j] > -1)
-					graph.addEdge( a[i][j], a[i + 1][j]);
+				if (j + 1 != COLUMNS && arr[i][j + 1] > -1)
+					graph.addEdge( arr[i][j], arr[i][j + 1]);
+				if (i + 1 != ROWS && arr[i + 1][j] > -1)
+					graph.addEdge( arr[i][j], arr[i + 1][j]);
 			}
 		}
+	graph.addEdge(149, 130);//connects portals
 
 
 
@@ -69,13 +68,13 @@ int main()
 
 	pacman->setTexture("../images/pacman.png", 2, 4);
 
-	GhostManager manager;
-	manager.createGhost(&myBoard);
+	GhostManager manager(&graph);
+	manager.createGhost(&myBoard,&graph);
 	for (int i = 0; i < 4; i++)
 		pacman->addObserver(manager.getGhostList()[i]);
 
 	Ghost* blinky = manager.getGhostList()[0];
-	
+	Ghost* Pinky = manager.getGhostList()[2];
 	sf::Clock pactimer, gtimer;
 	pactimer.restart();
 	gtimer.restart();
@@ -85,16 +84,8 @@ int main()
 	std::cout << "\n";
 
 
-	blinky->setCol(1).setRow(1);
-	blinky->updateShape();
-
-
-	int src = myBoard.getBoard()[blinky->getRow()][blinky->getCol()];
-	int dest = myBoard.getBoard()[pacman->getRow()][pacman->getCol()];
-	std::list<int>* path=graph.dijkstra( 0,dest);
 	
-
-
+	std::list<int>* path;
 
 
 
@@ -134,12 +125,17 @@ int main()
 				}
 			}
 		}
-	
+
+
+		
+
+
 		if (gtimer.getElapsedTime().asMilliseconds() >= 500)
 		{
-			d = Path2Movement(path, blinky, &myBoard);
-			blinky->setDirection(d);
-			blinky->move();
+			for (int i = 0; i < 4; i++)
+				manager.getGhostList()[i]->blinky(pacman);
+
+			manager.moveAll();
 			gtimer.restart();
 		}
 		if (pactimer.getElapsedTime().asMilliseconds() >= 250)
@@ -165,25 +161,3 @@ int main()
 
 }
 
-
-Direction Path2Movement(std::list<int>* path, Ghost* ghost, Board* board)
-{
-	if (path->empty())
-		return STOP;
-	int vertex = path->front();
-	std::cout << "Vertex: " << vertex << std::endl;
-	path->pop_front();
-	if (path == nullptr||vertex==-1)
-		return STOP;
-	unsigned int row = ghost->getRow(), col = ghost->getCol();
-	if (row+1<=board->getBoard().size()&& board->getBoard()[row+ 1][col] == vertex)
-		return DOWN;
-	if (col + 1 <= board->getBoard()[0].size() && board->getBoard()[row ][col+1] == vertex)
-		return RIGHT;
-	if (col - 1 >= 0 && board->getBoard()[row][col - 1] == vertex)
-		return LEFT;
-	if (row - 1 >= 0 && board->getBoard()[row - 1][col] == vertex)
-		return UP;
-	return STOP;
-	
-}

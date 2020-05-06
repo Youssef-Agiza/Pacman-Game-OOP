@@ -4,18 +4,22 @@
 #include "Board.h"
 #include "Pacman.h"
 #include "Pellets.h"
+#include"Graph.h"
 class GhostManager
 {
 private:
 	std::vector<Ghost*> mGhostList;
+	Graph* mGraph;
 public:
-	GhostManager();
+	GhostManager(Graph* graph);
 
 	const std::vector<Ghost*>& getGhostList()const;
 	
 	void addGhost(Ghost* mGhost);
 	void draw(sf::RenderWindow& w);
 
-	void createGhost(Board* board);
+	void createGhost(Board* board,Graph* graph);
 	void checkGhost2Pacman(Pacman* pacman, Pellets &P);
+
+	void moveAll();
 };

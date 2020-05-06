@@ -16,12 +16,13 @@ Character::~Character()
 
 //getters
 bool Character::isAlive()const { return mAlive; }
-int Character::getDirection()const { return mDirection; }
+Direction Character::getDirection()const { return mDirection; }
 unsigned int Character::getRow()const { return mCurrentRow; }
 unsigned int Character::getCol()const { return mCurrentColumn; }
 float Character::getSize()const { return mSize; }
 const sf::Vector2f& Character::getPosition()const { return mPositionOnWindow; }
 const Texture& Character::getTexture()const { return *mTexture; }
+int Character::getVertex()const { return mBoard->getBoard()[mCurrentRow][mCurrentColumn]; }
 
 //setters
 Character& Character::setSize(float s){mSize = s;	return *this;}
@@ -74,7 +75,8 @@ int Character::checkDestination(Direction d)const
 {
 	vector<vector<int>> board = mBoard->getBoard();
 
-
+	if (d == STOP)
+		return 1;
 	if (d == UP)
 		return (board[mCurrentRow - 1][mCurrentColumn] == -1) ? 0 : 1;
 	if (d == DOWN)

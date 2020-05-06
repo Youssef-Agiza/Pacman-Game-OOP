@@ -1,4 +1,5 @@
 #include "../headers/Board.h"
+#include "Pacman.h"
 //default values
 //const int ROWS = 10;
 //const int COLS = 10;
@@ -43,6 +44,14 @@ namespace PacmanCS {
 			}
 	}
 
+	int Board::checkVertex(unsigned int r, unsigned int c) const
+	{
+		if (r >= mBoard.size() || c >= mBoard[r].size())
+			return -1;
+		return (mBoard[r][c] < 0) ? 0 : 1;
+	}
+
+	
 	void Board::drawOnWindow(sf::RenderWindow& w)
 	{//needs validation: check that shape is not a nullpointer
 		for (unsigned int i = 0; i < mBoard.size(); i++)
@@ -67,12 +76,12 @@ namespace PacmanCS {
 
 	}
 
+	
+
 
 	//getters
 	const sf::Vector2f& Board::getPositionOneWindow()const { return mPositionOnWindow; }
 	float Board::getTileSize()const { return mTileSize; }
-	//int Board::getNumOfCols()const { return mNumOfCols; }
-	//int Board::getNumOfRows()const { return mNumOfRows; }
 	const std::vector < std::vector<int>>& Board::getBoard()const { return mBoard; }
 	
 }

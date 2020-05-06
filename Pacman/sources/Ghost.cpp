@@ -1,7 +1,9 @@
 #include "Ghost.h"
+#include "Pacman.h"
 #include "../design patterns/ISubject.h"
 Ghost::Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position) :
-		Character( intialRow,  intialColumn,  size,  position),mFreight(false),
+		Character( intialRow,  intialColumn,  size,  position)
+	,mFreight(false),mGraph(nullptr),
 	mIntialRow(intialRow),mIntialCol(intialColumn)
 {}
 
@@ -19,6 +21,16 @@ unsigned int Ghost::getIntialRow()const { return mIntialRow; }
 unsigned int Ghost::getIntialCol()const { return mIntialCol; }
 
 Ghost& Ghost::setResource(std::string r) { mResource = r; return *this; }
+
+
+
+Ghost& Ghost::setGraph(Graph* graph)
+{
+	mGraph = graph;
+	return *this;
+}
+
+
 const std::string& Ghost::getResource() const { return mResource; }
 
 
@@ -69,7 +81,7 @@ void Ghost::update(bool powerUp)
 
 void Ghost::move()
 {
-
+	
 	if (checkDestination(mDirection) == 0)
 		return;
 
@@ -115,6 +127,118 @@ void Ghost::move()
 	default:break;
 	}
 	animateMove();
+}
+
+Ghost& Ghost::setDirection(Direction d)
+{
+	if (checkDestination(d))/* && !reverse(d)*/
+		mDirection = d;
+	return *this;
+}
+
+void Ghost::clyde(Pacman* pacman)
+{
+}
+
+void Ghost::blinky(Pacman* pacman)
+{
+	
+	if (!mFreight)
+	{
+		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), pacman->getVertex())));
+	}
+	else //freight
+	{
+		setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])) );
+	}
+}
+
+void Ghost::pinky(Pacman* pacman)
+{
+	if (!mFreight)
+	{
+		unsigned int pacRow = pacman->getRow();
+		unsigned int pacCol = pacman->getCol();
+		Direction pacDir = pacman->getDirection();
+		if (pacDir == UP)
+		{
+			for (int i = 4; i >= 0; i--)
+				if (mBoard->checkVertex(pacRow - i, pacCol) == 1)
+				{
+				setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[pacRow - i][pacCol])) );
+					break;
+				}
+		}
+		else if (pacDir == DOWN)
+		{
+			for (int i = 4; i >= 0; i--)
+				if (mBoard->checkVertex(pacRow + i, pacCol) == 1)
+				{
+					setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[pacRow + i][pacCol])) );
+					break;
+				}
+		}
+		else if (pacDir == RIGHT)
+		{
+			for (int i = 4; i >= 0; i--)
+				if (mBoard->checkVertex(pacRow , pacCol+i) == 1)
+				{
+					setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[pacRow ][pacCol+i])) );
+					break;
+				}
+		}
+		else if (pacDir == LEFT)
+		{
+
+			for (int i = 4; i >= 0; i--)
+				if (mBoard->checkVertex(pacRow , pacCol-i) == 1)
+				{
+					setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[pacRow ][pacCol-i])) );
+
+				}
+		}
+	}
+}
+
+void Ghost::inky(Pacman* pacman)
+{
+
+}
+
+Direction Ghost::Path2Movement(std::list<int>* path)
+{
+		if (path->empty())
+			return mDirection;
+		int vertex = path->front();
+		path->pop_front();
+		if (path == nullptr)
+			return mDirection;
+		
+		unsigned int row = this->getRow(), col = this->getCol();
+		std::cout << "ROw: " << row << " COL: " << col << std::endl;
+		if (row + 1 < mBoard->getBoard().size()&& col<mBoard->getBoard()[row].size() && mBoard->getBoard()[row + 1][col] == vertex)
+			return DOWN;
+		if (col + 1 < mBoard->getBoard()[row].size() && row<mBoard->getBoard().size()&& mBoard->getBoard()[row][col + 1] == vertex)
+			return RIGHT;
+		if (col  > 0 && row < mBoard->getBoard().size() && mBoard->getBoard()[row][col - 1] == vertex)
+			return LEFT;
+		if (row - 1 >= 0 && col < mBoard->getBoard()[row].size()&& mBoard->getBoard()[row - 1][col] == vertex)
+			return UP;
+		return mDirection;
+
+	
+}
+
+bool Ghost::reverse(Direction d) const
+{
+	switch (d)
+	{
+	case UP: return   (mDirection == DOWN);
+	case RIGHT:return (mDirection == LEFT);
+	case DOWN:return  (mDirection == UP);
+	case LEFT:return  (mDirection == RIGHT);
+	default: return false;
+	}
 }
 
 

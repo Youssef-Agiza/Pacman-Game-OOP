@@ -121,7 +121,7 @@ std::list<int>* Graph::dijkstra(int src,int target)
 
     std::list<int>* path= new std::list<int>();
     convertToPath(parent, target, path);
-    printPath(*path);
+   // printPath(*path);
     delete[]dist;
 	delete[]parent;
 	return path;

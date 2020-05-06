@@ -134,7 +134,7 @@ void Pacman::move()
 		}
 		break;
 	}
-	default:break;
+	default: return;
 	}
 	animateMove();
 }

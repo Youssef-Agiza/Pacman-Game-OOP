@@ -21,7 +21,6 @@ public:
     unsigned int getLives()const;
     void addLive(unsigned int l);
 
-
     //inherited from character
     virtual void resetPosition()override;
     virtual void die()override;
