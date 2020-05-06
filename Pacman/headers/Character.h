@@ -28,7 +28,7 @@ class Character {
          Board* mBoard;
          Sprite mSprite;
 
-         void adjustScale(float imagesPerRow,float imagesPerCol) ; //adjusts sprite scale and IntRect. Called in setTexture
+         void adjustScale(int imagesPerRow,int imagesPerCol) ; //adjusts sprite scale and IntRect. Called in setTexture
 
     public:
 
@@ -45,6 +45,7 @@ class Character {
         const sf::Vector2f& getPosition()const;
         const Texture& getTexture()const;
         int getVertex()const;
+        const sf::Sprite& getSprite()const;
 
 
         //setters
@@ -52,7 +53,7 @@ class Character {
         Character& setAlive(bool status);
         Character& setRow(unsigned int row);
         Character& setCol(unsigned int col);
-        Character& setTexture(std::string fileName,float imagesPerRow=1.0f,float imagesPerCol=1.0f); //calls adjustScale
+        Character& setTexture(std::string fileName,int imagesPerRow=1,int imagesPerCol=1); //calls adjustScale
         Character& setPosition(float x,float y);
         Character& setPosition(sf::Vector2f position);
         Character& setBoard(Board* board);
@@ -65,9 +66,8 @@ class Character {
        virtual void updateShape(); //updates new shape data
        virtual int checkDestination(Direction d)const; //returns 0 if block, 1 if valid direction, 2 if portal
        virtual void move() = 0;
-       virtual void die() = 0;
+       virtual void die(sf::RenderWindow& w) = 0;
        virtual void resetPosition() = 0;
        virtual void animateMove() = 0;
-       virtual void animateDie() = 0;
     };
 

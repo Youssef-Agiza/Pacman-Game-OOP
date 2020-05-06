@@ -22,9 +22,6 @@
     <Filter Include="Source Files\Character">
       <UniqueIdentifier>{7cf9daf8-0c0a-40fc-8b36-dd88fa90a4a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Design Patterns">
-      <UniqueIdentifier>{f84aec2f-edaa-44ae-a5b3-fdbdb1da9729}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\headers\Audio.h">
@@ -94,12 +91,6 @@
     </ClCompile>
     <ClCompile Include="..\sources\Pacman.cpp">
       <Filter>Source Files\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="..\design patterns\IObserver.cpp">
-      <Filter>Source Files\Design Patterns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\design patterns\ISubject.cpp">
-      <Filter>Source Files\Design Patterns</Filter>
     </ClCompile>
     <ClCompile Include="Temp.cpp">
       <Filter>Source Files</Filter>

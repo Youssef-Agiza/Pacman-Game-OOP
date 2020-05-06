@@ -166,8 +166,6 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\design patterns\IObserver.cpp" />
-    <ClCompile Include="..\design patterns\ISubject.cpp" />
     <ClCompile Include="..\sources\Audio.cpp" />
     <ClCompile Include="..\sources\AudioTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

@@ -32,9 +32,8 @@ public:
     
     // Inherited via Character
     virtual void resetPosition()override;
-    virtual void die()override;
+    virtual void die(sf::RenderWindow& w)override;
     virtual void animateMove() override;
-    virtual void animateDie() override;
     virtual void move()override;
     virtual Ghost& setDirection(Direction d)override;
 

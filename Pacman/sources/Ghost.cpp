@@ -49,15 +49,12 @@ void Ghost::resetPosition()
 	updateShape();
 	
 }
-void Ghost::die()
+void Ghost::die(sf::RenderWindow& w)
 {
-	resetPosition();
-	if (mFreight)
-	{
+		resetPosition();
 		setTexture(this->getResource(), 8, 1);
 		setFreight(false);
-	}
-	mDirection = STOP;
+		mDirection = STOP;
 }
 
 void Ghost::update(bool powerUp)
@@ -135,22 +132,26 @@ Ghost& Ghost::setDirection(Direction d)
 }
 
 void Ghost::clyde(Pacman* pacman)
-{//random movement
-	if (!mFreight)
-	{
-		Direction d;
-		int randTarget;
-		do {
-			randTarget=(pacman->getVertex() + rand()) % 302;
-			d = Path2Movement(mGraph->dijkstra(getVertex(), randTarget));
-		} while (reverse(d));
-		
-		setDirection(d);
-	}
-	else //freight
-	{
-		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])));
-	}
+{
+	//random movement
+	
+		if (!mFreight)
+		{
+			Direction d;
+			int randTarget;
+			do {
+				randTarget = (pacman->getVertex() + rand()) % 302;
+				d = Path2Movement(mGraph->dijkstra(getVertex(), randTarget));
+			} while (reverse(d));
+
+			setDirection(d);
+		}
+		else //freight
+		{
+			setDirection(Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])));
+		}
+	
+	
 }
 
 void Ghost::blinky(Pacman* pacman)
@@ -167,12 +168,16 @@ void Ghost::blinky(Pacman* pacman)
 }
 
 void Ghost::pinky(Pacman* pacman)
-{//moves ahead of pacman
+{
+	
+	//moves ahead of pacman
 	if (!mFreight)
 	{
 		unsigned int pacRow = pacman->getRow();
 		unsigned int pacCol = pacman->getCol();
 		Direction pacDir = pacman->getDirection();
+		if (pacDir == STOP)
+			pacDir = RIGHT;
 		if (pacDir == UP)
 		{
 			for (int i = 4; i >= 0; i--)
@@ -211,14 +216,16 @@ void Ghost::pinky(Pacman* pacman)
 				}
 		}
 	}
-	else//!mFrieght
+	else//mFrieght
 	{
 		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])));
 	}
 }
 
 void Ghost::inky(Pacman* pacman)
-{//chase pacman
+{
+
+	//chase pacman
 	if (!mFreight)
 	{
 		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), pacman->getVertex())));
@@ -235,6 +242,7 @@ void Ghost::trace(Pacman* pacman)
 }
 Direction Ghost::Path2Movement(std::list<int>* path)
 {
+
 	if (path->empty())
 		return mDirection;
 	int vertex = path->front();
@@ -295,6 +303,4 @@ void Ghost::animateMove()
 	mSprite.setTextureRect(rect);
 }
 
-void Ghost::animateDie()
-{
-}
+

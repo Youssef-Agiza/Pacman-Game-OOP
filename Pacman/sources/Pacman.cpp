@@ -37,11 +37,30 @@ void Pacman::resetPosition()
 	mSprite.setPosition(mPositionOnWindow.x + mCurrentColumn * mSize, mPositionOnWindow.y + mCurrentRow * mSize);
 }
 
-void Pacman::die()
+void Pacman::die(sf::RenderWindow& w)
 {
+	Audio temp;
+	temp.playDeath();
 	mAlive = false;
 	if (--mLives <=0)	
 		mSprite.setColor(sf::Color::Black);
+	setTexture("../images/Death.png", 12, 1);
+
+	sf::Clock timer;
+	timer.restart();
+	int i = 0;
+	while (i < 12) {
+		if (timer.getElapsedTime().asMilliseconds() > 150)
+		{
+			animateDie();
+			timer.restart();
+			i++;
+			w.draw(mSprite);
+			w.display();
+
+		}
+	}
+	setTexture("../images/Pacman.png",2,4);
 	resetPosition();
 }
 
@@ -89,6 +108,18 @@ void Pacman::animateMove()
 
 	}
 }
+void Pacman::animateDie()
+{
+	
+	
+	int i = (mSprite.getTextureRect().left/mSprite.getTextureRect().width )%12;	
+	
+	mSprite.setTextureRect(sf::IntRect(16*(++i),0,16,16));
+		
+
+}
+
+
 void Pacman::move()
 {
 

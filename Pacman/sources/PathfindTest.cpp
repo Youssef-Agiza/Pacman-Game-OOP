@@ -79,10 +79,6 @@ int main()
 	gtimer.restart();
 	window.setFramerateLimit(20);
 	Event e;
-	
-
-
-
 	while (window.isOpen())
 	{
 		while (window.pollEvent(e))
@@ -115,6 +111,8 @@ int main()
 					blinky->setDirection(DOWN); break;
 				case Keyboard::F:
 					pacman->setPowerUp(!pacman->getPowerUp()); break;
+	
+				
 				default:break;
 				}
 			}
@@ -123,6 +121,7 @@ int main()
 
 		
 
+		manager.checkGhost2Pacman(window, pacman, P);
 
 		if (gtimer.getElapsedTime().asMilliseconds() >= 400)
 		{
@@ -136,7 +135,7 @@ int main()
 			pacman->move();
 		}
 
-		manager.checkGhost2Pacman(pacman,P);
+
 		window.clear();
 
 		myBoard.drawOnWindow(window);
@@ -146,7 +145,10 @@ int main()
 		manager.draw(window);
 
 		blinky->drawOnWindow(window);
+		
+
 		window.display();
+		
 	}
 
 	return 0;

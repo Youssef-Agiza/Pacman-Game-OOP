@@ -19,7 +19,7 @@ public:
 	void draw(sf::RenderWindow& w);
 
 	void createGhost(Board* board,Graph* graph,Pacman* pacman);
-	void checkGhost2Pacman(Pacman* pacman, Pellets &P);
+	void checkGhost2Pacman(sf::RenderWindow& w,Pacman* pacman, Pellets &P);
 
 	void moveAll(Pacman* pacman);
 };
