@@ -10,12 +10,14 @@ private:
 
     unsigned int mLives;
     bool mPowerUp; //ate big pellet
+    unsigned int mScore;
    
 public:
     Pacman(int intialRow, int intialColumn, float size, sf::Vector2f posWindow);
 
 
-
+    Pacman& incrementScore(unsigned int l);
+    unsigned int getScore()const;
     Pacman& setPowerUp(bool p);
     bool getPowerUp()const;
     Pacman& setLives(unsigned int l);

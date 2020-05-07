@@ -34,7 +34,7 @@ class Character {
 
 
         Character(int intialRow, int intialColumn, float size,sf::Vector2f posWindow);
-        ~Character();
+      virtual  ~Character();
 
         //getters
         bool isAlive()const;

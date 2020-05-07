@@ -31,7 +31,12 @@ void GhostManager::checkGhost2Pacman(sf::RenderWindow& w,Pacman* pacman, Pellets
 				P.incrementScore(500);
 			}
 			else
-				pacman->die(w);
+			{
+				pacman->setAlive(false);
+				//pacman->die(w);
+				
+			
+			}
 			return;
 		}
 	

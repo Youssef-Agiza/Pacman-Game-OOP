@@ -12,6 +12,7 @@ Character::Character(int intialRow, int intialColumn, float size, sf::Vector2f p
 Character::~Character()
 {
 	mBoard = nullptr;
+	mTexture = nullptr;
 }
 
 //getters

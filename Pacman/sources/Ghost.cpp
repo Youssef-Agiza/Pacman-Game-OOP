@@ -7,6 +7,11 @@ Ghost::Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position)
 	mIntialRow(intialRow),mIntialCol(intialColumn)
 {}
 
+Ghost::~Ghost()
+{
+	mGraph = nullptr;
+}
+
 Ghost& Ghost::setIntialRow(unsigned int row)
 {
 	mIntialRow = row;

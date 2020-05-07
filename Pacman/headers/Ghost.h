@@ -14,7 +14,7 @@ private:
     Graph* mGraph;
 public:
     Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position);
-  
+    ~Ghost();
   
     unsigned int getIntialRow()const;
     unsigned int getIntialCol()const;
@@ -37,17 +37,16 @@ public:
     virtual void move()override;
     virtual Ghost& setDirection(Direction d)override;
 
-    /*AI*/
-        /* random move */
+    
     void clyde(Pacman*);
 
     /* follower */
     void blinky(Pacman*);
 
-    /* hunter */
+    
     void pinky(Pacman*);
 
-    /* rogue */
+    /* follower */
     void inky(Pacman*);
 
     void (Ghost::*ai)(Pacman*);

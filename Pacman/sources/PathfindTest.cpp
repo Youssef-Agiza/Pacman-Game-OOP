@@ -138,6 +138,38 @@ int main()
 
 		window.clear();
 
+
+		if (!pacman->isAlive())
+		{
+			window.clear();
+
+			myBoard.drawOnWindow(window);
+			P.intersectPellets(pacman->getRow(), pacman->getCol());
+			P.drawPellets(window, myBoard.mShape);
+			pacman->drawOnWindow(window);
+			blinky->drawOnWindow(window);
+			pacman->setTexture("../images/Death.png", 12, 1);
+
+			sf::Clock timer;
+			timer.restart();
+			int i = 0;
+			while (i < 12) {
+				if (timer.getElapsedTime().asMilliseconds() > 150)
+				{
+					pacman->animateDie();
+					timer.restart();
+					i++;
+					pacman->drawOnWindow(window);
+					window.display();
+
+				}
+			}
+			pacman->resetPosition();
+			for (int i = 0; i < 4; i++)
+				manager.getGhostList()[i]->resetPosition();
+		}
+
+
 		myBoard.drawOnWindow(window);
 		P.intersectPellets(pacman->getRow(), pacman->getCol());
 		P.drawPellets(window, myBoard.mShape);
