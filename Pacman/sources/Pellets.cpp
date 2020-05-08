@@ -3,16 +3,15 @@
 using namespace sf;
 using namespace std;
 
-Pellets::Pellets(vector <vector<int>> v)
+Pellets::Pellets(vector <vector<int>> v):arrScore(v)
 {
-	arrScore.resize(31);
 	
+	score = 0;
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		arrScore[i].resize(28);
 		for (unsigned int j = 0; j < v[i].size(); j++)
 		{
-			arrScore[i][j] = 00;
+			arrScore[i][j] = 0;
 			if (v[i][j] == -5)
 				arrScore[i][j] = -5;
 			else if (v[i][j] > -1)
@@ -28,6 +27,8 @@ Pellets::Pellets(vector <vector<int>> v)
 		{
 			arrScore[i][j] = -6;//no pellets in home
 		}
+	arrScore[12][13]=-6;
+	arrScore[12][14]=-6;
 	mPelletTexture.loadFromFile("../images/pellet.png");
 	mPowerTexture.loadFromFile("../images/yellowpellet.png");
 	mBlack.loadFromFile("../images/black.png");

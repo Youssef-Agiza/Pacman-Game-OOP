@@ -272,14 +272,14 @@ Direction Ghost::Path2Movement(std::list<int>* path)
 bool Ghost::reverse(Direction d) const
 {
 	if (mFreight)
-		return true;
+		return false;
 	switch (d)
 	{
 	case UP: return   (mDirection == DOWN) ? true:false;
 	case RIGHT:return (mDirection == LEFT) ? true : false;
 	case DOWN:return  (mDirection == UP) ? true : false;
 	case LEFT:return  (mDirection == RIGHT) ? true : false;
-	default: return true;
+	default: return false;
 	}
 }
 

@@ -28,7 +28,7 @@ class Graph
 	std::list<int>* _convertToPath(int parent[], int dest, std::list<int>* path);
 
 public:
-	Graph(int v);
+	Graph(int v=320);
 	void addEdge(int src, int dest, int weight = 1);
 
 
