@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#include "Pacman.h"
 using namespace sf;
 using namespace std;
 
@@ -32,14 +33,27 @@ public:
 		life.setCharacterSize(50);
 		life.setOrigin(Vector2f(-400, 0));
 	}
-	void drawText(RenderWindow& w, int x, int score)
+	void drawText(RenderWindow& w, Pacman * P)
 	{
+		int score = P->getScore();
+		int x = P->getLives();
 		Num.setString(to_string(score));
 		w.draw(T);
 		w.draw(Num);
 		w.draw(L);
 		life.setString(to_string(x));
 		w.draw(life);
+	}
+	void drawTextInHome(RenderWindow& w, string s)
+	{
+		Text message;
+		T.setFont(font);
+		T.setString(s);
+		T.setCharacterSize(50);
+		T.setOutlineColor(Color::Red);
+		T.setOutlineThickness(0.5);
+		T.setOrigin(Vector2f(-870, -430));
+		w.draw(message);
 	}
 	
 

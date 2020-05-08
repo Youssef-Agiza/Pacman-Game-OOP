@@ -5,10 +5,11 @@ using namespace std;
 
 Pellets::Pellets(vector <vector<int>> v)
 {
-	arrScore = new int* [v.size()];
+	arrScore.resize(31);
+	
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
-		arrScore[i] = new int[v[i].size()];
+		arrScore[i].resize(28);
 		for (unsigned int j = 0; j < v[i].size(); j++)
 		{
 			arrScore[i][j] = 00;
@@ -36,17 +37,30 @@ Pellets::~Pellets()
 {
 	
 }
-void Pellets::intersectPellets(int r, int c, Pacman* P)
+void Pellets::intersectPellets( Pacman* P)
 {
+	int r = P->getRow(); int c = P->getCol();
 	if (arrScore[r][c] > 0)
 	{
 		P->incrementScore(arrScore[r][c]);
 		arrScore[r][c] = -6;
+		if (((r == 5) && (c == 2)) || ((r == 26) && (c == 25)) || ((r == 26) && (c == 2)) || (((r == 5) && (c == 25))))
+			arrScore[r][c] = -100;// an eaten power pellet
 		Audio::getInstance()->playChomp();
 	}
 //	cout<<score<<endl;
 }
+void Pellets::isPowerPelletEaten(Pacman* P)
+{
+	int r = P->getRow(); int c = P->getCol();
 
+	if (((r == 5) && (c == 2)) || ((r == 26) && (c == 25)) || ((r == 26) && (c == 2)) || (((r == 5) && (c == 25))))
+		if (arrScore[r][c] == -100)
+		{
+			P->setPowerUp(true);
+			arrScore[r][c] = -6;
+		}
+}
 void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 {
 	for (unsigned int i = 0; i<31; i++)

@@ -175,4 +175,9 @@ void Pacman::move()
 	default: return;
 	}
 	animateMove();
+
+}
+void Pacman::decrementLife()
+{
+	--mLives;
 }

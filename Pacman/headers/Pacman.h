@@ -31,7 +31,7 @@ public:
     virtual void move()override;
     virtual void animateMove()override; //note: this function is not flexible as it is adujsted for certain values only.
                                           //i.e. if the sprite sheet changed it must be changed as well.
-    
+    void decrementLife();
 
     //observer functions
     void addObserver(IObserver* observer)override;

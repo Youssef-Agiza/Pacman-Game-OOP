@@ -11,7 +11,7 @@ using namespace sf;
 class Pellets
 {
 private:
-	int** arrScore = NULL;
+	vector <vector<int>> arrScore;
 	Texture mPelletTexture;
 	Texture mPowerTexture;
 	Texture mBlack;
@@ -21,10 +21,11 @@ private:
 public:
 	Pellets(vector <vector<int>> v);
 	void drawPellets(RenderWindow &w, RectangleShape** mShape);
-	void intersectPellets(int r, int c, Pacman* P);
+	void intersectPellets(Pacman* P);
 	void incrementLife(Pacman* P);
 	int  getScore() const;
 	void incrementScore(int x);
+	void isPowerPelletEaten(Pacman* P);
 	~Pellets();
 };
 
