@@ -1,4 +1,4 @@
-#include "Pacman.h"
+#include "../headers/Pacman.h"
 //random numbers
 #define INTIAL_ROW  23
 #define INTIAL_COL  14

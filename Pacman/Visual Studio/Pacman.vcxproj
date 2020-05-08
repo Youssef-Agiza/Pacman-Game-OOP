@@ -87,12 +87,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\AUC\CS\CSCE-110\Project\Pacman Game\SFML-2.5.1\include;C:\AUC\CS\CSCE-110\Project\Pacman Game\Pacman\headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\AUC\20SPRING\CSCE1101\project after milestone 2\fri\Pacman-Game-OOP\SFML-2.5.1\include;D:\AUC\20SPRING\CSCE1101\project after milestone 2\fri\Pacman-Game-OOP\Pacman\headers</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\AUC\CS\CSCE-110\Project\Pacman Game\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\AUC\20SPRING\CSCE1101\project after milestone 2\fri\Pacman-Game-OOP\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -102,12 +102,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\AUC\CS\CSCE-110\Project\Pacman Game\SFML-2.5.1\include;C:\AUC\CS\CSCE-110\Project\Pacman Game\Pacman\headers</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\AUC\20SPRING\CSCE1101\project after milestone 2\fri\Pacman-Game-OOP\SFML-2.5.1\include;D:\AUC\20SPRING\CSCE1101\project after milestone 2\fri\Pacman-Game-OOP\Pacman\headers</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\AUC\CS\CSCE-110\Project\Pacman Game\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\AUC\20SPRING\CSCE1101\project after milestone 2\fri\Pacman-Game-OOP\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -159,34 +159,22 @@
     <ClInclude Include="..\headers\MinHeap.h" />
     <ClInclude Include="..\headers\Pacman.h" />
     <ClInclude Include="..\headers\Pellets.h" />
+    <ClInclude Include="..\headers\Words.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Words.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\Audio.cpp" />
-    <ClCompile Include="..\sources\AudioTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\sources\Board.cpp" />
     <ClCompile Include="..\sources\Character.cpp" />
     <ClCompile Include="..\sources\Ghost.cpp" />
     <ClCompile Include="..\sources\GhostManager.cpp" />
     <ClCompile Include="..\sources\Graph.cpp" />
-    <ClCompile Include="..\sources\main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\sources\MinHeap.cpp" />
     <ClCompile Include="..\sources\Pacman.cpp" />
-    <ClCompile Include="..\sources\PathfindTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\sources\PathfindTest.cpp" />
     <ClCompile Include="..\sources\Pellets.cpp" />
-    <ClCompile Include="Temp.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pacman.rc" />

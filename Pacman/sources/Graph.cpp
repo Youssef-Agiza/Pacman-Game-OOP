@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "../headers/Graph.h"
 #include<iostream>
 Graph::Graph(int v) :mVertices(0), mArray(nullptr)
 {

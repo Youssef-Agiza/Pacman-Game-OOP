@@ -17,16 +17,11 @@ private:
 	Texture mBlack;
 	Texture mTransparent;
 	int score;
-	Text T;
-	Font font;
-	Text Num;
-	Text L;
-	Text life;
+	
 public:
 	Pellets(vector <vector<int>> v);
 	void drawPellets(RenderWindow &w, RectangleShape** mShape);
-	void intersectPellets(int r, int c);
-	void drawText(RenderWindow& w, int x);
+	void intersectPellets(int r, int c, Pacman* P);
 	void incrementLife(Pacman* P);
 	int  getScore() const;
 	void incrementScore(int x);

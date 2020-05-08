@@ -1,5 +1,5 @@
 #pragma once
-#include "GhostManager.h"
+#include "../headers/GhostManager.h"
 
 const float SPEED = 0.4f;
 GhostManager::GhostManager(Graph* graph):mGraph(graph)

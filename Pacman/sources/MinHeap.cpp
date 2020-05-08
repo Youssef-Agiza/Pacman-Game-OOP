@@ -1,4 +1,4 @@
-#include "MinHeap.h"
+#include "../headers/MinHeap.h"
 
 MinHeapNode* newMinHeapNode(int v, int dist)
 {

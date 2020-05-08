@@ -5,6 +5,7 @@
 #include "GhostManager.h"
 #include "Pellets.h"
 #include "Graph.h"
+#include "../headers/Words.h"
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
@@ -71,7 +72,7 @@ int main()
 	GhostManager manager(&graph);
 	manager.createGhost(&myBoard,&graph,pacman);
 
-
+	Words* text = new Words;
 	Ghost* blinky = manager.getGhostList()[0];
 	Ghost* Pinky = manager.getGhostList()[2];
 	sf::Clock pactimer, gtimer;
@@ -144,7 +145,7 @@ int main()
 			window.clear();
 
 			myBoard.drawOnWindow(window);
-			P.intersectPellets(pacman->getRow(), pacman->getCol());
+			P.intersectPellets(pacman->getRow(), pacman->getCol(), pacman);
 			P.drawPellets(window, myBoard.mShape);
 			pacman->drawOnWindow(window);
 			blinky->drawOnWindow(window);
@@ -171,11 +172,12 @@ int main()
 
 
 		myBoard.drawOnWindow(window);
-		P.intersectPellets(pacman->getRow(), pacman->getCol());
+		P.intersectPellets(pacman->getRow(), pacman->getCol(), pacman);
 		P.drawPellets(window, myBoard.mShape);
 		pacman->drawOnWindow(window);
 		manager.draw(window);
-
+		text->drawText(window, pacman->getLives(), pacman->getScore());
+		
 		blinky->drawOnWindow(window);
 		
 

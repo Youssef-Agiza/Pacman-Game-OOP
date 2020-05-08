@@ -1,5 +1,5 @@
-#include "Ghost.h"
-#include "Pacman.h"
+#include "../headers/Ghost.h"
+#include "../headers/Pacman.h"
 #include "../design patterns/ISubject.h"
 Ghost::Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position) :
 		Character( intialRow,  intialColumn,  size,  position)

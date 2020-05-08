@@ -1,6 +1,6 @@
 #include "Pellets.h"
-#include <iostream>
-#include<vector>
+#include "Common.h"
+using namespace sf;
 using namespace std;
 
 Pellets::Pellets(vector <vector<int>> v)
@@ -22,38 +22,25 @@ Pellets::Pellets(vector <vector<int>> v)
 	arrScore[26][2] = 1000;
 	arrScore[26][25] = 1000;
 	arrScore[5][25] = 1000;
+	for (int i = 13; i < 16; i++)
+		for (int j = 11; j < 17; j++)
+		{
+			arrScore[i][j] = -6;//no pellets in home
+		}
 	mPelletTexture.loadFromFile("../images/pellet.png");
 	mPowerTexture.loadFromFile("../images/yellowpellet.png");
 	mBlack.loadFromFile("../images/black.png");
 	mTransparent.loadFromFile("../images/transparent.png");
-	score = 0;
-	font.loadFromFile("../boardTexts/font.ttf");
-	T.setFont(font);
-	T.setString("SCORE");
-	T.setCharacterSize(50);
-	T.setOutlineColor(Color::Yellow);
-	T.setOutlineThickness(0.5);
-	T.setOrigin(Vector2f(-880,0));
-	Num.setFont(font);
-	Num.setCharacterSize(50);
-	Num.setOrigin(Vector2f(-880, -50));
-	L.setFont(font);
-	L.setCharacterSize(50);
-	L.setOrigin(Vector2f(-880, -100)); 
-	L.setString("Lifes");
-	life.setFont(font);
-	life.setCharacterSize(50);
-	life.setOrigin(Vector2f(-880, -150));
 }
 Pellets::~Pellets()
 {
 	
 }
-void Pellets::intersectPellets(int r, int c)
+void Pellets::intersectPellets(int r, int c, Pacman* P)
 {
 	if (arrScore[r][c] > 0)
 	{
-		score += arrScore[r][c];
+		P->incrementScore(arrScore[r][c]);
 		arrScore[r][c] = -6;
 		Audio::getInstance()->playChomp();
 	}
@@ -78,24 +65,13 @@ void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 			{
 				mShape[i][j].setTexture(&mBlack);
 			}
-			else if (arrScore[i][j]==-6)
+			else  if (arrScore[i][j]==-6)
 				mShape[i][j].setFillColor(Color::Transparent);
 			w.draw(mShape[i][j]);
 		}
 	
 }
-void Pellets::drawText(RenderWindow& w, int x)
-{
-	Num.setString(to_string(score));
-	w.draw(T);
-	w.draw(Num);
-	w.draw(L);
-	life.setString(to_string(x));
-	w.draw(life);
-	
 
-	
-}
 int Pellets::getScore() const
 {
 	return score;
