@@ -161,6 +161,7 @@
     <ClInclude Include="..\headers\Pellets.h" />
     <ClInclude Include="..\headers\Words.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <ClCompile Include="..\sources\Pacman.cpp" />
     <ClCompile Include="..\sources\PathfindTest.cpp" />
     <ClCompile Include="..\sources\Pellets.cpp" />
+    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pacman.rc" />

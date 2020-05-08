@@ -1,9 +1,7 @@
 #include "../headers/Graph.h"
 #include<iostream>
-Graph::Graph(int v) :mVertices(0), mArray(nullptr)
+Graph::Graph(int v) :mVertices(v), mArray(nullptr)
 {
-	mVertices = v;
-
 	// Create an array of adjacency lists. Size of array will be V 
 	mArray = new AdjList[v];
 

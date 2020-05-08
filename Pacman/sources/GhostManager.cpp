@@ -20,7 +20,7 @@ void GhostManager::draw(sf::RenderWindow& window)
 	for (unsigned int i = 0; i < mGhostList.size(); i++)
 		mGhostList[i]->drawOnWindow(window);
 }
-void GhostManager::checkGhost2Pacman(sf::RenderWindow& w,Pacman* pacman, Pellets &P)
+void GhostManager::checkGhost2Pacman(sf::RenderWindow& w,Pacman* pacman, Pellets* P)
 {
 	for (auto ghost : mGhostList)
 		if (ghost->getSprite().getGlobalBounds().intersects(pacman->getSprite().getGlobalBounds()))
@@ -28,7 +28,7 @@ void GhostManager::checkGhost2Pacman(sf::RenderWindow& w,Pacman* pacman, Pellets
 			if (ghost->getFreight())
 			{
 				ghost->die(w);
-				P.incrementScore(500);
+				P->incrementScore(500);
 			}
 			else
 			{
