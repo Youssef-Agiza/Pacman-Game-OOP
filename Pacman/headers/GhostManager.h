@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-#include "Ghost.h"
-#include "Board.h"
-#include "Pacman.h"
-#include "Pellets.h"
-#include"Graph.h"
+#include "../headers/Ghost.h"
+#include "../headers/Board.h"
+#include "../headers/Pacman.h"
+#include "../headers/Pellets.h"
+#include"../headers/Graph.h"
 class GhostManager
 {
 private:

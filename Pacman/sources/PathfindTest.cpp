@@ -1,10 +1,10 @@
-#include "Common.h"
-#include "Pacman.h"
-#include "Ghost.h"
-#include "Board.h"
-#include "GhostManager.h"
-#include "Pellets.h"
-#include "Graph.h"
+#include "../headers/Common.h"
+#include "../headers/Pacman.h"
+#include "../headers/Ghost.h"
+#include "../headers/Board.h"
+#include "../headers/GhostManager.h"
+#include "../headers/Pellets.h"
+#include "../headers/Graph.h"
 #include "../headers/Words.h"
 using namespace std;
 using namespace sf;

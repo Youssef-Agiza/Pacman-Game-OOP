@@ -1,6 +1,6 @@
 #pragma once
-#include "Character.h"
-#include "Audio.h"
+#include "../headers/Character.h"
+#include "../headers/Audio.h"
 #include "../design patterns/ISubject.h"
 using namespace PacmanCS;
 class Pacman :

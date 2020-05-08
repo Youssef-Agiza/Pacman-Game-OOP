@@ -1,6 +1,6 @@
 #pragma once
-#include "Common.h"
-#include "Pacman.h"
+#include "../headers/Common.h"
+#include "../headers/Pacman.h"
 using namespace sf;
 using namespace std;
 

@@ -1,5 +1,5 @@
-#include "Pellets.h"
-#include "Common.h"
+#include "../headers/Pellets.h"
+#include "../headers/Common.h"
 using namespace sf;
 using namespace std;
 

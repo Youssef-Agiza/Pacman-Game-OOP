@@ -1,8 +1,8 @@
 #pragma once
 #include <cstddef>
 #include<vector>
-#include "Pacman.h"
-#include "Audio.h"
+#include "../headers/Pacman.h"
+#include "../headers/Audio.h"
 #include"SFML/Graphics.hpp"
 using namespace std;
 using namespace sf;

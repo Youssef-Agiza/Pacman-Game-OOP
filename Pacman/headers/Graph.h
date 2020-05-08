@@ -2,7 +2,7 @@
 #include <list>
 #include <cstdlib>
 #include <list>
-#include "MinHeap.h"
+#include "../headers/MinHeap.h"
 
 // A structure to represent a node in adjacency list 
 struct AdjListNode

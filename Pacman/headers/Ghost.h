@@ -1,7 +1,7 @@
 #pragma once
-#include "Character.h"
-#include "Board.h"
-#include "Graph.h"
+#include "../headers/Character.h"
+#include "../headers/Board.h"
+#include "../headers/Graph.h"
 #include "../design patterns/IObserver.h"
 class Ghost :
     public Character, public IObserver {

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "Board.h"
+#include "../headers/Board.h"
 
 using namespace std;
 using namespace sf;

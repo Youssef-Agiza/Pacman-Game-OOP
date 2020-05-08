@@ -63,11 +63,8 @@
     <ClInclude Include="..\headers\MinHeap.h">
       <Filter>Header Files\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Words.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\headers\Words.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
