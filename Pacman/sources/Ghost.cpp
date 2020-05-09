@@ -3,8 +3,9 @@
 #include "../design patterns/ISubject.h"
 Ghost::Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position) :
 		Character( intialRow,  intialColumn,  size,  position)
-	,mFreight(false),mGraph(nullptr),
+	,mFreight(false),mGraph(nullptr), ai(nullptr),
 	mIntialRow(intialRow),mIntialCol(intialColumn)
+	,speedTimer(0),homeTimer(0),inHome(true)
 {}
 
 Ghost::~Ghost()
@@ -49,6 +50,7 @@ bool Ghost::getFreight()const { return mFreight; }
 
 void Ghost::resetPosition()
 {
+	inHome = true;
 	mCurrentColumn = mIntialCol;
 	mCurrentRow = mIntialRow;
 	updateShape();
@@ -56,10 +58,12 @@ void Ghost::resetPosition()
 }
 void Ghost::die(sf::RenderWindow& w)
 {
+		speedTimer /=2 ;
 		resetPosition();
 		setTexture(this->getResource(), 8, 1);
 		setFreight(false);
 		mDirection = STOP;
+	
 }
 
 void Ghost::update(bool powerUp)
@@ -68,12 +72,14 @@ void Ghost::update(bool powerUp)
 	{
 		this->setFreight(1);
 		this->setTexture("../images/freight.png", 2, 1);
+		speedTimer *= 2;
 	}
 	
 	if (!powerUp && mFreight)
 	{
 		this->setFreight(0);
 		this->setTexture(this->getResource(), 8, 1);
+		speedTimer /= 2;
 	}
 
 }
@@ -156,20 +162,17 @@ void Ghost::clyde(Pacman* pacman)
 			setDirection(Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])));
 		}
 	
-	
 }
 
 void Ghost::blinky(Pacman* pacman)
 {
 	//chase pacman
 	if (!mFreight)
-	{
 		setDirection(Path2Movement(mGraph->dijkstra(getVertex(), pacman->getVertex())));
-	}
 	else //freight
-	{
-		setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[14][15])) );
-	}
+		setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])) );
+	
+	
 }
 
 void Ghost::pinky(Pacman* pacman)
@@ -229,7 +232,7 @@ void Ghost::pinky(Pacman* pacman)
 
 void Ghost::inky(Pacman* pacman)
 {
-
+	
 	//chase pacman
 	if (!mFreight)
 	{
@@ -241,9 +244,15 @@ void Ghost::inky(Pacman* pacman)
 	}
 }
 
-void Ghost::trace(Pacman* pacman)
+void Ghost::callAI(Pacman* pacman)
 {
-	(this->*ai)(pacman);
+
+	if (currentTime.getElapsedTime().asMilliseconds() >= speedTimer&&!inHome)
+	{
+		currentTime.restart();
+		(this->*ai)(pacman);
+		move();
+	}
 }
 Direction Ghost::Path2Movement(std::list<int>* path)
 {
@@ -282,6 +291,37 @@ bool Ghost::reverse(Direction d) const
 	default: return false;
 	}
 }
+
+int Ghost::getHomeTimer() const
+{
+	return homeTimer;
+}
+
+int Ghost::getSpeedTimer() const
+{
+	return speedTimer;
+}
+
+bool Ghost::isInHome() const
+{
+	return inHome;
+}
+
+Ghost& Ghost::setHomeTimer(int htime)
+{
+	homeTimer = htime; return *this;
+}
+
+Ghost& Ghost::setSpeedTimer(int s)
+{
+	speedTimer = s; return *this;
+}
+
+Ghost& Ghost::setInHome(bool h)
+{
+	inHome = h; return *this;
+}
+
 
 
 void Ghost::animateMove()

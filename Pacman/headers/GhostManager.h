@@ -18,7 +18,7 @@ public:
 	void addGhost(Ghost* mGhost);
 	void draw(sf::RenderWindow& w);
 
-	void createGhost(Board* board,Graph* graph,Pacman* pacman);
+	void createGhost(Board* board,Graph* graph,Pacman* pacman, int speed=250);
 	void checkGhost2Pacman(sf::RenderWindow& w,Pacman* pacman, Pellets *P);
 
 	void moveAll(Pacman* pacman);

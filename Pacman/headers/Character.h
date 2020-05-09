@@ -27,6 +27,7 @@ class Character {
          Direction mDirection;
          Board* mBoard;
          Sprite mSprite;
+         sf::Clock currentTime;
 
          void adjustScale(int imagesPerRow,int imagesPerCol) ; //adjusts sprite scale and IntRect. Called in setTexture
 
@@ -46,7 +47,7 @@ class Character {
         const Texture& getTexture()const;
         int getVertex()const;
         const sf::Sprite& getSprite()const;
-
+       
 
         //setters
         Character& setSize(float size);
@@ -54,12 +55,14 @@ class Character {
         Character& setRow(unsigned int row);
         Character& setCol(unsigned int col);
         Character& setTexture(std::string fileName,int imagesPerRow=1,int imagesPerCol=1); //calls adjustScale
-        Character& setPosition(float x,float y);
-        Character& setPosition(sf::Vector2f position);
+        Character& setPositionOnWindow(float x,float y);
+        Character& setPositionOnWindow(sf::Vector2f position);
         Character& setBoard(Board* board);
         
        
-  
+        const sf::Time& getCurrentTime()const;
+        void resetTime();
+
        //virtuals   
         virtual Character& setDirection(Direction dir);
        virtual void drawOnWindow(RenderWindow& window);
@@ -69,5 +72,7 @@ class Character {
        virtual void die(sf::RenderWindow& w) = 0;
        virtual void resetPosition() = 0;
        virtual void animateMove() = 0;
+     
+
     };
 

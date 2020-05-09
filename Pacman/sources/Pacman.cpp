@@ -3,9 +3,25 @@
 #define INTIAL_ROW  23
 #define INTIAL_COL  14
 Pacman::Pacman(int intialRow, int intialColumn, float size, sf::Vector2f posWindow) :
-	Character( intialRow,  intialColumn,  size,  posWindow),mLives(3),mPowerUp(false),mScore(0)
+	Character( intialRow,  intialColumn,  size,  posWindow),mLives(3),mPowerUp(false),mScore(0),powerUpTime(10)
 {
 	
+}
+
+Pacman& Pacman::setPowerUpTime(int t)
+{
+	powerUpTime = t; return *this;
+}
+
+int Pacman::getPowerUpTime() const
+{
+	return powerUpTime;
+}
+
+void Pacman::checkPowerUpTime()
+{
+	if (mPowerUp && currentTime.getElapsedTime().asSeconds() >= powerUpTime)
+		setPowerUp(false);
 }
 
 Pacman& Pacman::incrementScore(unsigned int s)
@@ -17,6 +33,7 @@ Pacman& Pacman::incrementScore(unsigned int s)
 Pacman& Pacman::setPowerUp(bool p)
 {
 	mPowerUp = p;
+	currentTime.restart();
 	notify(); 
 	return *this;
 }
