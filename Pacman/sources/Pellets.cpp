@@ -6,7 +6,7 @@ using namespace std;
 Pellets::Pellets(vector <vector<int>> v):arrScore(v)
 {
 	
-	score = 0;
+
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		for (unsigned int j = 0; j < v[i].size(); j++)
@@ -46,22 +46,18 @@ void Pellets::intersectPellets( Pacman* P)
 		P->incrementScore(arrScore[r][c]);
 		arrScore[r][c] = -6;
 		if (((r == 5) && (c == 2)) || ((r == 26) && (c == 25)) || ((r == 26) && (c == 2)) || (((r == 5) && (c == 25))))
-			arrScore[r][c] = -100;// an eaten power pellet
+		{
+		
+			
+				P->setPowerUp(true);
+				arrScore[r][c] = -6;
+			
+		}
 		Audio::getInstance()->playChomp();
 	}
-//	cout<<score<<endl;
 }
-void Pellets::isPowerPelletEaten(Pacman* P)
-{
-	int r = P->getRow(); int c = P->getCol();
+	
 
-	if (((r == 5) && (c == 2)) || ((r == 26) && (c == 25)) || ((r == 26) && (c == 2)) || (((r == 5) && (c == 25))))
-		if (arrScore[r][c] == -100)
-		{
-			P->setPowerUp(true);
-			arrScore[r][c] = -6;
-		}
-}
 void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 {
 	for (unsigned int i = 0; i<31; i++)
@@ -87,17 +83,6 @@ void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 	
 }
 
-int Pellets::getScore() const
-{
-	return score;
-}
-void Pellets::incrementLife(Pacman* P)
-{
-		P->setLives(P->getLives() + 1);
-}
-void Pellets::incrementScore(int x)
-{
-	score += x;
-}
+
 
 

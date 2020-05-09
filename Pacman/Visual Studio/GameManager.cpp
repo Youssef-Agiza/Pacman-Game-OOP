@@ -87,12 +87,11 @@ void GameManager::Play()
 
 
 
-		P->isPowerPelletEaten(pacman);
-	//	manager->checkGhost2Pacman(window, pacman, P);
+		
+
 
 		if (gtimer.getElapsedTime().asMilliseconds() >= 400)
 		{
-
 			manager->moveAll(pacman);
 			gtimer.restart();
 		}
@@ -107,19 +106,16 @@ void GameManager::Play()
 
 		if ((pacman->getScore() >= 10000) && (once))
 		{
-			P->incrementLife(pacman);//once score is greater than 10000 the life is incremented only once
+			pacman->addLive(1);//once score is greater than 10000 the life is incremented only once
 			once = false;
 		}
 
 		checkCollision();
-
-
-		myBoard->drawOnWindow(window);
 		P->intersectPellets(pacman);
-		P->drawPellets(window, myBoard->mShape);
-		pacman->drawOnWindow(window);
-		manager->draw(window);
-		text->drawText(window, pacman);
+
+
+		draw();
+
 		window.display();
 
 	}
@@ -133,7 +129,6 @@ void GameManager::checkCollision()
 			if (ghost->getFreight())
 			{
 				ghost->die(window);
-				P->incrementScore(500);
 			}
 			else
 			{
@@ -151,4 +146,13 @@ void GameManager::checkCollision()
 			return;
 		}
 
+}
+
+void GameManager::draw()
+{
+	myBoard->drawOnWindow(window);
+	P->drawPellets(window, myBoard->mShape);
+	pacman->drawOnWindow(window);
+	manager->draw(window);
+	text->drawText(window, pacman);
 }

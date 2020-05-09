@@ -11,6 +11,7 @@ Pacman::Pacman(int intialRow, int intialColumn, float size, sf::Vector2f posWind
 Pacman& Pacman::incrementScore(unsigned int s)
 {
 	mScore += s;
+	
 	return *this;
 }
 Pacman& Pacman::setPowerUp(bool p)
@@ -30,15 +31,20 @@ unsigned int Pacman::getLives()const { return mLives; }
 
 unsigned int Pacman::getScore()const{return mScore;}
 
-void Pacman::addLive(unsigned int l)
+void Pacman::addLive( int l)
 {
 	mLives += l;
 }
 
 void Pacman::resetPosition()
 {
+	if (mLives <= 0)
+	{
+		mSprite.setColor(Color::Black);
+		mAlive = false;
+	}
+	
 	setTexture("../images/Pacman.png", 2, 4);
-
 	mDirection = STOP;
 	mAlive = true;
 	mCurrentColumn = INTIAL_COL;
@@ -50,7 +56,7 @@ void Pacman::die(sf::RenderWindow& w)
 {
 	Audio::getInstance()->playDeath();
 	mAlive = false;
-	
+	--mLives;
 	setTexture("../images/Death.png", 12, 1);
 
 	sf::Clock timer;
@@ -67,8 +73,7 @@ void Pacman::die(sf::RenderWindow& w)
 
 		}
 	}
-	if (--mLives <= 0)
-		mSprite.setColor(sf::Color::Black);
+	
 	resetPosition();
 }
 
@@ -177,8 +182,4 @@ void Pacman::move()
 	}
 	animateMove();
 
-}
-void Pacman::decrementLife()
-{
-	--mLives;
 }

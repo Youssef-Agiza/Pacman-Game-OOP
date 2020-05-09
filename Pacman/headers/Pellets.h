@@ -16,16 +16,12 @@ private:
 	Texture mPowerTexture;
 	Texture mBlack;
 	Texture mTransparent;
-	int score;
+	
 	
 public:
 	Pellets(vector <vector<int>> v);
 	void drawPellets(RenderWindow &w, RectangleShape** mShape);
 	void intersectPellets(Pacman* P);
-	void incrementLife(Pacman* P);
-	int  getScore() const;
-	void incrementScore(int x);
-	void isPowerPelletEaten(Pacman* P);
 	~Pellets();
 };
 

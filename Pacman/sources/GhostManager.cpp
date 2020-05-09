@@ -22,24 +22,19 @@ void GhostManager::draw(sf::RenderWindow& window)
 }
 void GhostManager::checkGhost2Pacman(sf::RenderWindow& w,Pacman* pacman, Pellets* P)
 {
-	for (auto ghost : mGhostList)
-		if (ghost->getSprite().getGlobalBounds().intersects(pacman->getSprite().getGlobalBounds()))
-		{
-			if (ghost->getFreight())
-			{
-				ghost->die(w);
-				P->incrementScore(500);
-			}
-			else
-			{
-				pacman->setAlive(false);
-				//pacman->die(w);
-				
-			
-			}
-			return;
-		}
-	
+	//for (auto ghost : mGhostList)
+	//	if (ghost->getSprite().getGlobalBounds().intersects(pacman->getSprite().getGlobalBounds()))
+	//	{
+	//		if (ghost->getFreight())
+	//			ghost->die(w);		
+	//		else
+	//		{
+	//			pacman->setAlive(false);
+	//			//pacman->die(w);
+	//		}
+	//		return;
+	//	}
+	//
 }
 
 void GhostManager::moveAll(Pacman* pacman)
