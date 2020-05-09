@@ -2,15 +2,15 @@
 
 GameManager::GameManager() :arr(vector <vector<int>>(31, vector<int>(28))),TileSize(30.0f)
 {
-	text = new Words();
+	textManager = new Words();
 	Vector2f POSITION(500, 0);
 	window.create(VideoMode(1840, 930), "Simple Maze");
 	this->loadBoardText();
-	myBoard = new Board(arr, TileSize, POSITION);
+	boardManager = new Board(arr, TileSize, POSITION);
 	pacman = new Pacman(1, 1, TileSize, POSITION);
-	manager = new GhostManager(&graph);
-	manager->createGhost(myBoard, &graph, pacman);
-	P = new Pellets(arr);
+	ghostManager = new GhostManager(&graph);
+	ghostManager->createGhost(boardManager, &graph, pacman);
+	pelletManager = new Pellets(arr);
 }
 
 void GameManager::loadBoardText()
@@ -42,9 +42,40 @@ void GameManager::createEdges()
 
 void GameManager::loadPacman()
 {
-	pacman->setBoard(myBoard);
+	pacman->setBoard(boardManager);
 	pacman->resetPosition();
 	pacman->setTexture("../images/pacman.png", 2, 4);
+}
+
+void GameManager:: sendEmail()
+{
+	emailManager.sendEmail();
+}
+
+void GameManager::startGame()
+{
+	
+	Event x;
+	window.clear(Color::Black);
+	draw(); 
+	textManager->drawTextInHome(window, "Ready ");
+	window.display();
+	while (window.isOpen())
+	{
+		
+		while (window.pollEvent(x))
+		{
+			
+			if (x.type == Event::Closed)
+				window.close();
+			else if (x.key.code == Keyboard::Space)
+			{
+				window.clear();
+				Play();
+			}
+
+		}
+	}
 }
 
 void GameManager::Play()
@@ -92,7 +123,7 @@ void GameManager::Play()
 
 		if (gtimer.getElapsedTime().asMilliseconds() >= 400)
 		{
-			manager->moveAll(pacman);
+			ghostManager->moveAll(pacman);
 			gtimer.restart();
 		}
 		if (pactimer.getElapsedTime().asMilliseconds() >= 250)
@@ -111,19 +142,22 @@ void GameManager::Play()
 		}
 
 		checkCollision();
-		P->intersectPellets(pacman);
+		pelletManager->intersectPellets(pacman);
 
 
 		draw();
 
 		window.display();
-
+		if (pacman->getLives() == 0)
+			this->gameLost();
+		else if (pelletManager->mPelletCount==0)
+			this->gameWon();
 	}
 }
 
 void GameManager::checkCollision()
 {
-	for (auto ghost : manager->getGhostList())
+	for (auto ghost : ghostManager->getGhostList())
 		if (ghost->getSprite().getGlobalBounds().intersects(pacman->getSprite().getGlobalBounds()))
 		{
 			if (ghost->getFreight())
@@ -135,12 +169,12 @@ void GameManager::checkCollision()
 				window.clear();
 				window.display();
 				window.clear();
-				this->myBoard->drawOnWindow(window);
-				P->drawPellets(window, myBoard->mShape);
+				this->boardManager->drawOnWindow(window);
+				pelletManager->drawPellets(window, boardManager->mShape);
 
 				pacman->die(window);
 				for (int i = 0; i < 4; i++)
-					manager->getGhostList()[i]->resetPosition();
+					ghostManager->getGhostList()[i]->resetPosition();
 
 			}
 			return;
@@ -150,9 +184,34 @@ void GameManager::checkCollision()
 
 void GameManager::draw()
 {
-	myBoard->drawOnWindow(window);
-	P->drawPellets(window, myBoard->mShape);
+//	boardManager->drawOnWindow(window);
+	pelletManager->drawPellets(window, boardManager->mShape);
 	pacman->drawOnWindow(window);
-	manager->draw(window);
-	text->drawText(window, pacman);
+	ghostManager->draw(window);
+	textManager->drawText(window, pacman);
+}
+
+void GameManager:: gameWon()
+{
+	Clock timer;
+	while (timer.getElapsedTime().asSeconds() < 3)
+	{
+		window.clear();
+		textManager->drawTextInHome(window, "WON!!!");
+		window.display();
+	}
+	window.close();
+
+}
+
+void GameManager::gameLost()
+{
+	Clock timer;
+	while (timer.getElapsedTime().asSeconds() < 3)
+	{
+		window.clear();
+		textManager->drawTextInHome(window, "You SUCK");
+		window.display();
+	}
+	window.close();
 }

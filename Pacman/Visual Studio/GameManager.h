@@ -7,6 +7,7 @@
 #include "../headers/Pellets.h"
 #include "../headers/Graph.h"
 #include "../headers/Words.h"
+#include"../headers/Email.h"
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
@@ -20,26 +21,23 @@ private:
 	vector<vector<int>> arr;
 	Graph graph;
 	Pacman* pacman;
-	Board* myBoard;
-	Pellets* P;
-	GhostManager* manager;
-	Words* text ;
-	
+	Board* boardManager;
+	Pellets* pelletManager;
+	GhostManager* ghostManager;
+	Words* textManager ;
+	Email emailManager;
 public:
 	GameManager();
-
 	void loadBoardText();
-
 	void createEdges();
-
-	
-	
 	void loadPacman();
-
+	void startGame();
 	void Play();
-
 	void checkCollision();
-
 	void draw();
+	void sendEmail();
+	void gameWon();
+	void gameLost();
+
 };
 

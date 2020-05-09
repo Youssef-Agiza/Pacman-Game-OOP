@@ -7,6 +7,7 @@
 #include "../headers/Graph.h"
 #include "../headers/Words.h"
 #include "../Visual Studio/GameManager.h"
+
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
@@ -204,6 +205,7 @@ GameManager Game;
 Game.loadBoardText();
 Game.createEdges();
 Game.loadPacman();
-Game.Play();
+Game.startGame();
+//Game.Play(); 
 return 0;
 }

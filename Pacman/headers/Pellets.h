@@ -22,6 +22,7 @@ public:
 	Pellets(vector <vector<int>> v);
 	void drawPellets(RenderWindow &w, RectangleShape** mShape);
 	void intersectPellets(Pacman* P);
+	int mPelletCount;
 	~Pellets();
 };
 

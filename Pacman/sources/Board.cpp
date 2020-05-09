@@ -13,6 +13,7 @@ namespace PacmanCS {
 		posOnWindow=sf::Vector2f(POSITION,POSITION)):
 		mBoard(board),mTileSize(tileSize),mPositionOnWindow(posOnWindow)
 	{
+		
 		mWallTexture.loadFromFile("../images/wall.png");
 		intializeShape();
 		updateTextures();
@@ -35,7 +36,7 @@ namespace PacmanCS {
 
 	void Board::updateTextures()
 	{
-		
+
 		for (unsigned int i = 0; i < mBoard.size(); i++)
 			for (unsigned int j = 0; j < mBoard[i].size(); j++)
 			{

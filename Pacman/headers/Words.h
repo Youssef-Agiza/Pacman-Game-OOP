@@ -47,12 +47,12 @@ public:
 	void drawTextInHome(RenderWindow& w, string s)
 	{
 		Text message;
-		T.setFont(font);
-		T.setString(s);
-		T.setCharacterSize(50);
-		T.setOutlineColor(Color::Red);
-		T.setOutlineThickness(0.5);
-		T.setOrigin(Vector2f(-870, -430));
+		message.setFont(font);
+		message.setString(s);
+		message.setCharacterSize(50);
+		message.setOutlineColor(Color::Red);
+		message.setOutlineThickness(0.5);
+		message.setOrigin(Vector2f(-870, -430));
 		w.draw(message);
 	}
 	

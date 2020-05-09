@@ -6,7 +6,7 @@ using namespace std;
 Pellets::Pellets(vector <vector<int>> v):arrScore(v)
 {
 	
-
+	
 	for (unsigned int i = 0; i < v.size(); i++)
 	{
 		for (unsigned int j = 0; j < v[i].size(); j++)
@@ -15,7 +15,10 @@ Pellets::Pellets(vector <vector<int>> v):arrScore(v)
 			if (v[i][j] == -5)
 				arrScore[i][j] = -5;
 			else if (v[i][j] > -1)
+			{
 				arrScore[i][j] = 100;
+				mPelletCount++;
+			}
 		}
 	}
 	arrScore[5][2] = 1000;
@@ -26,9 +29,10 @@ Pellets::Pellets(vector <vector<int>> v):arrScore(v)
 		for (int j = 11; j < 17; j++)
 		{
 			arrScore[i][j] = -6;//no pellets in home
+			mPelletCount--;
 		}
-	arrScore[12][13]=-6;
-	arrScore[12][14]=-6;
+	arrScore[12][13]=-6; mPelletCount--;
+	arrScore[12][14]=-6; mPelletCount--;
 	mPelletTexture.loadFromFile("../images/pellet.png");
 	mPowerTexture.loadFromFile("../images/yellowpellet.png");
 	mBlack.loadFromFile("../images/black.png");
@@ -47,13 +51,11 @@ void Pellets::intersectPellets( Pacman* P)
 		arrScore[r][c] = -6;
 		if (((r == 5) && (c == 2)) || ((r == 26) && (c == 25)) || ((r == 26) && (c == 2)) || (((r == 5) && (c == 25))))
 		{
-		
-			
 				P->setPowerUp(true);
 				arrScore[r][c] = -6;
-			
 		}
 		Audio::getInstance()->playChomp();
+		mPelletCount--; cout << mPelletCount << endl;
 	}
 }
 	
