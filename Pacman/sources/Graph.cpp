@@ -11,6 +11,21 @@ Graph::Graph(int v) :mVertices(v), mArray(nullptr)
 
 }
 
+Graph::~Graph()
+{
+    for (int i = 0; i < mVertices;i++)
+    {
+        AdjListNode* discard = mArray[i].head;
+        
+        while (discard != nullptr)
+        {
+            mArray[i].head = mArray[i].head->next;
+            delete discard;
+            discard = mArray[i].head;
+        }
+    }
+}
+
 void Graph::addEdge(int src, int dest, int weight)
 {
 	// Add an edge from src to dest. A new node is added to the adjacency 
@@ -59,8 +74,10 @@ void printPath(std::list<int> path)
     }
 }
 
-std::list<int>* Graph::dijkstra(int src,int target)
+std::list<int>* Graph::dijkstra(int src, int target)
 {
+    if (src == target)
+        return nullptr;
    
     int V = this->mVertices;
     int* dist=new int[V];      // dist values used to pick minimum weight edge in cut 

@@ -12,14 +12,13 @@ private:
     bool mFreight; 
     std::string mResource; //keeps resource for the texture
     Graph* mGraph;
-    int speedTimer; //variable to keep track of timing for ghosts
     int homeTimer;
     bool inHome;
    
 
     
 public:
-    Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position);
+    Ghost(int intialRow, int intialColumn, float size, Board* board);
     ~Ghost();
   
     unsigned int getIntialRow()const;
@@ -59,10 +58,8 @@ public:
 
     //time functions
     int getHomeTimer()const;
-    int getSpeedTimer()const;
     bool isInHome()const;
     Ghost& setHomeTimer(int htime);
-    Ghost& setSpeedTimer(int s);
     Ghost& setInHome(bool h);
 
 

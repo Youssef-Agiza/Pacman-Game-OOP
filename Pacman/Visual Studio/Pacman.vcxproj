@@ -153,7 +153,7 @@
     <ClInclude Include="..\headers\Audio.h" />
     <ClInclude Include="..\headers\Board.h" />
     <ClInclude Include="..\headers\Character.h" />
-    <ClInclude Include="..\headers\Email.h" />
+    <ClInclude Include="..\headers\GameManager.h" />
     <ClInclude Include="..\headers\Ghost.h" />
     <ClInclude Include="..\headers\GhostManager.h" />
     <ClInclude Include="..\headers\Graph.h" />
@@ -162,13 +162,13 @@
     <ClInclude Include="..\headers\Pellets.h" />
     <ClInclude Include="..\headers\Words.h" />
     <ClInclude Include="Common.h" />
-    <ClInclude Include="GameManager.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\Audio.cpp" />
     <ClCompile Include="..\sources\Board.cpp" />
     <ClCompile Include="..\sources\Character.cpp" />
+    <ClCompile Include="..\sources\GameManager.cpp" />
     <ClCompile Include="..\sources\Ghost.cpp" />
     <ClCompile Include="..\sources\GhostManager.cpp" />
     <ClCompile Include="..\sources\Graph.cpp" />
@@ -176,7 +176,6 @@
     <ClCompile Include="..\sources\Pacman.cpp" />
     <ClCompile Include="..\sources\PathfindTest.cpp" />
     <ClCompile Include="..\sources\Pellets.cpp" />
-    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Pacman.rc" />

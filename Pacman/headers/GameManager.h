@@ -7,7 +7,7 @@
 #include "../headers/Pellets.h"
 #include "../headers/Graph.h"
 #include "../headers/Words.h"
-#include"../headers/Email.h"
+//#include"../headers/Email.h"
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
@@ -15,29 +15,34 @@ class GameManager
 
 {
 private:
-	float TileSize;
+	float tileSize;
 	RenderWindow window;
-	bool once = true;
 	vector<vector<int>> arr;
-	Graph graph;
+	Graph* graph;
 	Pacman* pacman;
-	Board* boardManager;
-	Pellets* pelletManager;
+	Board* board;
+	Pellets* pellet;
 	GhostManager* ghostManager;
 	Words* textManager ;
-	Email emailManager;
-public:
-	GameManager();
+	int levels;
+	//Email emailManager;
+
+private:
 	void loadBoardText();
 	void createEdges();
-	void loadPacman();
-	void startGame();
-	void Play();
-	void checkCollision();
-	void draw();
-	void sendEmail();
+	void createEntities(int level);
 	void gameWon();
 	void gameLost();
+	void checkCollision();
+	void draw();
+	void startGame();
+public:
+	GameManager();
+	~GameManager();
+	/*void initiate();*/
+	void Play();
+	void sendEmail();
+	
 
 };
 

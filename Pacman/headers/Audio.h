@@ -9,6 +9,7 @@ namespace PacmanCS {
 		sf::Music mMusic;
 		std::string mSoundtracksPath;
 		Audio();
+		~Audio() = delete;
 		Audio(const Audio&)=delete;
 		void operator =(const Audio&) = delete;
 		static Audio* instance; 

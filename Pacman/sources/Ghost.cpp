@@ -1,12 +1,13 @@
 #include "../headers/Ghost.h"
 #include "../headers/Pacman.h"
 #include "../design patterns/ISubject.h"
-Ghost::Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position) :
-		Character( intialRow,  intialColumn,  size,  position)
+Ghost::Ghost(int intialRow, int intialColumn, float size, Board* board) :
+		Character( intialRow,  intialColumn,  size,  board)
 	,mFreight(false),mGraph(nullptr), ai(nullptr),
 	mIntialRow(intialRow),mIntialCol(intialColumn)
-	,speedTimer(0),homeTimer(0),inHome(true)
-{}
+	,homeTimer(0),inHome(true)
+{
+}
 
 Ghost::~Ghost()
 {
@@ -172,12 +173,10 @@ void Ghost::blinky(Pacman* pacman)
 	else //freight
 		setDirection( Path2Movement(mGraph->dijkstra(getVertex(), mBoard->getBoard()[mIntialRow][mIntialCol])) );
 	
-	
 }
 
 void Ghost::pinky(Pacman* pacman)
 {
-	
 	//moves ahead of pacman
 	if (!mFreight)
 	{
@@ -256,13 +255,13 @@ void Ghost::callAI(Pacman* pacman)
 }
 Direction Ghost::Path2Movement(std::list<int>* path)
 {
-
+	if (path == nullptr)
+		return STOP;
 	if (path->empty())
 		return mDirection;
 	int vertex = path->front();
 	path->pop_front();
-	if (path == nullptr)
-		return mDirection;
+	
 
 	unsigned int row = this->getRow(), col = this->getCol();
 	if (row + 1 < mBoard->getBoard().size() && col < mBoard->getBoard()[row].size() && mBoard->getBoard()[row + 1][col] == vertex)
@@ -297,10 +296,7 @@ int Ghost::getHomeTimer() const
 	return homeTimer;
 }
 
-int Ghost::getSpeedTimer() const
-{
-	return speedTimer;
-}
+
 
 bool Ghost::isInHome() const
 {
@@ -312,10 +308,7 @@ Ghost& Ghost::setHomeTimer(int htime)
 	homeTimer = htime; return *this;
 }
 
-Ghost& Ghost::setSpeedTimer(int s)
-{
-	speedTimer = s; return *this;
-}
+
 
 Ghost& Ghost::setInHome(bool h)
 {

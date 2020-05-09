@@ -42,6 +42,8 @@ namespace PacmanCS {
 			{
 				if (mBoard[i][j] == WALL)
 					mShape[i][j].setTexture(&(this->mWallTexture));
+				else
+					mShape[i][j].setFillColor(sf::Color::Transparent);
 			}
 	}
 
@@ -54,7 +56,9 @@ namespace PacmanCS {
 
 	
 	void Board::drawOnWindow(sf::RenderWindow& w)
-	{//needs validation: check that shape is not a nullpointer
+	{
+		if (mShape == nullptr)
+			return;
 		for (unsigned int i = 0; i < mBoard.size(); i++)
 			for(unsigned int j=0;j< mBoard[i].size();j++)
 			w.draw((this->mShape[i][j]));

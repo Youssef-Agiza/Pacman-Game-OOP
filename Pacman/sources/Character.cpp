@@ -2,10 +2,11 @@
 
 
 
-Character::Character(int intialRow, int intialColumn, float size, sf::Vector2f posWindow) :
-	mCurrentRow(intialRow), mCurrentColumn(intialColumn), mSize(size), mPositionOnWindow(posWindow),
-	mAlive(true) ,mDirection(STOP), mBoard(nullptr),mTexture(nullptr)
+Character::Character(int intialRow, int intialColumn, float size, Board* board) :
+	mCurrentRow(intialRow), mCurrentColumn(intialColumn), mSize(size),
+	mAlive(true) ,mDirection(STOP), mBoard(board),mTexture(nullptr),speedTimer(0)
 {
+	mPositionOnWindow = board->getPositionOneWindow();
 	mSprite.setPosition(mPositionOnWindow.x + mCurrentColumn * mSize, mPositionOnWindow.y + mCurrentRow * mSize);
 }
 
@@ -25,7 +26,7 @@ const sf::Vector2f& Character::getPosition()const { return mPositionOnWindow; }
 const Texture& Character::getTexture()const { return *mTexture; }
 int Character::getVertex()const { return mBoard->getBoard()[mCurrentRow][mCurrentColumn]; }
 const sf::Sprite& Character::getSprite()const { return mSprite; }
-
+int Character::getSpeedTimer()const { return speedTimer; }
 
 //setters
 Character& Character::setSize(float s){mSize = s;	return *this;}
@@ -39,19 +40,15 @@ Character& Character::setDirection(Direction dir)
 	mDirection = dir;
 	return*this;
 }
+Character& Character::setSpeedTimer(int s) { speedTimer = s; return *this; }
 
 Character& Character::setBoard(Board* board){ mBoard = board;	return *this;}
 
-const sf::Time& Character::getCurrentTime() const
-{
-	return currentTime.getElapsedTime();
-}
+const sf::Time Character::getCurrentTime() const
+{ return currentTime.getElapsedTime();}
 
 void Character::resetTime() 
-{
-	
-	currentTime.restart();
-}
+{	currentTime.restart();}
 
 
 Character& Character::setTexture(std::string file, int imagesPerRow, int imagesPerCol)

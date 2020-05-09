@@ -29,6 +29,8 @@ class Graph
 
 public:
 	Graph(int v=320);
+	~Graph();
+
 	void addEdge(int src, int dest, int weight = 1);
 
 

@@ -3,7 +3,7 @@
 using namespace sf;
 using namespace std;
 
-Pellets::Pellets(vector <vector<int>> v):arrScore(v)
+Pellets::Pellets(vector <vector<int>> v):arrScore(v),mPelletCount(0)
 {
 	
 	
@@ -42,21 +42,23 @@ Pellets::~Pellets()
 {
 	
 }
-void Pellets::intersectPellets( Pacman* P)
+void Pellets::intersectPellets( Pacman* pacman)
 {
-	int r = P->getRow(); int c = P->getCol();
+	int r = pacman->getRow(); int c = pacman->getCol();
 	if (arrScore[r][c] > 0)
 	{
-		P->incrementScore(arrScore[r][c]);
+
+		pacman->incrementScore(arrScore[r][c]);
 		arrScore[r][c] = -6;
 		if (((r == 5) && (c == 2)) || ((r == 26) && (c == 25)) || ((r == 26) && (c == 2)) || (((r == 5) && (c == 25))))
 		{
-				P->setPowerUp(true);
+				pacman->setPowerUp(true);
 				arrScore[r][c] = -6;
 		}
 		Audio::getInstance()->playChomp();
-		mPelletCount--; cout << mPelletCount << endl;
+		mPelletCount--;
 	}
+	
 }
 	
 
@@ -67,11 +69,13 @@ void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 		{
 			if (arrScore[i][j] == 100)
 			{
+				mShape[i][j].setFillColor(sf::Color::Yellow);
 				mShape[i][j].setTexture(&mPelletTexture);
 
 			}
 			else if (arrScore[i][j] == 1000)
 			{
+				mShape[i][j].setFillColor(sf::Color::Yellow);
 				mShape[i][j].setTexture(&mPowerTexture);
 			}
 			else if (arrScore[i][j] == -5)

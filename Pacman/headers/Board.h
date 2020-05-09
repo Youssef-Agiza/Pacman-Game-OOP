@@ -22,6 +22,7 @@ namespace PacmanCS {
 	public:
 		Board(std::vector < std::vector<int>> , float tileSize,sf::Vector2f posOnWindow);
 		sf::RectangleShape** mShape;
+
 		//setters
 		Board& setRoadTexture(std::string fileName);
 		Board& setWallTexture(std::string fileName);

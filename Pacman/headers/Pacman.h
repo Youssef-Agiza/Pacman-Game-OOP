@@ -12,9 +12,9 @@ private:
     bool mPowerUp; //ate big pellet
     unsigned int mScore;
     int powerUpTime;
-    
+    bool extraLife;
 public:
-    Pacman(int intialRow, int intialColumn, float size, sf::Vector2f posWindow);
+    Pacman(int intialRow, int intialColumn, float size, Board* board);
 
     Pacman& setPowerUpTime(int t);
     int getPowerUpTime()const;

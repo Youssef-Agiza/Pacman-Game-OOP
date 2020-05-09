@@ -28,14 +28,15 @@ class Character {
          Board* mBoard;
          Sprite mSprite;
          sf::Clock currentTime;
+         int speedTimer; //variable to keep track of timing for ghosts
 
          void adjustScale(int imagesPerRow,int imagesPerCol) ; //adjusts sprite scale and IntRect. Called in setTexture
 
     public:
 
 
-        Character(int intialRow, int intialColumn, float size,sf::Vector2f posWindow);
-      virtual  ~Character();
+        Character(int intialRow, int intialColumn, float size,Board* board);
+        virtual  ~Character();
 
         //getters
         bool isAlive()const;
@@ -60,8 +61,10 @@ class Character {
         Character& setBoard(Board* board);
         
        
-        const sf::Time& getCurrentTime()const;
+        const sf::Time getCurrentTime()const;
         void resetTime();
+        Character& setSpeedTimer(int s);
+        int getSpeedTimer()const;
 
        //virtuals   
         virtual Character& setDirection(Direction dir);

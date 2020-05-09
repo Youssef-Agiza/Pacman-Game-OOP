@@ -1,18 +1,27 @@
-#include "GameManager.h"
+#include "../headers/GameManager.h"
 
-GameManager::GameManager() :arr(vector <vector<int>>(31, vector<int>(28))),TileSize(30.0f)
+GameManager::GameManager() :arr(vector <vector<int>>(31, vector<int>(28))), tileSize(30.0f), levels(3)
 {
-	textManager = new Words();
-	Vector2f POSITION(500, 0);
+	//	Vector2f POSITION(500, 0);
 	window.create(VideoMode(1840, 930), "Simple Maze");
+	graph = new Graph();
 	this->loadBoardText();
-	boardManager = new Board(arr, TileSize, POSITION);
-	pacman = new Pacman(1, 1, TileSize, POSITION);
-	ghostManager = new GhostManager(&graph);
-	ghostManager->createGhost(boardManager, &graph, pacman);
-	pelletManager = new Pellets(arr);
+	this->createEdges();
+	this->createEntities(1);
 }
-
+GameManager::~GameManager()
+{
+	if (board != nullptr)
+		delete board;
+	if (pacman != nullptr)
+		delete pacman;
+	if (ghostManager != nullptr)
+		delete ghostManager;
+	if (pellet != nullptr)
+		delete pellet;
+	if (textManager != nullptr)
+		delete textManager;
+}
 void GameManager::loadBoardText()
 {
 	ifstream ins("../boardTexts/BoardText3.txt");
@@ -32,34 +41,51 @@ void GameManager::createEdges()
 			if (arr[i][j] > -1)
 			{
 				if (j + 1 != arr[i].size() && arr[i][j + 1] > -1)
-					graph.addEdge(arr[i][j], arr[i][j + 1]);
+					graph->addEdge(arr[i][j], arr[i][j + 1]);
 				if (i + 1 != arr.size() && arr[i + 1][j] > -1)
-					graph.addEdge(arr[i][j], arr[i + 1][j]);
+					graph->addEdge(arr[i][j], arr[i + 1][j]);
 			}
 		}
-	graph.addEdge(149, 130);//connects portals
+	graph->addEdge(149, 130);//connects portals
 }
 
-void GameManager::loadPacman()
+void GameManager::createEntities(int level)
 {
-	pacman->setBoard(boardManager);
-	pacman->resetPosition();
-	pacman->setTexture("../images/pacman.png", 2, 4);
+	this->loadBoardText();
+	if (board != nullptr)
+		delete board;
+	if (pacman != nullptr)
+		delete pacman;
+	if (ghostManager != nullptr)
+		delete ghostManager;
+	if (pellet != nullptr)
+		delete pellet;
+	if (textManager != nullptr)
+		delete textManager;
+
+	board = new Board(arr, tileSize, Vector2f(500, 0));
+	pacman = new Pacman(1, 1, tileSize, board);
+	ghostManager = new GhostManager(graph);
+	ghostManager->createGhost(board, graph, pacman);
+	pellet = new Pellets(arr);
+	textManager = new Words();
+
 }
+
 
 void GameManager:: sendEmail()
 {
-	emailManager.sendEmail();
+	//emailManager.sendEmail();
 }
 
 void GameManager::startGame()
 {
 	
 	Event x;
-	window.clear(Color::Black);
 	draw(); 
 	textManager->drawTextInHome(window, "Ready ");
 	window.display();
+
 	while (window.isOpen())
 	{
 		
@@ -70,21 +96,20 @@ void GameManager::startGame()
 				window.close();
 			else if (x.key.code == Keyboard::Space)
 			{
-				window.clear();
-				Play();
+				return;
 			}
 
 		}
+
 	}
 }
 
 void GameManager::Play()
 {
-	Clock pactimer, gtimer;
-	pactimer.restart();
-	gtimer.restart();
-	window.setFramerateLimit(20);
+	startGame();
+	
 	Event e;
+	pacman->resetTime();
 	while (window.isOpen())
 	{
 		while (window.pollEvent(e))
@@ -116,41 +141,18 @@ void GameManager::Play()
 			}
 		}
 
-
-
-		
-
-
-		if (gtimer.getElapsedTime().asMilliseconds() >= 400)
-		{
-			ghostManager->moveAll(pacman);
-			gtimer.restart();
-		}
-		if (pactimer.getElapsedTime().asMilliseconds() >= 250)
-		{
-			pactimer.restart();
-			pacman->move();
-		}
-
+		ghostManager->moveAll(pacman);
+		pacman->move();
+		checkCollision();
+		pellet->intersectPellets(pacman);
 
 		window.clear();
-
-		if ((pacman->getScore() >= 10000) && (once))
-		{
-			pacman->addLive(1);//once score is greater than 10000 the life is incremented only once
-			once = false;
-		}
-
-		checkCollision();
-		pelletManager->intersectPellets(pacman);
-
-
 		draw();
-
 		window.display();
+
 		if (pacman->getLives() == 0)
 			this->gameLost();
-		else if (pelletManager->mPelletCount==0)
+		else if (pellet->mPelletCount == 0)
 			this->gameWon();
 	}
 }
@@ -160,7 +162,7 @@ void GameManager::checkCollision()
 	pacman->checkPowerUpTime();
 
 
-	for (auto ghost : manager->getGhostList())
+	for (auto ghost : ghostManager->getGhostList())
 		if (ghost->getSprite().getGlobalBounds().intersects(pacman->getSprite().getGlobalBounds()))
 		{
 			if (ghost->getFreight())
@@ -174,8 +176,8 @@ void GameManager::checkCollision()
 				window.clear();
 				window.display();
 				window.clear();
-				this->boardManager->drawOnWindow(window);
-				pelletManager->drawPellets(window, boardManager->mShape);
+				this->board->drawOnWindow(window);
+				pellet->drawPellets(window, board->mShape);
 
 				pacman->die(window);
 				for (int i = 0; i < 4; i++)
@@ -189,8 +191,8 @@ void GameManager::checkCollision()
 
 void GameManager::draw()
 {
-//	boardManager->drawOnWindow(window);
-	pelletManager->drawPellets(window, boardManager->mShape);
+	board->drawOnWindow(window);
+	pellet->drawPellets(window, board->mShape);
 	pacman->drawOnWindow(window);
 	ghostManager->draw(window);
 	textManager->drawText(window, pacman);

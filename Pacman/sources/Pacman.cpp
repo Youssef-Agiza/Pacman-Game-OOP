@@ -2,10 +2,12 @@
 //random numbers
 #define INTIAL_ROW  23
 #define INTIAL_COL  14
-Pacman::Pacman(int intialRow, int intialColumn, float size, sf::Vector2f posWindow) :
-	Character( intialRow,  intialColumn,  size,  posWindow),mLives(3),mPowerUp(false),mScore(0),powerUpTime(10)
+Pacman::Pacman(int intialRow, int intialColumn, float size, Board* board) :
+	Character( intialRow,  intialColumn,  size,  board),mLives(3),
+	mPowerUp(false),mScore(0),powerUpTime(10),extraLife(false)
 {
-	
+	speedTimer = 250;
+	resetPosition();
 }
 
 Pacman& Pacman::setPowerUpTime(int t)
@@ -21,13 +23,19 @@ int Pacman::getPowerUpTime() const
 void Pacman::checkPowerUpTime()
 {
 	if (mPowerUp && currentTime.getElapsedTime().asSeconds() >= powerUpTime)
-		setPowerUp(false);
+	{	setPowerUp(false);
+	currentTime.restart();
+	}
 }
 
 Pacman& Pacman::incrementScore(unsigned int s)
 {
 	mScore += s;
-	
+	if (mScore >= 10000 && !extraLife)
+	{
+		addLive(1);
+		extraLife = true;
+	}
 	return *this;
 }
 Pacman& Pacman::setPowerUp(bool p)
@@ -118,7 +126,7 @@ void Pacman::notify()
 
 void Pacman::animateMove()
 {
-	{
+	
 		if (mTexture == nullptr)
 			return;
 		float left = (float) mSprite.getTextureRect().left, top = (float)mSprite.getTextureRect().top;
@@ -136,7 +144,7 @@ void Pacman::animateMove()
 		++i %= 2;
 		mSprite.setTextureRect(sf::IntRect(16 * i, (int) top * 15, 16, 15));
 
-	}
+	
 }
 void Pacman::animateDie()
 {
@@ -152,7 +160,8 @@ void Pacman::animateDie()
 
 void Pacman::move()
 {
-
+	if (currentTime.getElapsedTime().asMilliseconds() < speedTimer)
+		return;
 	if (checkDestination(mDirection) == 0)
 		return;
 
@@ -198,5 +207,5 @@ void Pacman::move()
 	default: return;
 	}
 	animateMove();
-
+	currentTime.restart();
 }
