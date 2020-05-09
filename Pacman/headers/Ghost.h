@@ -12,6 +12,12 @@ private:
     bool mFreight; 
     std::string mResource; //keeps resource for the texture
     Graph* mGraph;
+    int speedTimer; //variable to keep track of timing for ghosts
+    int homeTimer;
+    bool inHome;
+   
+
+    
 public:
     Ghost(int intialRow, int intialColumn, float size, sf::Vector2f position);
     ~Ghost();
@@ -37,24 +43,28 @@ public:
     virtual void move()override;
     virtual Ghost& setDirection(Direction d)override;
 
-    
+    /*AI Functions*/
     void clyde(Pacman*);
-
-    /* follower */
-    void blinky(Pacman*);
-
-    
+    void blinky(Pacman*);    
     void pinky(Pacman*);
-
-    /* follower */
     void inky(Pacman*);
-
     void (Ghost::*ai)(Pacman*);
-    void trace(Pacman*);
+    void callAI(Pacman*);
     
     
     Ghost& setGraph(Graph* graph);
-    Direction Path2Movement(std::list<int>* path);
+    Direction Path2Movement(std::list<int>* path); //utility function to convert graph shortest path to movements
     bool reverse(Direction d)const; //true if d is reverse direction of mDirection 
+
+
+    //time functions
+    int getHomeTimer()const;
+    int getSpeedTimer()const;
+    bool isInHome()const;
+    Ghost& setHomeTimer(int htime);
+    Ghost& setSpeedTimer(int s);
+    Ghost& setInHome(bool h);
+
+
 };
 

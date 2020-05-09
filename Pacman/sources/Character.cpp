@@ -29,8 +29,8 @@ const sf::Sprite& Character::getSprite()const { return mSprite; }
 
 //setters
 Character& Character::setSize(float s){mSize = s;	return *this;}
-Character& Character::setPosition(float x, float y) { return this->setPosition(sf::Vector2f(x, y)); }
-Character& Character::setPosition(sf::Vector2f position) { mPositionOnWindow = position; return *this; }
+Character& Character::setPositionOnWindow(float x, float y) { return this->setPositionOnWindow(sf::Vector2f(x, y)); }
+Character& Character::setPositionOnWindow(sf::Vector2f position) { mPositionOnWindow = position; return *this; }
 Character& Character::setAlive(bool status) {mAlive = status; return *this;}
 Character& Character::setRow(unsigned int row) {	mCurrentRow = row; return *this;}
 Character& Character::setCol(unsigned int col) {	mCurrentColumn = col;	return *this;}
@@ -41,6 +41,17 @@ Character& Character::setDirection(Direction dir)
 }
 
 Character& Character::setBoard(Board* board){ mBoard = board;	return *this;}
+
+const sf::Time& Character::getCurrentTime() const
+{
+	return currentTime.getElapsedTime();
+}
+
+void Character::resetTime() 
+{
+	
+	currentTime.restart();
+}
 
 
 Character& Character::setTexture(std::string file, int imagesPerRow, int imagesPerCol)

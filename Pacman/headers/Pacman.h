@@ -11,10 +11,14 @@ private:
     unsigned int mLives;
     bool mPowerUp; //ate big pellet
     unsigned int mScore;
-   
+    int powerUpTime;
+    
 public:
     Pacman(int intialRow, int intialColumn, float size, sf::Vector2f posWindow);
 
+    Pacman& setPowerUpTime(int t);
+    int getPowerUpTime()const;
+    void checkPowerUpTime();
 
     Pacman& incrementScore(unsigned int l);
     unsigned int getScore()const;
@@ -24,6 +28,8 @@ public:
     unsigned int getLives()const;
     void addLive( int l);
     void animateDie();
+
+
 
     //inherited from character
     virtual void resetPosition()override;
