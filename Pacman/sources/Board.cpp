@@ -1,5 +1,5 @@
 #include "../headers/Board.h"
-#include "Pacman.h"
+#include "../headers/Pacman.h"
 //default values
 //const int ROWS = 10;
 //const int COLS = 10;

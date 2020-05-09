@@ -202,7 +202,6 @@ int main()
 {
 GameManager Game;
 Game.loadBoardText();
-Game.loadInputFile();
 Game.createEdges();
 Game.loadPacman();
 Game.Play();

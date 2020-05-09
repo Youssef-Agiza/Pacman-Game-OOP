@@ -49,9 +49,8 @@ void Pacman::resetPosition()
 void Pacman::die(sf::RenderWindow& w)
 {
 	Audio::getInstance()->playDeath();
-	//mAlive = false;
-	if (--mLives <=0)	
-		mSprite.setColor(sf::Color::Black);
+	mAlive = false;
+	
 	setTexture("../images/Death.png", 12, 1);
 
 	sf::Clock timer;
@@ -68,6 +67,8 @@ void Pacman::die(sf::RenderWindow& w)
 
 		}
 	}
+	if (--mLives <= 0)
+		mSprite.setColor(sf::Color::Black);
 	resetPosition();
 }
 
