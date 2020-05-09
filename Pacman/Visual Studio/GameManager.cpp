@@ -123,12 +123,17 @@ void GameManager::Play()
 
 void GameManager::checkCollision()
 {
+	pacman->checkPowerUpTime();
+
+
 	for (auto ghost : manager->getGhostList())
 		if (ghost->getSprite().getGlobalBounds().intersects(pacman->getSprite().getGlobalBounds()))
 		{
 			if (ghost->getFreight())
 			{
 				ghost->die(window);
+				Audio::getInstance()->playEatGhost();
+				pacman->incrementScore(500);
 			}
 			else
 			{
