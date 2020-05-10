@@ -7,6 +7,7 @@
 #include "../headers/Pellets.h"
 #include "../headers/Graph.h"
 #include "../headers/Words.h"
+#include "PlayerList.h"
 //#include"../headers/Email.h"
 using namespace std;
 using namespace sf;
@@ -25,6 +26,7 @@ private:
 	Pellets* pellet;
 	GhostManager* ghostManager;
 	Words* textManager ;
+	PlayerList* playerList;
 	int levels;
 	//Email emailManager;
 

@@ -157,9 +157,6 @@
     <ClInclude Include="..\headers\Ghost.h" />
     <ClInclude Include="..\headers\GhostManager.h" />
     <ClInclude Include="..\headers\Graph.h" />
-    <ClInclude Include="..\headers\List.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\headers\MinHeap.h" />
     <ClInclude Include="..\headers\Pacman.h" />
     <ClInclude Include="..\headers\Pellets.h" />
@@ -176,12 +173,6 @@
     <ClCompile Include="..\sources\Ghost.cpp" />
     <ClCompile Include="..\sources\GhostManager.cpp" />
     <ClCompile Include="..\sources\Graph.cpp" />
-    <ClCompile Include="..\sources\List.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\sources\ListAppl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\sources\MinHeap.cpp" />
     <ClCompile Include="..\sources\Pacman.cpp" />
     <ClCompile Include="..\sources\PathfindTest.cpp" />
