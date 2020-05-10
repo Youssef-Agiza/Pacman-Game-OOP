@@ -8,11 +8,9 @@ struct PlayerData
 	std::string userName;
 	std::string email;
 	int highScore;
-	int matchesWon;
-	int matchesLost;
 
-	PlayerData(std::string n,std::string e,int score,int wins,int loses ):
-		userName(n),email(e),matchesWon(wins),matchesLost(loses),highScore(score)
+	PlayerData(std::string n,std::string e,int score ):
+		userName(n),email(e),highScore(score)
 	{}
 
 };
@@ -34,6 +32,8 @@ public:
  std::list<PlayerData>& getList();
  PlayerData& getHighestScore()const;
  void addPlayer(PlayerData);
+ /*bool search(PlayerData player)const;
+ void updateHighScore(PlayerData);*/
 
 
 };

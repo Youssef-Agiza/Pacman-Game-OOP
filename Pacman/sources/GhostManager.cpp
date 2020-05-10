@@ -1,4 +1,3 @@
-#pragma once
 #include "../headers/GhostManager.h"
 
 #define SPEED_LATENCE 250
@@ -50,14 +49,14 @@ void GhostManager::createGhost(Board* board,Graph* graph,Pacman* pacman, int spe
 	Blinky->setResource("../images/blinky.png");
 	Blinky->setTexture("../images/blinky.png",8,1);
 	Blinky->setGraph(graph);
-	Blinky->setIntialRow(14).setIntialCol(15);
+	Blinky->setIntialRow(14).setIntialCol(14);
 	(Blinky->ai)=&Ghost::blinky;
 	pacman->addObserver(Blinky);
 	Blinky->setSpeedTimer( speedTimer);
-	Blinky->setHomeTimer( 0);
+	Blinky->setHomeTimer(0);
 
 	//Pinky
-	Ghost* Pinky = new Ghost(14, 14, board->getTileSize(), board);
+	Ghost* Pinky = new Ghost(14, 13, board->getTileSize(), board);
 	Pinky->resetPosition();
 	Pinky->setResource("../images/pinky.png");
 	Pinky->setTexture("../images/pinky.png",8,1);
@@ -81,7 +80,7 @@ void GhostManager::createGhost(Board* board,Graph* graph,Pacman* pacman, int spe
 	
 
 	//Clyde
-	Ghost* Clyde = new Ghost(14, 13, board->getTileSize(), board);
+	Ghost* Clyde = new Ghost(14, 14, board->getTileSize(), board);
 	Clyde->resetPosition();
 	Clyde->setResource("../images/clyde.png");
 	Clyde->setTexture("../images/clyde.png",8,1);
