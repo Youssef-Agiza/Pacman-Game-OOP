@@ -1,0 +1,58 @@
+
+Manifest file:
+    - Describes the names and versions of shared side-by-side assemblies that the application should 
+      bind to at run time and may also contain metadata for private side-by-side assemblies used by the application.
+      It helps to distribute EASendMail ActiveX/COM object without regsvr32.exe.
+
+Installation folder\manifest
+    - EASendMailObj.manifest describes EASendMailObj com class interface.
+    - EASendMailObj.XP.manifest describes EASendMailObj com class interface with Microsoft.Windows.Common-Controls 6.0.
+
+    - EASendMailObj.manifest.res is a resource file which contains EASendMailObj.manifest
+    - EASendMailObj.XP.manifest.res is a resource file which contains EASendMailObj.XP.manifest
+
+
+VC++ 6.0, VS2003 and VS2005
+  - VC++ 6.0, VS2003 and VS2005 don't support embedded manifest.
+    Compile your  application to exe file and use external manifest (yourappname.exe.manifest) directly.
+
+  - Copy EASendMailObj.manifest or EASendMailObj.XP.manifest to the same folder of .exe,
+  
+  - Rename .manifest file to yourapp.exe.manifest. For example, if your .exe is project1.exe,
+    rename .manifest file to project1.exe.manifest
+  
+  - Copy Lib\native\x86\EASendMailObj.dll (32bit) or  Lib\native\x64\EASendMailObj.dll (64bit) to 
+    the same folder of .exe, then it is ok.
+
+    Files in your application folder: yourapp.exe, yourapp.exe.manifest, EASendMailObj.dll
+
+VS 2008 and later versions
+  - VS 2008 and later version support embedded manifest.
+  
+  - Go to Project -> Your project Properties -> Configuration Properties -> 
+    Manifest Tool -> Input and Output -> Aditional Manifest Files -> input: 
+    "C:\Program Files (x86)\EASendMail\Include\manifest\EASendMailObj.manifest"
+
+  - Compile your project, Visual Studio generates an embedded manifest file automatically, 
+    external manifest file is not required. 
+
+- Copy Lib\native\x86\EASendMailObj.dll (32bit) or  Lib\native\x64\EASendMailObj.dll (64bit) to 
+    the same folder of .exe, then it is ok.
+
+  Files in your application folder: yourapp.exe, EASendMailObj.dll
+
+
+Important Notice:
+
+You must use __uuidof instead of COM ProgID in your source code.
+
+// Correct
+IMailPtr oSmtp = NULL;
+oSmtp.CreateInstance(__uuidof(EASendMailObjLib::Mail));
+
+// Wrong
+IMailPtr oSmtp = NULL;
+oSmtp.CreateInstance("EASendMailObj.Mail");
+
+Notice: EASendMail .NET Assembly doesn't require manifest file.  
+  

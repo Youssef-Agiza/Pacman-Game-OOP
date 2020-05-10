@@ -1,0 +1,33 @@
+
+Manifest file:
+    - Describes the names and versions of shared side-by-side assemblies that the application should 
+      bind to at run time and may also contain metadata for private side-by-side assemblies used by the application.
+      It helps to distribute EASendMail ActiveX/COM object without regsvr32.exe.
+
+Installation folder\manifest
+    - EASendMailObj.manifest describes EASendMailObj com class interface.
+    - EASendMailObj.XP.manifest describes EASendMailObj com class interface with Microsoft.Windows.Common-Controls 6.0.
+
+    - EASendMailObj.manifest.res is a resource file which contains EASendMailObj.manifest
+    - EASendMailObj.XP.manifest.res is a resource file which contains EASendMailObj.XP.manifest
+
+
+- Delphi 7 
+  project.res contains the EASendMailObj.manifest.
+  project1.dpr contains "{$R *.res}", manifest file will be compiled to project1.exe automatically.
+  Copy Lib\native\x86\EASendMailObj.dll to the same folder of .exe, then it works fine.
+
+  Do not include XPMan unit in your project, if you need XPMan, delete current project1.res, 
+  and copy Include\manifest\EASendMailObj.XP.manifest.res to your project folder,  rename it to project1.res.
+
+- Delphi XE or later versions
+  Project1.manifest is a copy of EASendMailObj.manifest. 
+  Delphi XE or later versions supports embedded manifest, 
+  Go to "Project -> Options -> Application" and set "Runtime Themes" to "Use > custom manifest", 
+  then pick EASendMailObj.manifest or EASendMailObj.XP.manifest.
+
+  Copy Lib\native\x86\EASendMailObj.dll (32bit) or  Lib\native\x64\EASendMailObj.dll (64bit) to 
+  the same folder of .exe, then it works fine.
+
+  
+Note: EASendMail .NET Assembly doesn't require manifest file.

@@ -1,0 +1,25 @@
+
+Manifest file:
+    - Describes the names and versions of shared side-by-side assemblies that the application should 
+      bind to at run time and may also contain metadata for private side-by-side assemblies used by the application.
+      It helps to distribute EASendMail ActiveX/COM object without regsvr32.exe.
+
+Installation folder\manifest
+    - EASendMailObj.manifest describes EASendMailObj com class interface.
+    - EASendMailObj.XP.manifest describes EASendMailObj com class interface with Microsoft.Windows.Common-Controls 6.0.
+
+    - EASendMailObj.manifest.res is a resource file which contains EASendMailObj.manifest
+    - EASendMailObj.XP.manifest.res is a resource file which contains EASendMailObj.XP.manifest
+
+
+- VB6.0
+  - Copy EASendMailObj.manifest or EASendMailObj.XP.manifest to the same folder of .exe,
+  - Rename .manifest file to yourapp.exe.manifest. For example, if your .exe is project1.exe,
+    rename .manifest file to project1.exe.manifest
+  - Copy Lib\native\x86\EASendMailObj.dll to the same folder of .exe, then it works fine.
+
+    Files in your application folder: yourapp.exe, yourapp.exe.manifest, EASendMailObj.dll
+
+
+Note: EASendMail .NET Assembly doesn't require manifest file.  
+  

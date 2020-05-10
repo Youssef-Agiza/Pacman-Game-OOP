@@ -69,7 +69,7 @@
     <ClInclude Include="..\headers\GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\PlayerList.h">
+    <ClInclude Include="..\headers\Email.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -98,16 +98,13 @@
     <ClCompile Include="..\sources\MinHeap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\PathfindTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\sources\Pellets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\PlayerList.cpp">
+    <ClCompile Include="..\sources\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

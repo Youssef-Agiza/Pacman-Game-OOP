@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebProject1.Models.DbMailTask>
+
+<table class="table table-bordered" id="mailTaskList">
+    <tr>
+        <th>
+            <span class="fa fa-tasks" style="color: #4F8A10"></span>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Failed)
+
+        <th>
+            @Html.DisplayNameFor(model => model.Succeeded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <span class="fa fa-refresh fa-spin" style="color: #0099dd"></span>
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.TaskId)
+
+                @Html.ActionLink(item.TaskName, "Index", "DbRecipientResults", new { id = item.TaskId }, null)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Failed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Succeeded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationTime)
+            </td>
+            <td>
+                @if (item.Status == WebProject1.Models.DbMailTaskStatus.Completed ||
+               item.Status == WebProject1.Models.DbMailTaskStatus.Terminated)
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TaskId })
+                }
+                else
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TaskId }, new { style = "display:none" })
+                    <span>&nbsp;</span>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
