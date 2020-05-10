@@ -18,9 +18,10 @@ int main()
 		std::cout << p.email<<std::endl;
 	}
 
-	PlayerData p("yo", "aiwa", 12, 12, 12);
+	PlayerData p("yo", "aiwa", 12);
 	pl.addPlayer(p);
 	pl.loadListToFile();
+	std::cout<<"Highest:"<< pl.getHighestScore().highScore;
 GameManager Game;
 
 //Game.startGame();

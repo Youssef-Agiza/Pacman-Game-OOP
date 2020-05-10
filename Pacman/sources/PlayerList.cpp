@@ -25,18 +25,16 @@ void PlayerList::LoadFiletoList()
 	string userName = "";
 	string email = "";
 	string score = "";
-	string mWon = "";
-	string mlost = "";
+
 	while (getline(ins,line))
 	{
 		stringstream iss(line);
 		getline(iss, userName, ',');
 		getline(iss, email, ',');
 		getline(iss, score, ',');
-		getline(iss, mWon, ',');
-		getline(iss, mlost, ',');
+		
 
-		playerList.push_back(PlayerData(userName,email,stoi(score.c_str()),stoi(mWon.c_str()),stoi(mlost.c_str())));
+		playerList.push_back(PlayerData(userName,email,stoi(score.c_str())));
 	}
 	ins.close();
 }
@@ -51,8 +49,7 @@ void PlayerList::loadListToFile()
 	for (auto player : playerList)
 	{
 		outs << player.userName << "," << player.email << "," << 
-			player.highScore<<","<< player.matchesWon<<"," << 
-			player.matchesLost<<std::endl;
+			player.highScore<<","<<std::endl;
 	}
 }
 

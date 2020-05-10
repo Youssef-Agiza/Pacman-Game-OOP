@@ -4,7 +4,7 @@
 #define INTIAL_COL  14
 Pacman::Pacman(int intialRow, int intialColumn, float size, Board* board) :
 	Character( intialRow,  intialColumn,  size,  board),mLives(3),
-	mPowerUp(false),mScore(0),powerUpTime(10),extraLife(false)
+	mPowerUp(false),mScore(0),powerUpTime(7),extraLife(false)
 {
 	speedTimer = 250;
 	resetPosition();
