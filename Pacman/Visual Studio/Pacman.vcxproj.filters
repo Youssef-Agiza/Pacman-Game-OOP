@@ -69,9 +69,6 @@
     <ClInclude Include="..\headers\GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\PlayerList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\Character.cpp">
@@ -105,9 +102,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\GameManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sources\PlayerList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

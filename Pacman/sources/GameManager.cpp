@@ -1,6 +1,6 @@
 #include "../headers/GameManager.h"
 
-GameManager::GameManager() :arr(vector <vector<int>>(31, vector<int>(28))), tileSize(30.0f), levels(3)
+GameManager::GameManager() :arr(vector <vector<int>>(31, vector<int>(28))), tileSize(30.0f)
 {
 	//	Vector2f POSITION(500, 0);
 	window.create(VideoMode(1840, 930), "Simple Maze");
@@ -8,6 +8,7 @@ GameManager::GameManager() :arr(vector <vector<int>>(31, vector<int>(28))), tile
 	this->loadBoardText();
 	this->createEdges();
 	this->createEntities(1);
+	this->Play();
 }
 GameManager::~GameManager()
 {
@@ -21,16 +22,13 @@ GameManager::~GameManager()
 		delete pellet;
 	if (textManager != nullptr)
 		delete textManager;
-	if (playerList != nullptr)
-		delete playerList;
 
 	board = nullptr;
 	pacman = nullptr;
 	ghostManager = nullptr;
 	textManager = nullptr;
 	pellet = nullptr;
-	playerList = nullptr;
-
+	
 }
 void GameManager::loadBoardText()
 {
@@ -72,8 +70,6 @@ void GameManager::createEntities(int level)
 		delete pellet;
 	if (textManager != nullptr)
 		delete textManager;
-	if (playerList != nullptr)
-		delete playerList;
 
 	board = new Board(arr, tileSize, Vector2f(500, 0));
 	pacman = new Pacman(1, 1, tileSize, board);
@@ -81,8 +77,6 @@ void GameManager::createEntities(int level)
 	ghostManager->createGhost(board, graph, pacman);
 	pellet = new Pellets(arr);
 	textManager = new Words();
-	playerList = new PlayerList("../boardTexts/playLog.txt");
-
 }
 
 
@@ -209,7 +203,7 @@ void GameManager::draw()
 	pellet->drawPellets(window, board->mShape);
 	pacman->drawOnWindow(window);
 	ghostManager->draw(window);
-	textManager->drawText(window, pacman, playerList->getHighestScore().highScore);
+	textManager->drawText(window, pacman);
 }
 
 void GameManager:: gameWon()
