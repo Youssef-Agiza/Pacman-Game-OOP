@@ -21,6 +21,13 @@ GameManager::~GameManager()
 		delete pellet;
 	if (textManager != nullptr)
 		delete textManager;
+
+	board = nullptr;
+	pacman = nullptr;
+	ghostManager = nullptr;
+	textManager = nullptr;
+	pellet = nullptr;
+
 }
 void GameManager::loadBoardText()
 {

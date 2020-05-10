@@ -11,6 +11,7 @@
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
+enum GameModes{Normal,infinity ,Turbo};
 class GameManager
 
 {

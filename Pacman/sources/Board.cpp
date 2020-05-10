@@ -51,7 +51,7 @@ namespace PacmanCS {
 	{
 		if (r >= mBoard.size() || c >= mBoard[r].size())
 			return -1;
-		return (mBoard[r][c] < 0) ? 0 : 1;
+		return (mBoard[r][c] < 0) ? 0 : 1;	
 	}
 
 	
