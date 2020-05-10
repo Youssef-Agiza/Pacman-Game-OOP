@@ -175,7 +175,7 @@
     <ClCompile Include="..\sources\Graph.cpp" />
     <ClCompile Include="..\sources\MinHeap.cpp" />
     <ClCompile Include="..\sources\Pacman.cpp" />
-    <ClCompile Include="..\sources\PathfindTest.cpp" />
+    <ClCompile Include="..\sources\main.cpp" />
     <ClCompile Include="..\sources\Pellets.cpp" />
   </ItemGroup>
   <ItemGroup>

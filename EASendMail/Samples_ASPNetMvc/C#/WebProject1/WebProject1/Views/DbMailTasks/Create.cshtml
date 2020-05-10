@@ -1,0 +1,223 @@
+﻿@model WebProject1.Models.DbMailTask
+
+@{
+    ViewBag.Title = "Create a new email task - Send email from ASP.NET MVC with Database integration";
+}
+
+<h2>Create Email Task</h2>
+<div style="margin: 20px auto 20px auto;">
+    @Html.ActionLink("All Samples", "Index", "Home") &gt; @Html.ActionLink("Recipient List", "Index", "DbRecipients") &gt; Create Email Task
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "thisForm", id = "thisForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.HiddenFor(model => model.AuthType)
+        @Html.Hidden("RecipientCount", ((object)ViewBag.RecipientCount).ToString())
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TaskName,
+                    new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control",
+                            style = "width:80%; max-width:80%;",
+                            placeholder = "My Task (Optional)"
+                        }
+                    })
+                @Html.ValidationMessageFor(model => model.TaskName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sender,
+                    new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control",
+                            style = "width:80%; max-width:80%;",
+                            placeholder = "sender@example.com"
+                        }
+                    })
+                @Html.ValidationMessageFor(model => model.Sender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("To", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("Current email will be sent to all recipients in Recipients List",
+               new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control",
+                       style = "width:80%; max-width:80%;",
+                       @readonly = "readonly",
+                       placeholder = "Current email will be sent to all recipients in Recipients List",
+                       id = "RecipientTo"
+                   }
+               })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", style = "width:80%; max-width:80%;" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextBody, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.TextBody, 5, 20, new { @class = "form-control", style = "width:80%; max-width:80%;" })
+                @Html.ValidationMessageFor(model => model.TextBody, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Server, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Server,
+               new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control",
+                       placeholder = "Input your server address"
+                   }
+               })
+                @Html.ValidationMessageFor(model => model.Server, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Port, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Port", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Port, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.IsSslConnection)
+                        @Html.DisplayNameFor(model => model.IsSslConnection)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Protocol</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Protocol", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.IsAuthenticationRequired)
+                        @Html.DisplayNameFor(model => model.IsAuthenticationRequired)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="user_password_panel">
+            <div class="form-group">
+                @Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.User, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.User, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "Password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Create Task and Send Email" id="ButtonCreateTask" class="btn btn-primary" />
+                @Html.ActionLink("Back", "Index", "DbRecipients", null, new { @class = "btn btn-default" })
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@Html.Partial("~/Views/Shared/HtmlModalBox.cshtml")
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/sample")
+
+    <script>
+        $(function () {
+            $('#RecipientTo').val(
+                'Current email will be sent to all recipients in Recipients List. Total'
+                + $('#RecipientCount').val()
+                + ' recipient(s)');
+            initCreateTask();
+        });
+
+        function initCreateTask() {
+
+            serverAutoConfig().init();
+            var statusModal = initModalBox();
+
+            var _form = $('#thisForm');
+            var _syncSendButton = $('#ButtonCreateTask');
+
+
+            $(_syncSendButton).unbind();
+            $(_syncSendButton).on('click', function (event) {
+                event.preventDefault();
+                if ($('#RecipientCount').val() * 1 == 0) {
+                    statusModal.alert("Recipient list contains 0 address, Please add recipient in Recipient List.");
+                    return;
+                }
+
+                $(_form).validate();
+                if (!$(_form).valid()) {
+                    scrollToError();
+                    return;
+                }
+
+                $(_form).attr('action', '@Url.Action("Create")');
+                $(_form).submit();
+            })
+        }
+    </script>
+
+}

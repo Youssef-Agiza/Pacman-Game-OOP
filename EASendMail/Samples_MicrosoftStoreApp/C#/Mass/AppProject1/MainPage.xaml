@@ -1,0 +1,237 @@
+﻿<Page
+    x:Class="AppProject1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppProject1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged" Loaded="RootPage_Loaded"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="2">
+        <ScrollViewer  VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" x:Name="PageViewer">
+            <Grid MinHeight="480">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="auto">
+                    </RowDefinition>
+                    <RowDefinition Height="*" >
+                    </RowDefinition>
+                    <RowDefinition Height="auto">
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition>
+                    </ColumnDefinition>
+                    <ColumnDefinition MaxWidth="500">
+                    </ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Padding="10"  Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Top">
+                    <TextBlock Text="EASendMail UWP Sample Project for CSharp" FontSize="20" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="MailHeader" Grid.Column="0"  Grid.Row="1" Padding="10" VerticalAlignment="Top">
+
+                    <TextBox x:Name="TextFrom" Header="From:" TextChanged="TextFrom_TextChanged" PlaceholderText="Please input sender email address."/>
+                    <TextBox x:Name="TextTo" Header="To:" PlaceholderText="Please separate multiple addresses by line-break." Height="100" AcceptsReturn="True" />
+
+                    <TextBox x:Name="TextSubject" Header="Subject:" Text="Test email from Universal Windows Platform with multiple threads"></TextBox>
+                    <ToggleSwitch Margin="10,10,0,0" x:Name="CheckHtml" Header="HTML Format"
+                              OffContent="Off" OnContent="On" IsOn="False" Toggled="CheckHtml_Toggled" ></ToggleSwitch>
+                </StackPanel>
+                <StackPanel x:Name="ServerConfig" Grid.Column="1" Grid.Row="1" Padding="10" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="TextServer" Header="Server:" PlaceholderText="Input server address."  Grid.Column="0" Grid.Row="0" TextChanged="TextServer_TextChanged" KeyUp="TextServer_KeyUp"/>
+                        <ComboBox x:Name="ListPorts" SelectedIndex="0" Margin="0,0,0,0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" >
+                            <ComboBoxItem Content="25"></ComboBoxItem>
+                            <ComboBoxItem Content="587"></ComboBoxItem>
+                            <ComboBoxItem Content="465"></ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                    <StackPanel Orientation="Vertical">
+                        <ToggleSwitch x:Name="CheckSsl" Header="SSL/TLS"
+                              OffContent="Off" OnContent="On" />
+                        <ToggleSwitch x:Name="CheckAuthentication" Header="Authentication"
+                              OffContent="Off" OnContent="On" IsOn="False" />
+                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="User:" Grid.Column="0" Grid.Row="0" Margin="0,10,0,0" />
+                        <TextBox x:Name="TextUser"  Grid.Column="1" Grid.Row="0" IsEnabled="{x:Bind CheckAuthentication.IsOn, Mode=OneWay}" Margin="0,5,0,0" KeyUp="TextUser_KeyUp" />
+                        <TextBlock Text="Password:" Grid.Column="0" Grid.Row="1" Margin="0,10,5,0" />
+                        <PasswordBox x:Name="TextPassword" Grid.Column="1" Grid.Row="1" IsEnabled="{x:Bind CheckAuthentication.IsOn, Mode=OneWay}" Margin="0,5,0,0"></PasswordBox>
+                        <TextBlock Text="Protocol:" Grid.Column="0" Grid.Row="2" Margin="0,15,0,0" />
+                        <ComboBox x:Name="ListProtocols" SelectionChanged="ListProtocols_SelectionChanged"  SelectedIndex="0" Margin="0,10,0,0" Grid.Column="1" Grid.Row="2">
+                            <ComboBoxItem Content="SMTP Protocol (Recommended)"></ComboBoxItem>
+                            <ComboBoxItem Content="EWS (Exchange 2007/2010/2013/2016)"></ComboBoxItem>
+                            <ComboBoxItem Content="WebDAV (Exchange 2000/2003)"></ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel x:Name="Editor" VerticalAlignment="Stretch"  Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="2"  >
+                    <CommandBar x:Name="EditorMenu" Background="AliceBlue">
+                        <CommandBar.PrimaryCommands>
+                            <AppBarButton Icon="Font" Label="Font Family" IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False" Click="StoreSelection"  >
+                                <AppBarButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Arial"  FontFamily="Arial" Click="FontMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Calibri" FontFamily="Calibri"  Click="FontMenuFlyoutItem_Click" IsTabStop="False" />
+                                        <MenuFlyoutItem Text="Comic Sans MS" FontFamily="Comic Sans MS"  Click="FontMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Courier New" FontFamily="Courier New"  Click="FontMenuFlyoutItem_Click"  IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Times New Roman" FontFamily="Times New Roman"  Click="FontMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Tahoma" FontFamily="Tahoma"  Click="FontMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Verdana" FontFamily="Verdana" Click="FontMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Segoe UI" FontFamily="Segoe UI" Click="FontMenuFlyoutItem_Click" IsTabStop="False"/>
+                                    </MenuFlyout>
+                                </AppBarButton.Flyout>
+                            </AppBarButton>
+                            <AppBarButton Icon="FontSize" Label="Size" IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False" Click="StoreSelection">
+                                <AppBarButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="1" FontSize="11" Click="FontSizeMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="2" FontSize="12" Click="FontSizeMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="3" FontSize="13" Click="FontSizeMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="4" FontSize="14" Click="FontSizeMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="5" FontSize="15" Click="FontSizeMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="6" FontSize="16" Click="FontSizeMenuFlyoutItem_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="7" FontSize="17" Click="FontSizeMenuFlyoutItem_Click" IsTabStop="False"/>
+                                    </MenuFlyout>
+                                </AppBarButton.Flyout>
+                            </AppBarButton>
+                            <AppBarButton Icon="Bold" Label="Style" IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False" Click="StoreSelection">
+                                <AppBarButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Bold" FontWeight="Bold" Click="FontStyle_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Italic" FontStyle="Italic" Click="FontStyle_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem  Text="Underline" Click="FontStyle_Click"  IsTabStop="False"/>
+                                    </MenuFlyout>
+                                </AppBarButton.Flyout>
+                            </AppBarButton>
+                            <AppBarButton Icon="FontColor" Label="Color" x:Name="FontColor" IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False" Click="StoreSelection">
+                                <AppBarButton.Flyout>
+                                    <MenuFlyout Opening="ColorsMenuFlyout_Opening"  >
+                                    </MenuFlyout>
+                                </AppBarButton.Flyout>
+                            </AppBarButton>
+                            <AppBarSeparator/>
+
+                            <AppBarButton Icon="AlignCenter" Label="Align" IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False" Click="StoreSelection">
+                                <AppBarButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Left" Click="Align_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Center"  Click="Align_Click" IsTabStop="False"/>
+                                        <MenuFlyoutItem Text="Right"  Click="Align_Click"  IsTabStop="False"/>
+                                    </MenuFlyout>
+                                </AppBarButton.Flyout>
+                            </AppBarButton>
+                            <AppBarButton Icon="List" Label="List" Click="ChangeList_Click" IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False"  />
+                            <AppBarButton Icon="BrowsePhotos" Label="Insert Image"  Click="Insert_Image" IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False"/>
+                            <AppBarButton Icon="Link" Label="Link"  IsEnabled="{x:Bind CheckHtml.IsOn, Mode=OneWay}" IsTabStop="False" Click="StoreSelection">
+                                <AppBarButton.Flyout>
+                                    <Flyout x:Name="FlyoutLink">
+                                        <StackPanel Padding="10,10,10,10" MinWidth="320" >
+                                            <TextBox x:Name="TextLink" Text="http://"></TextBox>
+                                            <Button Content="Create Hyperlink" Margin="0,10,0,0" Click="InsertLink_Click" ></Button>
+                                        </StackPanel>
+                                    </Flyout>
+                                </AppBarButton.Flyout>
+                            </AppBarButton>
+                        </CommandBar.PrimaryCommands>
+                        <CommandBar.SecondaryCommands>
+                        </CommandBar.SecondaryCommands>
+                    </CommandBar>
+                    <TextBox x:Name="TextEditor" AcceptsReturn="True" TextWrapping="Wrap"  />
+                    <WebView x:Name="HtmlEditor" Visibility="Collapsed" NavigationCompleted="HtmlEditor_NavigationCompleted" />
+                </StackPanel>
+
+                <Grid  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock  TextWrapping="Wrap" Text="Work Threads:"  Grid.Column="0" Grid.Row="0" Padding="8"/>
+                    <TextBlock  TextWrapping="Wrap" Text="{Binding ElementName=WorkerThreads,Path=Value}" Grid.Column="1" Grid.Row="0" Padding="8"/>
+                    <Slider x:Name="WorkerThreads"  Minimum="1" Maximum="128" Value="5" Grid.Column="2" Grid.Row="0"  />
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+        <Grid x:Name="StatusViewer" Visibility="Collapsed"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="0" Grid.Row="0"  VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" >
+                <ListView x:Name="ListRecipients" ItemsSource="{Binding RecipientData}" Background="White" 
+                           BorderThickness="1,0,1,0" BorderBrush="Gray"  SelectionMode="None" IsItemClickEnabled="False"	 >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ListViewItem FontSize="12" Background="{Binding Color}" BorderBrush="Gray" BorderThickness="0,0,0,1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock  Grid.Column="0" Grid.Row="0" Text="{Binding Index}"   />
+                                    <TextBlock  Grid.Column="1" Grid.Row="0" Text="{Binding Address}" Margin="0,0,10,0" />
+                                    <TextBlock  Grid.Column="2" Grid.Row="0" Text="{Binding Status}"   />
+                                </Grid>
+                            </ListViewItem>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+            <StackPanel Grid.Column="0" Grid.Row="1" Padding="5,0,0,0">
+                <TextBlock x:Name="TextStatus"  Text="Ready"   />
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Attach" Label="Attachment" x:Name="ButtonAttach">
+                <AppBarButton.Flyout>
+                    <MenuFlyout Opening="AttachMenuFlyout_Opening">
+                        <MenuFlyoutItem  Text="Attach File" Click="AttachFile_Click"/>
+                        <MenuFlyoutItem Text="Remove All" Click="RemoveAttach_Click" />
+                        <MenuFlyoutSeparator />
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton Icon="Send" Label="Send" x:Name="ButtonSend" Click="ButtonSend_Click"></AppBarButton>
+            <AppBarButton Icon="Cancel" Label="Cancel" IsEnabled="False" Visibility="Collapsed" x:Name="ButtonCancel" Click="ButtonCancel_Click"></AppBarButton>
+            <AppBarButton Icon="Back" Label="Close" IsEnabled="False" Visibility="Collapsed" x:Name="ButtonClose" Click="ButtonClose_Click"></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

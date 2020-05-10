@@ -1,0 +1,686 @@
+﻿article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+audio,
+canvas,
+video {
+    display: inline-block;
+}
+
+    audio:not([controls]) {
+        display: none;
+        height: 0;
+    }
+
+
+  html {
+	font-size: 10px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+body {
+	font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;	
+    color: #333;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight:600;
+	color:#414141;
+
+	margin: 0 0 30px 0;
+	line-height:1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1 {
+	font-size: 30px;
+	margin: 0 0 44px 0;
+}
+
+h2 {
+	font-size: 24px;
+	margin: 0 0 20px 0;
+}
+
+h3 {
+	font-size: 20px;
+	letter-spacing: normal;
+	margin: 0 0 32px 0;
+}
+
+h4 {
+	font-size: 18px;
+	letter-spacing: normal;
+	margin: 0 0 14px 0;
+}
+
+h5 {
+	font-size: 14px;
+	letter-spacing: normal;
+	margin: 0 0 20px 0;
+}
+
+h6 {
+	font-size: 12px;
+	letter-spacing: normal;
+	margin: 0 0 20px 0;
+}
+
+a:visited, a:link {
+	color: #0033bb;
+	text-decoration: none;
+	font-family: 'Segoe UI', Arial, Tahoma;
+	font-size: 14px;
+}
+
+a:hover {
+	color: #ee3300;
+	text-decoration: none;
+	font-family: 'Segoe UI', Arial, Tahoma;
+	font-size: 14px;
+}
+
+div.fixitem {
+	width: 200px;
+	overflow: hidden;
+}
+
+hr {
+	color: #777777;
+	height: 1px;
+}
+
+img {
+	border: 0px;
+}
+
+p	{
+	font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+#page {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	display: block;
+	text-align: left;
+}
+
+#header {
+	width: 100%;
+	display: block;
+	margin: 0px;
+	padding: 10px;
+	background-image: url("title_back.png");
+	background-position: center;
+	border: 1px solid #999999;
+	background-color: #ffffff;
+	position: fixed;
+	top: 0px;
+	z-index: 999;
+}
+
+#header h1 {
+	margin: 0px;
+	font-family: Arial;
+	font-size: 15px;
+	color: #efefef;
+	margin-bottom: 6px;
+}
+
+.conf_item
+{
+	width: 99%;
+}
+.conf_item td
+{
+	padding: 5px;
+}
+
+.inputtext {
+	font-family: 'Segoe UI', Arial, Tahoma;
+	font-size: 14px;
+	padding: 6px;
+	border: 1px solid #ccc;
+	box-shadow: none;
+	outline: none;
+}
+
+.subtitle {
+	padding: 10px;
+	font-family: 'Segoe UI', Arial, Tahoma;
+	font-size: 14px;
+	color: #333;
+	border-bottom: 1px solid #ccc;
+}
+
+#menu
+{
+	margin: 0px;
+	float: left;
+	width: 160px;
+	background-color: #002233;
+	padding: 0px;
+	height: 500px;
+	display: block; /*border: 1px solid #444444;*/
+}
+
+#menu {
+	margin: 0px;
+	float: left;
+	width: 180px;
+	padding: 0px;
+	height: 500px;
+	display: block; /*border: 1px solid #444444;*/
+	position: fixed;
+	top: 51px;
+	background-color: #fff;
+}
+
+	#menu ul {
+		padding: 0px;
+		margin: 0px;
+	}
+
+		#menu ul li {
+			display: block;
+			list-style-type: none;
+			list-style-image: none;
+			margin: 0px;
+		}
+
+a.menu_selected, a.menu_selected:link, a.menu_selected:visited, a.menu_selected:hover {
+	display: block;
+	padding: 8px;
+	padding-left: 12px;
+	margin: 1px;
+	color: #ffffff;
+	background-color: #8899cc;
+	font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	height: 24px;
+}
+
+.link_menu, .link_menu:link, .link_menu:visited {
+	display: block;
+	padding: 8px;
+	padding-left: 12px;
+	margin: 1px;
+	cursor: pointer; /*background-image: url("download.png");*/
+	font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	height: 24px;
+}
+
+	.link_menu:hover {
+		display: block;
+		padding: 8px;
+		padding-left: 12px;
+		margin: 1px;
+		color: #0D0909;
+		background-color: #E3E5EC;
+		font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+		font-size: 14px;
+		height: 24px;
+	}
+
+	#content {
+		float: left;
+		display: block;
+		padding-left: 10px;
+		border-left: 1px solid #ccc;
+		margin-top: 50px;
+		min-height: 400px;
+		min-width: 520px;
+		max-width: 996px;
+	}
+	
+	.content_header {
+		padding: 15px;
+		padding-left: 5px;
+		padding-right: 0px;
+		margin: 0px;
+		font-family: Arial;
+		font-weight: bold;
+		font-size: 16px;
+		border-bottom: 1px solid #ccc;
+		display: block;
+	}
+	
+	.content_desc {
+		margin-top: 0px;
+		padding: 0px;
+		text-align: left;
+		background-color: #ffffff;
+		display: block;
+	}
+
+.monitor_desc
+{
+	width: 100%;
+}
+
+.monitor_desc thead
+{
+	background-color: #eee;
+	font-weight: bold;	
+}
+
+.monitor_desc thead td{
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.monitor_desc tbody td
+{
+	padding: 5px;
+	padding-left: 10px;
+	border-bottom: 1px solid #999;
+}
+
+#header_desc {
+	font-family: Verdana, Arial;
+	font-size: 10px;
+	color: #efefef;
+	padding-left: 50px;
+}
+
+#header_right {
+	font-family: Verdana, Arial;
+	font-size: 10px;
+	color: #efefef;
+}
+
+	#header_right a {
+		color: #efefef;
+	}
+
+.button, .button:link, .button:visited {
+	font-family: Segoe UI, Arial, Tahoma;
+	font-size: 14px;
+	padding: 0;
+	margin-right: 5px;
+	text-decoration: none;
+	cursor: pointer;
+	text-align: center;
+	border: 1px solid #cccccc;
+	color: #1c94c4;
+	outline: none;
+	background-color: #f6f6f6;
+	display: inline-block;
+}
+
+	.button:hover, .button_hover {
+		font-family: Segoe UI, Arial, Tahoma;
+		font-size: 14px;
+		padding: 0;
+		margin-right: 5px;
+		text-decoration: none;
+		cursor: pointer;
+		text-align: center;
+		border: 1px solid #fbcb09;
+		color: #1c94c4;
+		outline: none;
+		background-color: #ffffff;
+	}
+
+.button_span {
+	padding: 2px 12px 2px 12px;
+	display: block;
+}
+
+
+.comments, .dpimg
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	background-color: #fbfbaf;
+	border: 1px solid #aaaaaa;
+	color: #002233;
+}
+
+.autoc, .auto_var
+{
+	margin-top: 1px;
+	margin-bottom: 1px;
+	padding: 5px;
+	border: 1px solid #eeeeee;
+	background-color: #f5f5f5;
+	width: 98%;
+}
+
+.tips
+{
+	padding: 0px;
+	width: 300px;
+	margin: 0px;
+	display: none;
+	position: absolute;
+	line-height: 16px;
+}
+
+.tips_content
+{
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;	
+	border-right: 1px solid #999;
+	padding: 6px;	
+	background-color: #ffffff;
+	color: #001122;
+	margin: 0px;
+}
+	
+.tips_image
+{
+	margin: 0px;
+	width: 300px;	
+	height: 12px;
+}
+
+.min_val
+{
+	display:none;	
+}
+
+.max_val
+{
+	display:none;	
+}
+
+.numberlimit
+{
+	display:none;
+}
+
+#dg_mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+
+#update_mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#fff;
+  display:none;
+}
+
+#s_dg
+{
+	position:absolute;
+	left:0;
+	top:0;
+	display:none;
+	z-index:9999;
+	background-color: #ffffff;
+	width: 800px;
+	border-radius: 6px;
+}
+
+#dg_c
+{
+	padding: 10px;
+}
+
+#close_dg
+{
+	padding: 10px;
+	text-align: right;
+	border-bottom: 1px solid #eee;
+}
+
+.div_loading
+{
+	padding: 20px;	
+}
+
+#loading 
+{
+  position:absolute;
+  left:0;
+  top:0;
+  display:none;
+  z-index:9999;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+#sysinfo, #sysupdate
+{
+  position:absolute;
+  left:0;
+  top:0;
+  padding: 5px;
+  padding-left: 300px;
+  z-index:8000;
+  background-color:#fefecf;
+  display:none;
+  border: 1px solid #555;
+}
+
+#sysinfo img
+{
+	vertical-align: middle;
+	margin-right: 10px;
+	height: 18px;
+}
+
+.alert-icon
+{
+	background-image: url("icon_red.png");
+	background-position: 0 -144px;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	float:left;
+	display: block;
+	margin-right: 3px;
+}
+
+.tips_image
+{
+	margin: 0px;
+	width: 300px;	
+	height: 12px;
+}
+
+.tips_content
+{
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;	
+	border-right: 1px solid #999;
+	padding: 6px;	
+	background-color: #ffffff;
+	color: #001122;
+	margin: 0px;
+}
+
+#journal_content ul
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#journal_content ul li
+{
+	list-style-type: none;
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+}
+
+
+#startmenu {
+	padding-left: 10px;
+	display: block;
+	overflow: hidden;
+    position: relative;
+	width: 99%;
+	margin-bottom: 30px;
+}
+
+	#startmenu div {
+		display: block;
+		float: left;
+		width: 150px;
+		height: 150px;
+		border: 1px  solid #155724;
+		margin-right: 5px;
+		margin-top: 10px;
+		text-align: center;
+	}
+
+			#startmenu div a {
+				display: block;
+				line-height: 150px;
+				background-color: green;
+				color: #eee;
+				text-align: center;
+				font-family: "Segoe UI", Arial, Tahoma;
+				font-size: 16px;
+			}
+
+				#startmenu div a:hover {
+					background-color: #002255;
+				}	
+				
+
+.sample-list {
+	border-width: 0 0 1px 1px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-style: solid;
+    border-color: #ccc;
+    width: 100%;
+    background-color: #fff;
+    margin: 10px 0px 20px 0px;
+}
+
+.sample-list tr td:first-child {
+    width: 30%;
+}
+
+.sample-list tr td {
+    margin: 0;
+    padding: 10px;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    border-color: #ccc;
+}
+
+span.fixed-size {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	}
+				
+#monitor_menu
+{
+	margin: 0px;
+	padding: 0px;
+	display: block;
+	margin-bottom: 10px;
+	line-height: 25px;
+	height: 32px;
+	border-bottom: 1px solid #999999;
+}
+
+#monitor_menu ul
+{
+	margin: 0px;
+	padding: 0px;
+	display: block;
+	vertical-align: middle;
+}
+
+#monitor_menu ul li
+{
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	display: block;
+	list-style-type: none;
+	list-style-image: none;
+}
+
+#monitor_menu ul li a, #monitor_menu ul li a:link, #monitor_menu ul li a:visited
+{
+	color: #1c64c4;
+	text-decoration: none;
+	float: left;
+	padding-left: 8px;
+	padding-right: 8px;
+	display: block;
+	padding-bottom: 0px;
+	text-align: center;
+	margin-top: 5px;
+	margin-left: 1px;
+	background-color: #ffffff;
+	border-top: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-right: 1px solid #999999;
+}
+
+/*#mail_pull_list
+{
+	padding: 0px;
+	width: 100%;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+
+}
+
+#mail_pull_list thead td
+{
+	font-weight: bold;
+	padding: 10px;
+	background-color: #eeeeee;
+}
+
+#mail_pull_list tbody td
+{
+	border-top: 1px solid #999;
+	padding: 10px;
+	vertical-align: top;
+}*/
+
+#maincontent {
+	padding: 0px;
+	margin-top: 0px;
+	border: 0px;
+	border-collapse: collapse;
+}

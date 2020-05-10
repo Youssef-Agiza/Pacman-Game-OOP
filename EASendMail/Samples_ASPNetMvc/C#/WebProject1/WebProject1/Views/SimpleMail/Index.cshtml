@@ -1,0 +1,277 @@
+﻿@model WebProject1.Models.MailTask
+
+@{
+    ViewBag.Title = "Send a simple email from ASP.NET MVC";
+}
+
+<h2>Send a simple email from ASP.NET MVC</h2>
+<div style="margin-top:20px;">
+    @Html.ActionLink("All Samples", "Index", "Home") &gt; Send a simple email from ASP.NET MVC
+</div>
+
+@Html.Partial("~/Views/Shared/TopStatusBar.cshtml")
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "thisForm", id = "thisForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.HiddenFor(model => model.TaskId)
+        @Html.HiddenFor(model => model.AuthType)
+
+        @Html.Hidden("IsSyncSendSucceeded", (object)ViewBag.IsSyncSendSucceeded.ToString())
+        @Html.Hidden("SyncSendStatus", (object)ViewBag.SyncSendStatus.ToString())
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sender,
+                    new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control",
+                            style = "width:80%; max-width:80%;",
+                            placeholder = "sender@example.com"
+                        }
+                    })
+                @Html.ValidationMessageFor(model => model.Sender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RecipientTo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RecipientTo,
+               new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control",
+                       style = "width:80%; max-width:80%;",
+                       placeholder = "recipient@example.com"
+                   }
+               })
+                @Html.ValidationMessageFor(model => model.RecipientTo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", style = "width:80%; max-width:80%;" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TextBody, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.TextBody, 5, 20, new { @class = "form-control", style = "width:80%; max-width:80%;" })
+                @Html.ValidationMessageFor(model => model.TextBody, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Server, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Server,
+               new
+               {
+                   htmlAttributes = new
+                   {
+                       @class = "form-control",
+                       placeholder = "Input your server address"
+                   }
+               })
+                @Html.ValidationMessageFor(model => model.Server, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Port, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Port", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Port, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.IsSslConnection)
+                        @Html.DisplayNameFor(model => model.IsSslConnection)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Protocol</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Protocol", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.IsAuthenticationRequired)
+                        @Html.DisplayNameFor(model => model.IsAuthenticationRequired)
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="user_password_panel">
+            <div class="form-group">
+                @Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.User, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.User, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "Password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Send Email" id="ButtonSyncSend" class="btn btn-default" />
+                <input type="button" value="Ajax Send Email" id="ButtonAsyncSend" class="btn btn-default" />
+                @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+
+}
+
+@Html.Partial("~/Views/Shared/HtmlModalBox.cshtml")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/sample")
+    <script>
+        $(function () {
+            initSimpleSample();
+        });
+
+        function initSimpleSample() {
+
+            serverAutoConfig().init();
+            var statusBar = initTopStatusBar();
+            var statusModal = initModalBox();
+
+            var _form = $('#thisForm');
+            var _syncSendButton = $('#ButtonSyncSend');
+            var _asyncSendButton = $('#ButtonAsyncSend');
+
+            showSyncSendResult();
+
+            function showSyncSendResult() {
+                if ($('#SyncSendStatus').val() == '') {
+                    statusBar.hide();
+                    return;
+                }
+
+                if ($('#IsSyncSendSucceeded').val() == 'True') {
+                    statusBar.success($('#SyncSendStatus').val());
+                }
+                else {
+                    statusBar.error($('#SyncSendStatus').val());
+                }
+            }
+
+            $(_syncSendButton).unbind();
+            $(_syncSendButton).on('click', function (event) {
+                event.preventDefault();
+
+                $(_form).validate();
+                if (!$(_form).valid()) {
+                    scrollToError();
+                    return;
+                }
+
+                $(_form).attr('action', '@Url.Action("Index")');
+                $(_form).submit();
+            })
+
+            $(_asyncSendButton).unbind();
+            $(_asyncSendButton).on('click', function (event) {
+                event.preventDefault();
+                $(_form).validate();
+                if (!$(_form).valid()) {
+                    scrollToError();
+                    return;
+                }
+
+                $(_form).attr('action', '@Url.Action("AsyncSend")');
+
+                var req_data = $(_form).serialize();
+                var req = $(_form).attr('action');
+
+                statusBar.hide();
+                statusModal.status('Please wait ...');
+
+                $.post(req, req_data)
+                .done(function (taskId) {
+                    queryStatus(taskId);
+                })
+                .fail(function (msg) {
+                    statusModal.error(msg.status + ': ' + msg.statusText);
+                });
+            })
+
+            function queryStatus(id) {
+                var interval = 300;
+                var req = '@Url.Action("QueryAsyncTask")' + '/' + id;
+
+                var task = function () {
+                    $.ajax({
+                        type: "GET",
+                        url: req,
+                        cache: false,
+                        dataType: "json"
+                    }).done(function (msg) {
+
+                        statusModal.status(msg.Status);
+
+                        if (!msg.Completed) {
+                            setTimeout(task, interval);
+                            return;
+                        }
+
+                        if (msg.HasError) {
+                            statusModal.error(msg.Status);
+                        }
+                        else {
+                            statusModal.success('Completed');
+                        }
+
+                    }).fail(function (msg) {
+                        statusModal.error(msg.status + ': ' + msg.statusText);
+                    });
+                };
+
+                setTimeout(task, interval);
+            }
+        }
+
+    </script>
+}

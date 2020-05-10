@@ -98,13 +98,13 @@
     <ClCompile Include="..\sources\MinHeap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\PathfindTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\sources\Pellets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

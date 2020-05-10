@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebProject1.Models.DbRecipientResult>
+
+@{
+    ViewBag.Title = "Db Recipients status in task";
+}
+
+<h2>Recipient status in current task</h2>
+
+<div style="margin: 20px auto 20px auto;">
+    @Html.ActionLink("Go Back", "Index", "DbRecipients")
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th style="width: 50px;">
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResultId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recipient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.IsSucceeded)
+                {
+                    <span class="fa fa-check" style="color:#0099dd"></span>
+                }
+                else
+                {
+                    <span class="fa fa-close" style="color:#ff0000;"></span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipient)
+            </td>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationTime)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+
+<hr />
+
+<div style="margin: 20px auto 20px auto;">
+    @Html.ActionLink("Go Back", "Index", "DbRecipients")
+</div>
+

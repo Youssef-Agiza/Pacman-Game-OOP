@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script type="text/jscript">
+        
+        function insertImage(filepath, file, data, ct) {
+            document.execCommand("insertImage", false, filepath);
+            var images = document.getElementsByTagName("img");
+
+            for (var i = 0; i < images.length; i++) {
+                var img = images[i];
+
+                var src = img.src;
+                src = src.replace(/\%20/g, " ").toLowerCase();
+                src = src.replace(/file:[/]+/, "");
+                src = src.replace(/\//g, "\\");
+
+                if (src == filepath.replace(/\//g, "\\").toLowerCase()) {
+                    img.src = "data:" + ct + ";base64," + data;
+                    img.alt = file;
+                    break;
+                }
+            }
+        }
+
+        function getHtml() {
+            return document.body.innerHTML;
+        }
+
+        function getText() {
+            return document.body.innerText;
+        }
+
+        function setText(v) {
+            document.body.innerText = v;
+        }
+
+        function setHtml(v) {
+            document.body.innerHTML = v;
+        }
+
+        function displaySource(v) {
+            if (v == "true") {
+                var text = document.body.innerHTML;
+                document.body.innerText = text;
+                document.body.innerHTML = "<div style=\"font-size:12px;font-family:Courier New\">" + document.body.innerHTML + "</div>";
+            }
+            else {
+                document.body.innerHTML = document.body.innerText;
+            }
+        }
+
+        var range = null;
+        function storeSelection() {
+            var sel = window.getSelection();
+            range = sel.getRangeAt(0).cloneRange();
+        }
+
+        function restoreSelection() {
+            if (range == null){
+                return;
+            }
+
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range.cloneRange());
+            range = null;
+        }
+        
+    </script>
+</head>
+<body>
+</body>
+</html>
