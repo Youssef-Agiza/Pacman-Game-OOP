@@ -16,13 +16,13 @@ private:
 	Texture mPowerTexture;
 	Texture mBlack;
 	Texture mTransparent;
-	
-	
+	Texture mFruit;
+	void addFruit();
 public:
 	Pellets(vector <vector<int>> v);
 	void drawPellets(RenderWindow &w, RectangleShape** mShape);
-	void intersectPellets(Pacman* P);
 	int mPelletCount;
+	void intersectPellets(Pacman* P);
 	~Pellets();
 };
 

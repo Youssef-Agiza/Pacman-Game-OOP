@@ -31,12 +31,26 @@ Pellets::Pellets(vector <vector<int>> v):arrScore(v),mPelletCount(0)
 			arrScore[i][j] = -6;//no pellets in home
 			mPelletCount--;
 		}
+	for (int i = 11; i <= 17; i++)
+	{
+		arrScore[i][9] = -6; 
+		arrScore[i][18] = -6; 
+		for (int j = 9; j < 18; j++)
+		{
+			arrScore[11][j] = -6;//no pellets around the home
+			arrScore[17][j] = -6;
+		}
+	}
+	arrScore[14][0] = -6; mPelletCount--;
+	arrScore[14][27] = -6; mPelletCount--;
 	arrScore[12][13]=-6; mPelletCount--;
 	arrScore[12][14]=-6; mPelletCount--;
+	mPelletCount -= 30;
 	mPelletTexture.loadFromFile("../images/pellet.png");
 	mPowerTexture.loadFromFile("../images/yellowpellet.png");
 	mBlack.loadFromFile("../images/black.png");
 	mTransparent.loadFromFile("../images/transparent.png");
+	mFruit.loadFromFile("../images/fruits.png");
 }
 Pellets::~Pellets()
 {
@@ -58,7 +72,8 @@ void Pellets::intersectPellets( Pacman* pacman)
 		Audio::getInstance()->playChomp();
 		mPelletCount--;
 	}
-	
+	if ((mPelletCount == 250) || (mPelletCount == 200) || (mPelletCount == 150) || (mPelletCount == 100))
+		addFruit();
 }
 	
 
@@ -82,13 +97,28 @@ void Pellets::drawPellets(RenderWindow& w, RectangleShape** mShape)
 			{
 				mShape[i][j].setTexture(&mBlack);
 			}
-			else  if (arrScore[i][j]==-6)
+			else if (arrScore[i][j] == 250)
+			{
+				mShape[i][j].setFillColor(sf::Color::Yellow);
+				mShape[i][j].setTexture(&mFruit);
+			}
+			else if (arrScore[i][j]==-6)
 				mShape[i][j].setFillColor(Color::Transparent);
 			w.draw(mShape[i][j]);
 		}
 	
 }
 
-
+void Pellets::addFruit()
+{
+		if (mPelletCount == 250)
+			arrScore[11][9] = 250;
+		else if (mPelletCount == 200)
+			arrScore[15][9] = 250;
+		else if (mPelletCount == 150)
+			arrScore[16][18] = 250;
+		else if (mPelletCount == 100)
+			arrScore[13][9] = 250;
+}
 
 
