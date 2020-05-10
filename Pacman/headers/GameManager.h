@@ -7,7 +7,7 @@
 #include "../headers/Pellets.h"
 #include "../headers/Graph.h"
 #include "../headers/Words.h"
-//#include"../headers/Email.h"
+#include"../headers/Email.h"
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
@@ -25,7 +25,7 @@ private:
 	Pellets* pellet;
 	GhostManager* ghostManager;
 	Words* textManager ;
-	//Email emailManager;
+	Email emailManager;
 
 private:
 	void loadBoardText();
@@ -39,7 +39,6 @@ private:
 public:
 	GameManager();
 	~GameManager();
-	/*void initiate();*/
 	void Play();
 	void sendEmail();
 	

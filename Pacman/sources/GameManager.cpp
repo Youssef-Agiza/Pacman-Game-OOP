@@ -82,7 +82,7 @@ void GameManager::createEntities(int level)
 
 void GameManager:: sendEmail()
 {
-	//emailManager.sendEmail();
+	emailManager.sendEmail();
 }
 
 void GameManager::startGame()
@@ -159,9 +159,15 @@ void GameManager::Play()
 		window.display();
 
 		if (pacman->getLives() == 0)
+		{
 			this->gameLost();
+			this->emailManager.sendEmail();
+		}
 		else if (pellet->mPelletCount == 0)
+		{
 			this->gameWon();
+			this->emailManager.sendEmail();
+		}
 	}
 }
 

@@ -153,6 +153,7 @@
     <ClInclude Include="..\headers\Audio.h" />
     <ClInclude Include="..\headers\Board.h" />
     <ClInclude Include="..\headers\Character.h" />
+    <ClInclude Include="..\headers\Email.h" />
     <ClInclude Include="..\headers\GameManager.h" />
     <ClInclude Include="..\headers\Ghost.h" />
     <ClInclude Include="..\headers\GhostManager.h" />
