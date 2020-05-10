@@ -119,7 +119,7 @@ void GameManager::startGame()
 
 void GameManager::Play()
 {
-	playerList->getHighestScore().highScore;
+
 	startGame();
 	
 	Event e;
@@ -209,7 +209,7 @@ void GameManager::draw()
 	pellet->drawPellets(window, board->mShape);
 	pacman->drawOnWindow(window);
 	ghostManager->draw(window);
-	textManager->drawText(window, pacman);
+	textManager->drawText(window, pacman, playerList->getHighestScore().highScore);
 }
 
 void GameManager:: gameWon()

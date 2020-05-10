@@ -12,6 +12,8 @@ private:
 	Text Num;
 	Text L;
 	Text life;
+	Text highScore;
+	Text numHighScore;
 public:
 	Words()
 	{
@@ -32,8 +34,12 @@ public:
 		life.setFont(font);
 		life.setCharacterSize(50);
 		life.setOrigin(Vector2f(-400, 0));
+		highScore.setOrigin(Vector2f(-1400, -50));
+		highScore.setString("High Score: "); highScore.setOutlineColor(Color::Red); highScore.setFont(font);
+		highScore.setCharacterSize(50);numHighScore.setCharacterSize(50);
+		numHighScore.setOrigin(Vector2f(-1550, -50)); numHighScore.setOutlineColor(Color::Red); numHighScore.setFont(font);
 	}
-	void drawText(RenderWindow& w, Pacman * P)
+	void drawText(RenderWindow& w, Pacman * P, int u)
 	{
 		int score = P->getScore();
 		int x = P->getLives();
@@ -43,6 +49,9 @@ public:
 		w.draw(L);
 		life.setString(to_string(x));
 		w.draw(life);
+		w.draw(highScore);
+		numHighScore.setString(to_string(u));
+		w.draw(numHighScore);
 	}
 	void drawTextInHome(RenderWindow& w, string s)
 	{
