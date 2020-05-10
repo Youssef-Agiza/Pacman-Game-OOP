@@ -1,17 +1,6 @@
 #include "../headers/GameManager.h"
-
-using namespace std;
-using namespace sf;
-using namespace PacmanCS;
-/************************************************************************/
-
-/************************************************************************/
-
-int main()
+void main()
 {
-GameManager Game;
-
-//Game.startGame();
-Game.Play();
-return 0;
+	GameManager Game;
+	Game.Play();
 }
