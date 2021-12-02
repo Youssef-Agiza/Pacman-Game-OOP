@@ -21,6 +21,7 @@ namespace PacmanCS {
 		void intializeShape();
 	public:
 		Board(std::vector < std::vector<int>> , float tileSize,sf::Vector2f posOnWindow);
+		
 		sf::RectangleShape** mShape;
 
 		//setters

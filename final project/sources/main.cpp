@@ -1,3 +1,6 @@
 #include "../headers/GameManager.h"
-void main()
-{GameManager Game;}
+int main()
+{
+    GameManager Game;
+    return 0;
+}

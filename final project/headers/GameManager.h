@@ -7,11 +7,16 @@
 #include "../headers/Pellets.h"
 #include "../headers/Graph.h"
 #include "../headers/Words.h"
-#include"../headers/Email.h"
+// #include"../headers/Email.h"
 using namespace std;
 using namespace sf;
 using namespace PacmanCS;
-enum GameModes{Normal,infinity ,Turbo};
+enum GameModes
+{
+	Normal,
+	infinity,
+	Turbo
+};
 class GameManager
 
 {
@@ -19,13 +24,13 @@ private:
 	float tileSize;
 	RenderWindow window;
 	vector<vector<int>> arr;
-	Graph* graph;
-	Pacman* pacman;
-	Board* board;
-	Pellets* pellet;
-	GhostManager* ghostManager;
-	Words* textManager ;
-	Email emailManager;
+	Graph *graph;
+	Pacman *pacman;
+	Board *board;
+	Pellets *pellet;
+	GhostManager *ghostManager;
+	Words *textManager;
+	// Email emailManager;
 
 private:
 	void loadBoardText();
@@ -36,12 +41,10 @@ private:
 	void checkCollision();
 	void draw();
 	void startGame();
+
 public:
 	GameManager();
 	~GameManager();
 	void Play();
 	void sendEmail();
-	
-
 };
-

@@ -1,10 +1,16 @@
 #include "../headers/GameManager.h"
 
-GameManager::GameManager() :arr(vector <vector<int>>(31, vector<int>(28))), tileSize(30.0f)
+GameManager::GameManager() : arr(vector<vector<int>>(31, vector<int>(28))), tileSize(30.0f)
 {
 	//	Vector2f POSITION(500, 0);
 	window.create(VideoMode(1840, 930), "Simple Maze");
 	graph = new Graph();
+	this->board = nullptr;
+	this->ghostManager = nullptr;
+	this->pacman = nullptr;
+	this->pellet = nullptr;
+	this->textManager = nullptr;
+
 	this->loadBoardText();
 	this->createEdges();
 	this->createEntities(1);
@@ -28,7 +34,6 @@ GameManager::~GameManager()
 	ghostManager = nullptr;
 	textManager = nullptr;
 	pellet = nullptr;
-	
 }
 void GameManager::loadBoardText()
 {
@@ -54,22 +59,22 @@ void GameManager::createEdges()
 					graph->addEdge(arr[i][j], arr[i + 1][j]);
 			}
 		}
-	graph->addEdge(149, 130);//connects portals
+	graph->addEdge(149, 130); // connects portals
 }
 
 void GameManager::createEntities(int level)
 {
 	this->loadBoardText();
-	if (board != nullptr)
-		delete board;
-	if (pacman != nullptr)
-		delete pacman;
-	if (ghostManager != nullptr)
-		delete ghostManager;
-	if (pellet != nullptr)
-		delete pellet;
-	if (textManager != nullptr)
-		delete textManager;
+	// if (board != nullptr)
+	// 	delete board;
+	// if (pacman != nullptr)
+	// 	delete pacman;
+	// if (ghostManager != nullptr)
+	// 	delete ghostManager;
+	// if (pellet != nullptr)
+	// 	delete pellet;
+	// if (textManager != nullptr)
+	// 	delete textManager;
 
 	board = new Board(arr, tileSize, Vector2f(500, 0));
 	pacman = new Pacman(1, 1, tileSize, board);
@@ -79,35 +84,32 @@ void GameManager::createEntities(int level)
 	textManager = new Words();
 }
 
-
-void GameManager:: sendEmail()
+void GameManager::sendEmail()
 {
-	emailManager.sendEmail();
+	// emailManager.sendEmail();
 }
 
 void GameManager::startGame()
 {
-	
+
 	Event x;
-	draw(); 
+	draw();
 	textManager->drawTextInHome(window, "Ready ");
 	window.display();
 
 	while (window.isOpen())
 	{
-		
+
 		while (window.pollEvent(x))
 		{
-			
+
 			if (x.type == Event::Closed)
 				window.close();
 			else if (x.key.code == Keyboard::Space)
 			{
 				return;
 			}
-
 		}
-
 	}
 }
 
@@ -115,7 +117,7 @@ void GameManager::Play()
 {
 
 	startGame();
-	
+
 	Event e;
 	pacman->resetTime();
 	while (window.isOpen())
@@ -141,10 +143,11 @@ void GameManager::Play()
 					pacman->setDirection(LEFT);
 					break;
 				case Keyboard::F:
-					pacman->setPowerUp(!pacman->getPowerUp()); break;
+					pacman->setPowerUp(!pacman->getPowerUp());
+					break;
 
-
-				default:break;
+				default:
+					break;
 				}
 			}
 		}
@@ -161,12 +164,12 @@ void GameManager::Play()
 		if (pacman->getLives() == 0)
 		{
 			this->gameLost();
-			this->emailManager.sendEmail();
+			// this->emailManager.sendEmail();
 		}
 		else if (pellet->mPelletCount == 0)
 		{
 			this->gameWon();
-			this->emailManager.sendEmail();
+			// this->emailManager.sendEmail();
 		}
 	}
 }
@@ -174,7 +177,6 @@ void GameManager::Play()
 void GameManager::checkCollision()
 {
 	pacman->checkPowerUpTime();
-
 
 	for (auto ghost : ghostManager->getGhostList())
 		if (ghost->getSprite().getGlobalBounds().intersects(pacman->getSprite().getGlobalBounds()))
@@ -196,11 +198,9 @@ void GameManager::checkCollision()
 				pacman->die(window);
 				for (int i = 0; i < 4; i++)
 					ghostManager->getGhostList()[i]->resetPosition();
-
 			}
 			return;
 		}
-
 }
 
 void GameManager::draw()
@@ -212,7 +212,7 @@ void GameManager::draw()
 	textManager->drawText(window, pacman);
 }
 
-void GameManager:: gameWon()
+void GameManager::gameWon()
 {
 	Clock timer;
 	while (timer.getElapsedTime().asSeconds() < 3)
@@ -222,7 +222,6 @@ void GameManager:: gameWon()
 		window.display();
 	}
 	window.close();
-
 }
 
 void GameManager::gameLost()
